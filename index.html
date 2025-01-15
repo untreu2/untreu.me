@@ -173,9 +173,17 @@
         }
 
         #invoice-container {
-            margin-top: 20px;
-            text-align: center;
             display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
         }
 
         .invoice-box {
@@ -186,13 +194,14 @@
             text-align: center;
             color: #fff;
             max-width: 300px;
-            margin: 0 auto;
+            width: 90%;
             word-wrap: break-word;
             overflow-wrap: break-word;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            position: relative;
         }
 
         .invoice-box p {
@@ -205,6 +214,20 @@
 
         canvas {
             margin-top: 10px;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            color: #fff;
+            font-size: 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close-modal:hover {
+            color: #bbb;
         }
 
         @keyframes typing {
@@ -359,6 +382,7 @@
     </div>
     <div id="invoice-container">
         <div class="invoice-box">
+            <span class="close-modal" onclick="closeInvoiceModal()">&times;</span>
             <p><strong>lightning invoice:</strong></p>
             <p id="ln-invoice"></p>
             <button class="copy-button" onclick="copyInvoice()">copy ln invoice</button>
@@ -390,6 +414,10 @@
             document.getElementById('custom-donate').style.display = 'flex';
         }
 
+        function closeInvoiceModal() {
+            document.getElementById('invoice-container').style.display = 'none';
+        }
+
         async function resolveLightningAddress(lightningAddress) {
             const [username, domain] = lightningAddress.split('@');
             const url = `https://${domain}/.well-known/lnurlp/${username}`;
@@ -405,7 +433,7 @@
                 const lnInvoice = response.data.pr;
 
                 document.getElementById('ln-invoice').innerText = lnInvoice;
-                document.getElementById('invoice-container').style.display = 'block';
+                document.getElementById('invoice-container').style.display = 'flex';
 
                 const canvas = document.getElementById('qrcode');
                 QRCode.toCanvas(canvas, lnInvoice, (error) => {
@@ -430,7 +458,7 @@
                 const lnInvoice = response.data.pr;
 
                 document.getElementById('ln-invoice').innerText = lnInvoice;
-                document.getElementById('invoice-container').style.display = 'block';
+                document.getElementById('invoice-container').style.display = 'flex';
 
                 const canvas = document.getElementById('qrcode');
                 QRCode.toCanvas(canvas, lnInvoice, (error) => {
@@ -454,6 +482,13 @@
                 console.error('failed to copy: ', err);
                 alert('failed to copy the invoice.');
             });
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('invoice-container');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
         }
     </script>
 </body>
