@@ -245,7 +245,7 @@
             }
         }
 
-        .copy-button {
+        .copy-button, .pay-button {
             color: #000;
             text-decoration: none;
             font-size: 1rem;
@@ -257,9 +257,10 @@
             cursor: pointer;
             font-family: 'Courier New', Courier, monospace;
             margin-bottom: 10px;
+            width: 100%;
         }
 
-        .copy-button:hover {
+        .copy-button:hover, .pay-button:hover {
             background-color: #000;
             color: #fff;
         }
@@ -335,7 +336,7 @@
                 padding: 15px;
             }
 
-            .copy-button {
+            .copy-button, .pay-button {
                 width: 100%;
                 max-width: 350px;
                 padding: 10px;
@@ -385,7 +386,9 @@
             <span class="close-modal" onclick="closeInvoiceModal()">&times;</span>
             <p><strong>lightning invoice:</strong></p>
             <p id="ln-invoice"></p>
+            <button class="pay-button" onclick="payInvoice()">pay ln invoice</button>
             <button class="copy-button" onclick="copyInvoice()">copy ln invoice</button>
+            <p><strong>lightning invoice QR Code:</strong></p>
             <canvas id="qrcode"></canvas>
         </div>
     </div>
@@ -432,13 +435,7 @@
                 const response = await axios.get(paymentRequestUrl);
                 const lnInvoice = response.data.pr;
 
-                document.getElementById('ln-invoice').innerText = lnInvoice;
-                document.getElementById('invoice-container').style.display = 'flex';
-
-                const canvas = document.getElementById('qrcode');
-                QRCode.toCanvas(canvas, lnInvoice, (error) => {
-                    if (error) console.error(error);
-                });
+                displayInvoice(lnInvoice);
             } catch (error) {
                 alert('error generating invoice: ' + error.message);
             }
@@ -457,16 +454,20 @@
                 const response = await axios.get(paymentRequestUrl);
                 const lnInvoice = response.data.pr;
 
-                document.getElementById('ln-invoice').innerText = lnInvoice;
-                document.getElementById('invoice-container').style.display = 'flex';
-
-                const canvas = document.getElementById('qrcode');
-                QRCode.toCanvas(canvas, lnInvoice, (error) => {
-                    if (error) console.error(error);
-                });
+                displayInvoice(lnInvoice);
             } catch (error) {
                 alert('error generating invoice: ' + error.message);
             }
+        }
+
+        function displayInvoice(lnInvoice) {
+            document.getElementById('ln-invoice').innerText = lnInvoice;
+            document.getElementById('invoice-container').style.display = 'flex';
+
+            const canvas = document.getElementById('qrcode');
+            QRCode.toCanvas(canvas, lnInvoice, (error) => {
+                if (error) console.error(error);
+            });
         }
 
         function copyInvoice() {
@@ -482,6 +483,17 @@
                 console.error('failed to copy: ', err);
                 alert('failed to copy the invoice.');
             });
+        }
+
+        function payInvoice() {
+            const invoice = document.getElementById('ln-invoice').innerText;
+            if (!invoice) {
+                alert('no invoice to pay.');
+                return;
+            }
+
+            const payLink = `lightning:${invoice}`;
+            window.open(payLink, '_blank');
         }
 
         window.onclick = function(event) {
