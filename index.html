@@ -12,15 +12,69 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            height: 100vh;
+            min-height: 100vh;
             background-color: #000;
             color: #fff;
             font-family: 'Courier New', Courier, monospace;
-            overflow: auto;
+            overflow: hidden;
+        }
+
+        .typewriter {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .subtext {
+            font-size: 1rem;
+            color: #ccc;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .additional-text {
+            font-size: 0.9rem;
+            color: #aaa;
+            margin-bottom: 20px;
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        .additional-text a {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        .links {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .links a, .links button {
+            background-color: transparent;
+            border: 2px solid #fff;
+            padding: 8px 20px;
+            border-radius: 25px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .links a:hover, .links button:hover {
+            background-color: #fff;
+            color: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         .image-container {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .circular-image {
@@ -30,118 +84,79 @@
             background-image: url('https://primal.b-cdn.net/media-cache?s=o&a=1&u=https%3A%2F%2Fm.primal.net%2FNcfW.jpg');
             background-size: cover;
             background-position: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
         }
 
-        .typewriter {
-            font-size: 2rem;
-            border-right: 2px solid #fff;
-            white-space: nowrap;
-            overflow: hidden;
-            width: 0;
-            animation: typing 1.5s steps(6) forwards, blink 0.5s step-end infinite;
-        }
-
-        .subtext {
-            margin-top: 5px;
-            font-size: 1.2rem;
-            color: #888;
-        }
-
-        .links {
-            margin-top: 20px;
-            display: flex;
-            gap: 15px;
-        }
-
-        .links a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 1rem;
-            border: 1px solid #fff;
-            padding: 5px 15px;
-            border-radius: 5px;
-            transition: background-color 0.3s, color 0.3s;
-            background-color: transparent;
-            font-family: 'Courier New', Courier, monospace;
-        }
-
-        .links a:hover {
-            background-color: #fff;
-            color: #000;
-        }
-
-        .links button {
-            color: #000;
-            text-decoration: none;
-            font-size: 1rem;
-            border: 1px solid #fff;
-            padding: 5px 15px;
-            border-radius: 5px;
-            transition: background-color 0.3s, color 0.3s;
-            background-color: #fff;
-            cursor: pointer;
-            font-family: 'Courier New', Courier, monospace;
-        }
-
-        .links button:hover {
-            background-color: #000;
-            color: #fff;
+        .circular-image:hover {
+            transform: scale(1.05);
         }
 
         .donate-container {
-            margin-top: 30px;
-            text-align: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
             display: none;
-        }
-
-        .donate-options {
-            display: flex;
             justify-content: center;
-            gap: 10px;
-            margin-bottom: 20px;
+            align-items: center;
+            padding: 20px;
+            z-index: 1000;
+            animation: fadeIn 0.5s ease-in-out;
         }
 
-        .donate-options button {
-            color: #000;
-            text-decoration: none;
-            font-size: 1rem;
-            border: 1px solid #fff;
-            padding: 10px 20px;
-            border-radius: 5px;
+        .donate-content {
+            background-color: #111;
+            padding: 25px;
+            border-radius: 15px;
+            width: 100%;
+            max-width: 450px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+
+        .donate-options, .custom-donate {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .donate-options button, .custom-donate button {
             background-color: #fff;
+            color: #000;
+            border: none;
+            padding: 10px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: background-color 0.3s, color 0.3s;
             cursor: pointer;
             font-family: 'Courier New', Courier, monospace;
         }
 
-        .donate-options button:hover {
+        .donate-options button:hover, .custom-donate button:hover {
             background-color: #000;
             color: #fff;
-        }
-
-        .custom-donate {
-            display: none;
-            flex-direction: column;
-            align-items: center;
         }
 
         .custom-donate .input-group {
             display: flex;
-            justify-content: center;
-            align-items: center;
             gap: 10px;
-            margin-bottom: 20px;
+            align-items: center;
         }
 
         .custom-donate input {
-            padding: 10px;
-            font-size: 1rem;
-            border-radius: 5px;
+            flex: 1;
+            padding: 8px;
+            border-radius: 8px;
             border: 1px solid #444;
-            width: 150px;
+            font-size: 0.9rem;
             text-align: center;
-            font-family: 'Courier New', Courier, monospace;
             background-color: #222;
             color: #fff;
+            font-family: 'Courier New', Courier, monospace;
+            transition: border-color 0.3s;
         }
 
         .custom-donate input:focus {
@@ -150,70 +165,42 @@
         }
 
         .custom-donate span {
-            font-size: 1rem;
-            color: #fff;
-        }
-
-        .custom-donate button {
-            color: #000;
-            text-decoration: none;
-            font-size: 1.5rem;
-            border: 1px solid #fff;
-            padding: 8px 20px;
-            border-radius: 5px;
-            background-color: #fff;
-            cursor: pointer;
-            font-family: 'Courier New', Courier, monospace;
-            margin-top: 10px;
-        }
-
-        .custom-donate button:hover {
-            background-color: #000;
+            font-size: 0.9rem;
             color: #fff;
         }
 
         #invoice-container {
             display: none;
             position: fixed;
-            z-index: 1000;
+            z-index: 2000;
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(0, 0, 0, 0.95);
             justify-content: center;
             align-items: center;
+            padding: 20px;
+            animation: fadeIn 0.5s ease-in-out;
         }
 
         .invoice-box {
             background: #111;
-            border: 1px solid #333;
+            border: 2px solid #444;
             padding: 20px;
-            border-radius: 10px;
+            border-radius: 15px;
             text-align: center;
             color: #fff;
-            max-width: 300px;
-            width: 90%;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            max-width: 350px;
+            width: 100%;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
             position: relative;
         }
 
         .invoice-box p {
             margin: 10px 0;
-            max-width: 100%;
-            overflow: auto;
-            text-align: left;
             word-break: break-all;
-        }
-
-        canvas {
-            margin-top: 10px;
+            font-size: 0.9rem;
         }
 
         .close-modal {
@@ -224,133 +211,82 @@
             font-size: 1.5rem;
             font-weight: bold;
             cursor: pointer;
+            transition: color 0.3s;
         }
 
         .close-modal:hover {
             color: #bbb;
         }
 
-        @keyframes typing {
-            from {
-                width: 0;
-            }
-            to {
-                width: 6ch;
-            }
-        }
-
-        @keyframes blink {
-            50% {
-                border-color: transparent;
-            }
-        }
-
-        .copy-button, .pay-button {
-            color: #000;
-            text-decoration: none;
-            font-size: 1rem;
-            border: 1px solid #fff;
-            padding: 5px 15px;
-            border-radius: 5px;
-            transition: background-color 0.3s, color 0.3s;
+        .invoice-box button {
             background-color: #fff;
+            color: #000;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin: 8px 0;
+            transition: background-color 0.3s, color 0.3s;
             cursor: pointer;
             font-family: 'Courier New', Courier, monospace;
-            margin-bottom: 10px;
             width: 100%;
         }
 
-        .copy-button:hover, .pay-button:hover {
+        .invoice-box button:hover {
             background-color: #000;
             color: #fff;
         }
 
-        @media (max-width: 768px) {
-            body {
-                height: auto;
-                padding: 20px;
-                overflow: auto;
-            }
+        canvas {
+            margin-top: 10px;
+            width: 150px !important;
+            height: 150px !important;
+        }
 
+        @media (max-width: 768px) {
             .circular-image {
                 width: 80px;
                 height: 80px;
             }
 
             .typewriter {
-                font-size: 1.5rem;
+                font-size: 1.8rem;
             }
 
             .subtext {
-                font-size: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .additional-text {
+                font-size: 0.8rem;
             }
 
             .links {
                 flex-direction: column;
                 gap: 10px;
-                align-items: center;
             }
 
             .links a, .links button {
-                width: 150%;
-                max-width: 500px;
+                width: 100%;
+                max-width: 300px;
                 text-align: center;
-                font-size: 1rem;
-                padding: 10px 0;
             }
 
-            .donate-container {
-                margin-top: 20px;
-            }
-
-            .donate-options {
-                flex-direction: column;
-                gap: 10px;
-            }
-
-            .donate-options button, .custom-donate button {
-                width: 100%;
-                max-width: 350px;
-                padding: 12px;
-                font-size: 1rem;
-            }
-
-            .custom-donate .input-group {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .custom-donate input {
-                width: 100%;
-                max-width: 350px;
-            }
-
-            .custom-donate button {
-                font-size: 1.2rem;
-                padding: 12px;
-                max-width: 350px;
-            }
-
-            .invoice-box {
-                max-width: 100%;
+            .donate-content, .invoice-box {
                 padding: 15px;
             }
 
-            .copy-button, .pay-button {
-                width: 100%;
-                max-width: 350px;
-                padding: 10px;
-                font-size: 1rem;
-            }
-
             canvas {
-                width: 100%;
-                height: auto;
+                width: 120px !important;
+                height: 120px !important;
             }
         }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
 </head>
 <body>
     <div class="image-container">
@@ -358,40 +294,49 @@
     </div>
     <div class="typewriter">untreu</div>
     <div class="subtext">emir yorulmaz</div>
+    <div class="additional-text">🫴🏼 🍊 + 🍇 bitcoin & nostr dev. | i made <a href="https://aircommit.space" target="_blank">aircommit.space</a></div>
     <div class="links">
         <a href="https://github.com/untreu2/" target="_blank">github</a>
         <a href="https://primal.net/p/npub1mmfakwg4s36235wlav6qpe03cgr038gujn2hnsvwk2ne49gzqslqc6xvtp" target="_blank">nostr</a>
         <a href="https://x.com/_untreu" target="_blank">x</a>
         <button onclick="showDonateOptions()">donate</button>
     </div>
+
     <div class="donate-container" id="donate-modal">
-        <div class="donate-options" id="donate-options">
-            <button onclick="generateInvoiceWithAmount(2000)">2k sats</button>
-            <button onclick="generateInvoiceWithAmount(5000)">5k sats</button>
-            <button onclick="generateInvoiceWithAmount(10000)">10k sats</button>
-            <button onclick="generateInvoiceWithAmount(21000)">21k sats</button>
-            <button onclick="generateInvoiceWithAmount(50000)">50k sats</button>
-            <button onclick="showCustomDonate()">custom</button>
-        </div>
-        <div class="custom-donate" id="custom-donate">
-            <div class="input-group">
-                <input type="number" id="satoshi-amount" placeholder="enter amount (satoshi)" min="1" value="100" oninput="updateSatsLabel()">
-                <span id="sats-label">sats</span>
+        <div class="donate-content">
+            <span class="close-modal" onclick="closeDonateModal()">&times;</span>
+            <div class="donate-options" id="donate-options">
+                <button onclick="generateInvoiceWithAmount(2000)">2k sats</button>
+                <button onclick="generateInvoiceWithAmount(5000)">5k sats</button>
+                <button onclick="generateInvoiceWithAmount(10000)">10k sats</button>
+                <button onclick="generateInvoiceWithAmount(21000)">21k sats</button>
+                <button onclick="generateInvoiceWithAmount(50000)">50k sats</button>
+                <button onclick="showCustomDonate()">custom</button>
             </div>
-            <button onclick="generateInvoice()">generate ln invoice</button>
+            <div class="custom-donate" id="custom-donate" style="display: none;">
+                <div class="input-group">
+                    <input type="number" id="satoshi-amount" placeholder="enter amount (sats)" min="1" value="100" oninput="updateSatsLabel()">
+                    <span id="sats-label">sats</span>
+                </div>
+                <button onclick="generateInvoice()">generate ln invoice</button>
+            </div>
         </div>
     </div>
+
     <div id="invoice-container">
         <div class="invoice-box">
             <span class="close-modal" onclick="closeInvoiceModal()">&times;</span>
             <p><strong>lightning invoice:</strong></p>
             <p id="ln-invoice"></p>
-            <button class="pay-button" onclick="payInvoice()">pay ln invoice</button>
-            <button class="copy-button" onclick="copyInvoice()">copy ln invoice</button>
-            <p><strong>lightning invoice QR Code:</strong></p>
+            <button onclick="payInvoice()">pay ln invoice</button>
+            <button onclick="copyInvoice()">copy ln invoice</button>
+            <p><strong>qr code:</strong></p>
             <canvas id="qrcode"></canvas>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
     <script>
         const lightningAddress = 'untreu@walletofsatoshi.com';
 
@@ -407,9 +352,13 @@
         }
 
         function showDonateOptions() {
-            document.getElementById('donate-modal').style.display = 'block';
+            document.getElementById('donate-modal').style.display = 'flex';
             document.getElementById('donate-options').style.display = 'flex';
             document.getElementById('custom-donate').style.display = 'none';
+        }
+
+        function closeDonateModal() {
+            document.getElementById('donate-modal').style.display = 'none';
         }
 
         function showCustomDonate() {
@@ -431,10 +380,9 @@
         async function generateInvoiceWithAmount(amount) {
             try {
                 const callback = await resolveLightningAddress(lightningAddress);
-                const paymentRequestUrl = `${callback}?amount=${amount * 1000}`;
+                const paymentRequestUrl = `${callback}?amount=${amount}`;
                 const response = await axios.get(paymentRequestUrl);
                 const lnInvoice = response.data.pr;
-
                 displayInvoice(lnInvoice);
             } catch (error) {
                 alert('error generating invoice: ' + error.message);
@@ -450,10 +398,9 @@
 
             try {
                 const callback = await resolveLightningAddress(lightningAddress);
-                const paymentRequestUrl = `${callback}?amount=${satoshis * 1000}`;
+                const paymentRequestUrl = `${callback}?amount=${satoshis}`;
                 const response = await axios.get(paymentRequestUrl);
                 const lnInvoice = response.data.pr;
-
                 displayInvoice(lnInvoice);
             } catch (error) {
                 alert('error generating invoice: ' + error.message);
@@ -463,9 +410,8 @@
         function displayInvoice(lnInvoice) {
             document.getElementById('ln-invoice').innerText = lnInvoice;
             document.getElementById('invoice-container').style.display = 'flex';
-
             const canvas = document.getElementById('qrcode');
-            QRCode.toCanvas(canvas, lnInvoice, (error) => {
+            QRCode.toCanvas(canvas, lnInvoice, { width: 150 }, (error) => {
                 if (error) console.error(error);
             });
         }
@@ -497,9 +443,13 @@
         }
 
         window.onclick = function(event) {
-            const modal = document.getElementById('invoice-container');
-            if (event.target == modal) {
-                modal.style.display = 'none';
+            const donateModal = document.getElementById('donate-modal');
+            const invoiceModal = document.getElementById('invoice-container');
+            if (event.target == donateModal) {
+                donateModal.style.display = 'none';
+            }
+            if (event.target == invoiceModal) {
+                invoiceModal.style.display = 'none';
             }
         }
     </script>
