@@ -1,457 +1,466 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>untreu</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            min-height: 100vh;
-            background-color: #000;
-            color: #fff;
-            font-family: 'Courier New', Courier, monospace;
-            overflow: hidden;
-        }
-
-        .typewriter {
-            font-size: 2rem;
-            margin-bottom: 10px;
-            letter-spacing: 2px;
-        }
-
-        .subtext {
-            font-size: 1rem;
-            color: #ccc;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
-        }
-
-        .additional-text {
-            font-size: 0.9rem;
-            color: #aaa;
-            margin-bottom: 20px;
-            text-align: center;
-            line-height: 1.4;
-        }
-
-        .additional-text a {
-            color: #fff;
-            text-decoration: underline;
-        }
-
-        .links {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-
-        .links a, .links button {
-            background-color: transparent;
-            border: 2px solid #fff;
-            padding: 8px 20px;
-            border-radius: 25px;
-            color: #fff;
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            font-family: 'Courier New', Courier, monospace;
-        }
-
-        .links a:hover, .links button:hover {
-            background-color: #fff;
-            color: #000;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .image-container {
-            margin-bottom: 15px;
-        }
-
-        .circular-image {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            background-image: url('https://primal.b-cdn.net/media-cache?s=o&a=1&u=https%3A%2F%2Fm.primal.net%2FNcfW.jpg');
-            background-size: cover;
-            background-position: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s;
-        }
-
-        .circular-image:hover {
-            transform: scale(1.05);
-        }
-
-        .donate-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.95);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            z-index: 1000;
-            animation: fadeIn 0.5s ease-in-out;
-        }
-
-        .donate-content {
-            background-color: #111;
-            padding: 25px;
-            border-radius: 15px;
-            width: 100%;
-            max-width: 450px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
-            position: relative;
-        }
-
-        .donate-options, .custom-donate {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .donate-options button, .custom-donate button {
-            background-color: #fff;
-            color: #000;
-            border: none;
-            padding: 10px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            transition: background-color 0.3s, color 0.3s;
-            cursor: pointer;
-            font-family: 'Courier New', Courier, monospace;
-        }
-
-        .donate-options button:hover, .custom-donate button:hover {
-            background-color: #000;
-            color: #fff;
-        }
-
-        .custom-donate .input-group {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-
-        .custom-donate input {
-            flex: 1;
-            padding: 8px;
-            border-radius: 8px;
-            border: 1px solid #444;
-            font-size: 0.9rem;
-            text-align: center;
-            background-color: #222;
-            color: #fff;
-            font-family: 'Courier New', Courier, monospace;
-            transition: border-color 0.3s;
-        }
-
-        .custom-donate input:focus {
-            outline: none;
-            border-color: #fff;
-        }
-
-        .custom-donate span {
-            font-size: 0.9rem;
-            color: #fff;
-        }
-
-        #invoice-container {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.95);
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            animation: fadeIn 0.5s ease-in-out;
-        }
-
-        .invoice-box {
-            background: #111;
-            border: 2px solid #444;
-            padding: 20px;
-            border-radius: 15px;
-            text-align: center;
-            color: #fff;
-            max-width: 350px;
-            width: 100%;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
-            position: relative;
-        }
-
-        .invoice-box p {
-            margin: 10px 0;
-            word-break: break-all;
-            font-size: 0.9rem;
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            color: #fff;
-            font-size: 1.5rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-
-        .close-modal:hover {
-            color: #bbb;
-        }
-
-        .invoice-box button {
-            background-color: #fff;
-            color: #000;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            margin: 8px 0;
-            transition: background-color 0.3s, color 0.3s;
-            cursor: pointer;
-            font-family: 'Courier New', Courier, monospace;
-            width: 100%;
-        }
-
-        .invoice-box button:hover {
-            background-color: #000;
-            color: #fff;
-        }
-
-        canvas {
-            margin-top: 10px;
-            width: 150px !important;
-            height: 150px !important;
-        }
-
-        @media (max-width: 768px) {
-            .circular-image {
-                width: 80px;
-                height: 80px;
-            }
-
-            .typewriter {
-                font-size: 1.8rem;
-            }
-
-            .subtext {
-                font-size: 0.9rem;
-            }
-
-            .additional-text {
-                font-size: 0.8rem;
-            }
-
-            .links {
-                flex-direction: column;
-                gap: 10px;
-            }
-
-            .links a, .links button {
-                width: 100%;
-                max-width: 300px;
-                text-align: center;
-            }
-
-            .donate-content, .invoice-box {
-                padding: 15px;
-            }
-
-            canvas {
-                width: 120px !important;
-                height: 120px !important;
-            }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>untreu</title>
+  <style>
+    html, body {
+      text-transform: lowercase;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'courier new', courier, monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    .typewriter,
+    .subtext,
+    .additional-text {
+      text-align: center;
+    }
+    .typewriter {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      letter-spacing: 2px;
+      opacity: 0;
+      animation: fadeintext 1s forwards;
+    }
+    .subtext {
+      font-size: 1rem;
+      color: #bbb;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+      opacity: 0;
+      animation: fadeintext 1s forwards;
+      animation-delay: 0.3s;
+    }
+    .additional-text {
+      font-size: 0.9rem;
+      color: #ccc;
+      margin-bottom: 20px;
+      line-height: 1.4;
+      opacity: 0;
+      animation: fadeintext 1s forwards;
+      animation-delay: 0.6s;
+    }
+    .additional-text a {
+      color: #fff;
+      text-decoration: underline;
+    }
+    .links {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeintext 1s forwards;
+      animation-delay: 0.9s;
+    }
+    .links a,
+    .links button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: transparent;
+      border: 1.5px solid #fff;
+      padding: 8px 20px;
+      border-radius: 25px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      font-family: 'courier new', courier, monospace;
+      box-sizing: border-box;
+      text-align: center;
+    }
+    .links a:hover,
+    .links button:hover {
+      background-color: #fff;
+      color: #000;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(255,255,255,0.2);
+    }
+    .image-container {
+      margin-bottom: 15px;
+      opacity: 0;
+      animation: fadeintext 1s forwards;
+    }
+    .circular-image {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background-image: url('https://primal.b-cdn.net/media-cache?s=o&a=1&u=https%3A%2F%2Fm.primal.net%2FNcfW.jpg');
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 4px 10px rgba(255,255,255,0.1);
+      transition: transform 0.3s;
+    }
+    .circular-image:hover {
+      transform: scale(1.05);
+    }
+    .donate-container {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(0,0,0,0.95);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      z-index: 1000;
+      animation: fadein 0.5s ease-in-out;
+    }
+    .donate-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      background-color: #111;
+      padding: 25px;
+      border-radius: 15px;
+      width: 100%;
+      max-width: 450px;
+      box-shadow: 0 8px 20px rgba(255,255,255,0.1);
+      position: relative;
+    }
+    .donate-options,
+    .custom-donate {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+    }
+    .donate-options button,
+    .custom-donate button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #fff;
+      color: #000;
+      border: none;
+      padding: 10px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      transition: background-color 0.3s, color 0.3s;
+      cursor: pointer;
+      font-family: 'courier new', courier, monospace;
+      box-sizing: border-box;
+    }
+    .donate-options button:hover,
+    .custom-donate button:hover {
+      background-color: #000;
+      color: #fff;
+    }
+    .custom-donate .input-group {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .custom-donate input {
+      flex: 1;
+      padding: 8px;
+      border-radius: 8px;
+      border: 1px solid #444;
+      font-size: 0.9rem;
+      text-align: center;
+      background-color: #222;
+      color: #fff;
+      font-family: 'courier new', courier, monospace;
+      transition: border-color 0.3s;
+      box-sizing: border-box;
+    }
+    .custom-donate input:focus {
+      outline: none;
+      border-color: #fff;
+    }
+    .custom-donate span {
+      font-size: 0.9rem;
+      color: #fff;
+    }
+    #invoice-container {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      background-color: rgba(0,0,0,0.95);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      animation: fadein 0.5s ease-in-out;
+    }
+    .invoice-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      background: #111;
+      border: 2px solid #444;
+      padding: 20px;
+      border-radius: 15px;
+      color: #fff;
+      max-width: 350px;
+      width: 100%;
+      box-shadow: 0 8px 20px rgba(255,255,255,0.1);
+      position: relative;
+    }
+    .invoice-box p {
+      margin: 10px 0;
+      word-break: break-all;
+      font-size: 0.9rem;
+    }
+    .close-modal {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      color: #fff;
+      font-size: 1.5rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+    .close-modal:hover {
+      color: #bbb;
+    }
+    .invoice-box button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #fff;
+      color: #000;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      margin: 8px 0;
+      transition: background-color 0.3s, color 0.3s;
+      cursor: pointer;
+      font-family: 'courier new', courier, monospace;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .invoice-box button:hover {
+      background-color: #000;
+      color: #fff;
+    }
+    canvas {
+      margin-top: 10px;
+      width: 150px !important;
+      height: 150px !important;
+    }
+    @keyframes fadein {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @keyframes fadeintext {
+      to {
+        opacity: 1;
+      }
+    }
+    @media (max-width: 768px) {
+      .circular-image {
+        width: 80px;
+        height: 80px;
+      }
+      .typewriter {
+        font-size: 1.8rem;
+      }
+      .subtext {
+        font-size: 0.9rem;
+      }
+      .additional-text {
+        font-size: 0.8rem;
+      }
+      .links {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+      }
+      .links a,
+      .links button {
+        width: 80%;
+        max-width: 300px;
+        margin: 0 auto;
+      }
+      .donate-content,
+      .invoice-box {
+        padding: 15px;
+      }
+      canvas {
+        width: 120px !important;
+        height: 120px !important;
+      }
+      .donate-options button,
+      .custom-donate button {
+        width: 80%;
+        max-width: 300px;
+        margin: 0 auto;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="image-container">
-        <div class="circular-image"></div>
-    </div>
-    <div class="typewriter">untreu</div>
-    <div class="subtext">emir yorulmaz</div>
-    <div class="additional-text">🫴🏼 🍊 + 🍇 bitcoin & nostr dev. | i made <a href="https://aircommit.space" target="_blank">aircommit.space</a></div>
-    <div class="links">
-        <a href="https://github.com/untreu2/" target="_blank">github</a>
-        <a href="https://primal.net/p/npub1mmfakwg4s36235wlav6qpe03cgr038gujn2hnsvwk2ne49gzqslqc6xvtp" target="_blank">nostr</a>
-        <a href="https://x.com/_untreu" target="_blank">x</a>
-        <button onclick="showDonateOptions()">donate</button>
-    </div>
-
-    <div class="donate-container" id="donate-modal">
-        <div class="donate-content">
-            <span class="close-modal" onclick="closeDonateModal()">&times;</span>
-            <div class="donate-options" id="donate-options">
-                <button onclick="generateInvoiceWithAmount(2000)">2k sats</button>
-                <button onclick="generateInvoiceWithAmount(5000)">5k sats</button>
-                <button onclick="generateInvoiceWithAmount(10000)">10k sats</button>
-                <button onclick="generateInvoiceWithAmount(21000)">21k sats</button>
-                <button onclick="generateInvoiceWithAmount(50000)">50k sats</button>
-                <button onclick="showCustomDonate()">custom</button>
-            </div>
-            <div class="custom-donate" id="custom-donate" style="display: none;">
-                <div class="input-group">
-                    <input type="number" id="satoshi-amount" placeholder="enter amount (sats)" min="1" value="100" oninput="updateSatsLabel()">
-                    <span id="sats-label">sats</span>
-                </div>
-                <button onclick="generateInvoice()">generate ln invoice</button>
-            </div>
+  <div class="image-container">
+    <div class="circular-image"></div>
+  </div>
+  <div class="typewriter">untreu</div>
+  <div class="subtext">emir yorulmaz</div>
+  <div class="additional-text">
+    🫴🏼 🍊 + 🍇 bitcoin & nostr dev. | i made
+    <a href="https://aircommit.space" target="_blank">aircommit.space</a>
+  </div>
+  <div class="links">
+    <a href="https://github.com/untreu2/" target="_blank">github</a>
+    <a href="https://primal.net/p/npub1mmfakwg4s36235wlav6qpe03cgr038gujn2hnsvwk2ne49gzqslqc6xvtp" target="_blank">nostr</a>
+    <a href="https://x.com/_untreu" target="_blank">x</a>
+    <button onclick="showDonateOptions()">donate</button>
+  </div>
+  <div class="donate-container" id="donate-modal">
+    <div class="donate-content">
+      <span class="close-modal" onclick="closeDonateModal()">&times;</span>
+      <div class="donate-options" id="donate-options">
+        <button onclick="generateInvoiceWithAmount(2000)">2k sats</button>
+        <button onclick="generateInvoiceWithAmount(5000)">5k sats</button>
+        <button onclick="generateInvoiceWithAmount(10000)">10k sats</button>
+        <button onclick="generateInvoiceWithAmount(21000)">21k sats</button>
+        <button onclick="generateInvoiceWithAmount(50000)">50k sats</button>
+        <button onclick="showCustomDonate()">custom</button>
+      </div>
+      <div class="custom-donate" id="custom-donate" style="display: none;">
+        <div class="input-group">
+          <input type="number" id="satoshi-amount" placeholder="enter amount (sats)" min="1" value="100" oninput="updateSatsLabel()">
+          <span id="sats-label">sats</span>
         </div>
+        <button onclick="generateInvoice()">generate ln invoice</button>
+      </div>
     </div>
-
-    <div id="invoice-container">
-        <div class="invoice-box">
-            <span class="close-modal" onclick="closeInvoiceModal()">&times;</span>
-            <p><strong>lightning invoice:</strong></p>
-            <p id="ln-invoice"></p>
-            <button onclick="payInvoice()">pay ln invoice</button>
-            <button onclick="copyInvoice()">copy ln invoice</button>
-            <p><strong>qr code:</strong></p>
-            <canvas id="qrcode"></canvas>
-        </div>
+  </div>
+  <div id="invoice-container">
+    <div class="invoice-box">
+      <span class="close-modal" onclick="closeInvoiceModal()">&times;</span>
+      <p><strong>lightning invoice:</strong></p>
+      <p id="ln-invoice"></p>
+      <button onclick="payInvoice()">pay ln invoice</button>
+      <button onclick="copyInvoice()">copy ln invoice</button>
+      <p><strong>qr code:</strong></p>
+      <canvas id="qrcode"></canvas>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
-    <script>
-        const lightningAddress = 'untreu@walletofsatoshi.com';
-
-        function updateSatsLabel() {
-            const input = document.getElementById('satoshi-amount');
-            const label = document.getElementById('sats-label');
-            const value = parseInt(input.value, 10);
-            if (!isNaN(value) && value === 1) {
-                label.textContent = 'sat';
-            } else {
-                label.textContent = 'sats';
-            }
-        }
-
-        function showDonateOptions() {
-            document.getElementById('donate-modal').style.display = 'flex';
-            document.getElementById('donate-options').style.display = 'flex';
-            document.getElementById('custom-donate').style.display = 'none';
-        }
-
-        function closeDonateModal() {
-            document.getElementById('donate-modal').style.display = 'none';
-        }
-
-        function showCustomDonate() {
-            document.getElementById('donate-options').style.display = 'none';
-            document.getElementById('custom-donate').style.display = 'flex';
-        }
-
-        function closeInvoiceModal() {
-            document.getElementById('invoice-container').style.display = 'none';
-        }
-
-        async function resolveLightningAddress(lightningAddress) {
-            const [username, domain] = lightningAddress.split('@');
-            const url = `https://${domain}/.well-known/lnurlp/${username}`;
-            const response = await axios.get(url);
-            return response.data.callback;
-        }
-
-        async function generateInvoiceWithAmount(amount) {
-            try {
-                const callback = await resolveLightningAddress(lightningAddress);
-                const paymentRequestUrl = `${callback}?amount=${amount}`;
-                const response = await axios.get(paymentRequestUrl);
-                const lnInvoice = response.data.pr;
-                displayInvoice(lnInvoice);
-            } catch (error) {
-                alert('error generating invoice: ' + error.message);
-            }
-        }
-
-        async function generateInvoice() {
-            const satoshis = document.getElementById('satoshi-amount').value;
-            if (!satoshis || isNaN(satoshis) || satoshis <= 0) {
-                alert('please enter a valid amount.');
-                return;
-            }
-
-            try {
-                const callback = await resolveLightningAddress(lightningAddress);
-                const paymentRequestUrl = `${callback}?amount=${satoshis}`;
-                const response = await axios.get(paymentRequestUrl);
-                const lnInvoice = response.data.pr;
-                displayInvoice(lnInvoice);
-            } catch (error) {
-                alert('error generating invoice: ' + error.message);
-            }
-        }
-
-        function displayInvoice(lnInvoice) {
-            document.getElementById('ln-invoice').innerText = lnInvoice;
-            document.getElementById('invoice-container').style.display = 'flex';
-            const canvas = document.getElementById('qrcode');
-            QRCode.toCanvas(canvas, lnInvoice, { width: 150 }, (error) => {
-                if (error) console.error(error);
-            });
-        }
-
-        function copyInvoice() {
-            const invoice = document.getElementById('ln-invoice').innerText;
-            if (!invoice) {
-                alert('no invoice to copy.');
-                return;
-            }
-
-            navigator.clipboard.writeText(invoice).then(() => {
-                alert('lightning invoice copied to clipboard!');
-            }).catch(err => {
-                console.error('failed to copy: ', err);
-                alert('failed to copy the invoice.');
-            });
-        }
-
-        function payInvoice() {
-            const invoice = document.getElementById('ln-invoice').innerText;
-            if (!invoice) {
-                alert('no invoice to pay.');
-                return;
-            }
-
-            const payLink = `lightning:${invoice}`;
-            window.open(payLink, '_blank');
-        }
-
-        window.onclick = function(event) {
-            const donateModal = document.getElementById('donate-modal');
-            const invoiceModal = document.getElementById('invoice-container');
-            if (event.target == donateModal) {
-                donateModal.style.display = 'none';
-            }
-            if (event.target == invoiceModal) {
-                invoiceModal.style.display = 'none';
-            }
-        }
-    </script>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+  <script>
+    const lightningAddress = 'untreu@walletofsatoshi.com';
+    function updateSatsLabel() {
+      const input = document.getElementById('satoshi-amount');
+      const label = document.getElementById('sats-label');
+      const value = parseInt(input.value, 10);
+      if (!isNaN(value) && value === 1) {
+        label.textContent = 'sat';
+      } else {
+        label.textContent = 'sats';
+      }
+    }
+    function showDonateOptions() {
+      document.getElementById('donate-modal').style.display = 'flex';
+      document.getElementById('donate-options').style.display = 'flex';
+      document.getElementById('custom-donate').style.display = 'none';
+    }
+    function closeDonateModal() {
+      document.getElementById('donate-modal').style.display = 'none';
+    }
+    function showCustomDonate() {
+      document.getElementById('donate-options').style.display = 'none';
+      document.getElementById('custom-donate').style.display = 'flex';
+    }
+    function closeInvoiceModal() {
+      document.getElementById('invoice-container').style.display = 'none';
+    }
+    async function resolveLightningAddress(lightningAddress) {
+      const [username, domain] = lightningAddress.split('@');
+      const url = `https://${domain}/.well-known/lnurlp/${username}`;
+      const response = await axios.get(url);
+      return response.data.callback;
+    }
+    async function generateInvoiceWithAmount(amount) {
+      try {
+        const callback = await resolveLightningAddress(lightningAddress);
+        const paymentRequestUrl = `${callback}?amount=${amount}`;
+        const response = await axios.get(paymentRequestUrl);
+        const lnInvoice = response.data.pr;
+        displayInvoice(lnInvoice);
+      } catch (error) {
+        alert('error generating invoice: ' + error.message);
+      }
+    }
+    async function generateInvoice() {
+      const satoshis = document.getElementById('satoshi-amount').value;
+      if (!satoshis || isNaN(satoshis) || satoshis <= 0) {
+        alert('please enter a valid amount.');
+        return;
+      }
+      try {
+        const callback = await resolveLightningAddress(lightningAddress);
+        const paymentRequestUrl = `${callback}?amount=${satoshis}`;
+        const response = await axios.get(paymentRequestUrl);
+        const lnInvoice = response.data.pr;
+        displayInvoice(lnInvoice);
+      } catch (error) {
+        alert('error generating invoice: ' + error.message);
+      }
+    }
+    function displayInvoice(lnInvoice) {
+      document.getElementById('ln-invoice').innerText = lnInvoice;
+      document.getElementById('invoice-container').style.display = 'flex';
+      const canvas = document.getElementById('qrcode');
+      QRCode.toCanvas(canvas, lnInvoice, { width: 150 }, (error) => {
+        if (error) console.error(error);
+      });
+    }
+    function copyInvoice() {
+      const invoice = document.getElementById('ln-invoice').innerText;
+      if (!invoice) {
+        alert('no invoice to copy.');
+        return;
+      }
+      navigator.clipboard.writeText(invoice).then(() => {
+        alert('lightning invoice copied to clipboard!');
+      }).catch(err => {
+        console.error('failed to copy: ', err);
+        alert('failed to copy the invoice.');
+      });
+    }
+    function payInvoice() {
+      const invoice = document.getElementById('ln-invoice').innerText;
+      if (!invoice) {
+        alert('no invoice to pay.');
+        return;
+      }
+      const payLink = `lightning:${invoice}`;
+      window.open(payLink, '_blank');
+    }
+    window.onclick = function(event) {
+      const donateModal = document.getElementById('donate-modal');
+      const invoiceModal = document.getElementById('invoice-container');
+      if (event.target === donateModal) {
+        donateModal.style.display = 'none';
+      }
+      if (event.target === invoiceModal) {
+        invoiceModal.style.display = 'none';
+      }
+    }
+  </script>
 </body>
 </html>
