@@ -23,7 +23,7 @@ def convert_md_to_html(md_file_path, output_html_path):
                 font-family: 'Roboto Mono', monospace;
                 margin: 0;
                 padding: 40px;
-                background-color: #121212;
+                background-color: #000000;
                 color: #e0e0e0;
                 line-height: 1.6;
             }}
