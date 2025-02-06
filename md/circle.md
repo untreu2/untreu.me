@@ -13,4 +13,7 @@ The benefit of removing these lost ones from your life is that you will always b
 
 People with low time preference love time so much that they run harder to move the finish line forward. The peace of doing the right thing cannot be found in any wrong thing. 
 
+---
+
+_Written by untreu (Emir Yorulmaz)_
 [Return to Home](https://untreu.me)

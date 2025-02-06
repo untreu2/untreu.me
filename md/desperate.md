@@ -9,4 +9,7 @@ The action to be taken against the helpless is clear: Become an outcast of the c
 
 One person who prefers to spend time with you to being alone is worth a thousand people who spend time with you because they cannot be alone. 
 
+---
+
+_Written by untreu (Emir Yorulmaz)_
 [Return to Home](https://untreu.me)

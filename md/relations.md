@@ -7,4 +7,7 @@ First of all, if you're a Bitcoin maximalist, you have a low time preference and
 
 When you build a family, a business, a career, a personality on Bitcoin, the impact on your life of having built it on Bitcoin is far greater than you can imagine. If you had built it on fiat money, things could go bad beyond the control of the members of the relationship; but when you build it on Bitcoin, things can only go bad because of you or the people you're associated with, so you're never looking for someone to blame, and the moment things go bad, the culprit is already revealed. At that point, because time keeps flowing, you always put time ahead of breakups, and it's much easier to get up and keep fighting than it is for people who have fallen into the pit of sociological corruption that fiat money brings. 
 
+---
+
+_Written by untreu (Emir Yorulmaz)_
 [Return to Home](https://untreu.me)
