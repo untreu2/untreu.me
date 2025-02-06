@@ -27,7 +27,13 @@ def convert_md_to_html(md_file_path, output_html_path):
                 color: #e0e0e0;
                 line-height: 1.6;
             }}
-            h1, h2, h3, h4, h5, h6 {{
+            h1 {{
+                color: #f0f0f0;
+                margin-top: 20px;
+                margin-bottom: 10px;
+                text-align: center;
+            }}
+            h2, h3, h4, h5, h6 {{
                 color: #f0f0f0;
                 margin-top: 20px;
                 margin-bottom: 10px;
