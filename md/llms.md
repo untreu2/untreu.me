@@ -7,7 +7,7 @@ First of all, I would like to talk about why we use programming languages as hum
 For example, I want the computer to print “hello world” on the screen. for the computer "hello world" means:
 
 ```
-0110100001100101011011000110110001101111001000000111011101101111011100100110110001100100
+0110100001100101...00100
 ```
 
 I need to use a programming language to give the computer a command about these zeros and ones. And when I give a computer the input of this command, I should get the same output for every same input, so there should be nothing random happening here. Because when you get in an elevator you never want to go to a random floor. You press the button for the floor you want to go and you go to that floor. Because that's what the elevator is there for. 
