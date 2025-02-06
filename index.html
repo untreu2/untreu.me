@@ -4,52 +4,49 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>untreu</title>
-  <link href="https://fonts.googleapis.com/css2?family=roboto+mono:wght@300;400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    html, body {
-      text-transform: lowercase;
-      margin: 0;
-      padding: 0;
-    }
     body {
       background-color: #282828;
       color: #ebdbb2;
-      font-family: 'roboto mono', monospace;
+      font-family: 'Roboto Mono', monospace;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-      flex-direction: column;
       min-height: 100vh;
-    }
-    .typewriter,
-    .subtext,
-    .additional-text {
       text-align: center;
+      margin: 0;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 10px;
+    }
+    .circular-image {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background-image: url('https://primal.b-cdn.net/media-cache?s=o&a=1&u=https%3A%2F%2Fm.primal.net%2FNcfW.jpg');
+      background-size: cover;
+      background-position: center;
     }
     .typewriter {
-      font-size: 2rem;
-      margin-bottom: 10px;
-      letter-spacing: 2px;
-      opacity: 0;
-      animation: fadeintext 1s forwards;
+      font-size: 3rem;
+      font-weight: bold;
+      white-space: nowrap;
     }
     .subtext {
-      font-size: 1rem;
+      font-size: 1.5rem;
       color: #a89984;
       margin-bottom: 10px;
-      letter-spacing: 1px;
-      opacity: 0;
-      animation: fadeintext 1s forwards;
-      animation-delay: 0.3s;
     }
     .additional-text {
-      font-size: 0.9rem;
+      font-size: 1.2rem;
       color: #d5c4a1;
       margin-bottom: 20px;
       line-height: 1.4;
-      opacity: 0;
-      animation: fadeintext 1s forwards;
-      animation-delay: 0.6s;
     }
     .additional-text a {
       color: #ebdbb2;
@@ -57,105 +54,58 @@
     }
     .links {
       display: flex;
-      gap: 15px;
       flex-wrap: wrap;
       justify-content: center;
-      margin-bottom: 20px;
-      opacity: 0;
-      animation: fadeintext 1s forwards;
-      animation-delay: 0.9s;
-    }
-    .links a,
-    .links button {
-      display: inline-flex;
+      gap: 15px;
       align-items: center;
-      justify-content: center;
-      background-color: transparent;
-      border: 1.5px solid #ebdbb2;
-      padding: 8px 20px;
-      border-radius: 25px;
+      width: 100%;
+    }
+    .links a {
+      border: 2px solid #ebdbb2;
+      padding: 10px 25px;
+      border-radius: 30px;
       color: #ebdbb2;
       text-decoration: none;
-      font-size: 0.9rem;
-      transition: all 0.3s ease;
-      cursor: pointer;
-      font-family: 'roboto mono', monospace;
-      box-sizing: border-box;
+      font-size: 1.2rem;
+      transition: 0.3s;
       text-align: center;
     }
-    .links a:hover,
-    .links button:hover {
+    .links a:hover {
       background-color: #ebdbb2;
       color: #282828;
-      transform: translatey(-2px);
-      box-shadow: 0 4px 8px rgba(235, 219, 178, 0.2);
-    }
-    .image-container {
-      margin-bottom: 15px;
-      opacity: 0;
-      animation: fadeintext 1s forwards;
-    }
-    .circular-image {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      background-image: url('https://primal.b-cdn.net/media-cache?s=o&a=1&u=https%3A%2F%2Fm.primal.net%2FNcfW.jpg');
-      background-size: cover;
-      background-position: center;
-      box-shadow: 0 4px 10px rgba(235, 219, 178, 0.1);
-      transition: transform 0.3s;
-    }
-    .circular-image:hover {
-      transform: scale(1.05);
-    }
-    @keyframes fadein {
-      from {
-        opacity: 0;
-        transform: translatey(-20px);
-      }
-      to {
-        opacity: 1;
-        transform: translatey(0);
-      }
-    }
-    @keyframes fadeintext {
-      to {
-        opacity: 1;
-      }
+      transform: translateY(-2px);
     }
     @media (max-width: 768px) {
-      .circular-image {
-        width: 80px;
-        height: 80px;
+      .header {
+        flex-direction: column;
+        gap: 10px;
       }
       .typewriter {
-        font-size: 1.8rem;
+        font-size: 2.5rem;
       }
       .subtext {
-        font-size: 0.9rem;
+        font-size: 1.2rem;
       }
       .additional-text {
-        font-size: 0.8rem;
+        font-size: 1rem;
       }
       .links {
         flex-direction: column;
         gap: 10px;
         align-items: center;
       }
-      .links a,
-      .links button {
-        width: 80%;
+      .links a {
+        width: 100%;
         max-width: 300px;
-        margin: 0 auto;
       }
     }
   </style>
 </head>
 <body>
-  <div class="image-container">
+  <div class="header">
     <div class="circular-image"></div>
+    <div class="typewriter">untreu</div>
   </div>
-  <div class="typewriter">untreu</div>
   <div class="subtext">emir yorulmaz</div>
   <div class="additional-text">
     🫴🏼 🍊 + 🍇 bitcoin & nostr dev. | i made
@@ -167,7 +117,5 @@
     <a href="https://x.com/_untreu" target="_blank">x</a>
     <a href="https://untreu.me/posts" target="_blank">posts</a>
   </div>
-  <script>
-  </script>
 </body>
 </html>
