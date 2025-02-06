@@ -10,7 +10,7 @@ def convert_md_to_html(md_file_path, output_html_path):
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>untreu's blog post</title>
+  <title>untreu's posts</title>
   <link href="https://fonts.googleapis.com/css2?family=roboto+mono:wght@300;400;700&display=swap" rel="stylesheet">
   <style>
     html, body {{ margin: 0; padding: 0; font-family: 'roboto mono', monospace; background-color: #282828; color: #ebdbb2; line-height: 1.6; }}
