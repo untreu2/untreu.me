@@ -2,7 +2,11 @@
 
 (should be in svg format, i'll put ✅ to those completed and added to qiqstr's repo.)
 
-- the main logo of qiqstr
+- color palette (for dark and light modes)
+
+- the main logo of qiqstr (for dark and light modes)
+
+- font
 
 note:
 
@@ -50,4 +54,3 @@ others:
 
 ---
 [Return to Home](https://untreu.me)
-
