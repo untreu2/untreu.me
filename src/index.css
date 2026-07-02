@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    color-scheme: light;
+    scroll-behavior: smooth;
+  }
+
+  html,
+  body,
+  #root {
+    min-height: 100%;
+  }
+
+  body {
+    @apply bg-paper text-ink font-sans;
+    font-optical-sizing: auto;
+  }
+
+  ::selection {
+    @apply bg-accent/20 text-ink;
+  }
+
+  a {
+    @apply transition-colors;
+  }
+}
+
+@layer components {
+  /* Minimal outlined pill link used for the home page social links. */
+  .pill {
+    @apply inline-flex items-center justify-center rounded-full border border-line
+      bg-surface px-5 py-2.5 text-sm font-bold text-ink transition-all
+      hover:border-accent hover:text-accent
+      focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/40;
+  }
+
+  /* Hairline-separated list row. */
+  .list-row {
+    @apply flex items-baseline justify-between gap-4 border-b border-line py-4
+      transition-colors;
+  }
+}
+
+@layer utilities {
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-up {
+    animation: fade-up 400ms ease-out both;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-fade-up {
+      animation: none;
+    }
+  }
+}
+
+/*
+ * Prose — typography for rendered markdown posts. Kept intentionally spare:
+ * generous line-height, hairline rules, accent links, and a soft code block.
+ */
+.prose {
+  @apply text-[1.0625rem] leading-[1.75] text-ink/90;
+}
+.prose > * + * {
+  @apply mt-5;
+}
+.prose h1 {
+  @apply text-2xl font-extrabold tracking-tight text-ink;
+}
+.prose h2 {
+  @apply mt-10 text-xl font-bold tracking-tight text-ink;
+}
+.prose h3 {
+  @apply mt-8 text-lg font-bold tracking-tight text-ink;
+}
+.prose a {
+  @apply font-medium text-accent underline decoration-accent/30 underline-offset-4
+    hover:decoration-accent;
+}
+.prose strong {
+  @apply font-semibold text-ink;
+}
+.prose em {
+  @apply italic;
+}
+.prose ul {
+  @apply list-disc space-y-1 pl-6;
+}
+.prose ol {
+  @apply list-decimal space-y-1 pl-6;
+}
+.prose blockquote {
+  @apply border-l-2 border-accent/40 pl-4 italic text-muted;
+}
+.prose code {
+  @apply rounded bg-accent-soft px-1.5 py-0.5 font-mono text-[0.9em] text-accent-700;
+}
+.prose pre {
+  @apply overflow-x-auto rounded-xl border border-line bg-surface p-4 text-sm leading-relaxed;
+}
+.prose pre code {
+  @apply bg-transparent p-0 text-ink/85;
+}
+.prose hr {
+  @apply my-10 border-line;
+}
+.prose img {
+  @apply mx-auto my-6 rounded-xl;
+}
