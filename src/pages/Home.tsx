@@ -39,14 +39,14 @@ export function Home() {
           target="_blank"
           rel="noreferrer noopener"
           aria-label="View untreu2 on GitHub"
-          className="block overflow-x-auto pb-2"
+          className="relative left-1/2 block w-[90vw] max-w-4xl -translate-x-1/2 overflow-x-auto pb-2"
         >
           <img
             src="https://ghchart.rshah.org/2da44e/untreu2"
             alt="GitHub contribution chart for untreu2"
             loading="lazy"
             decoding="async"
-            className="min-w-[640px]"
+            className="h-auto w-full min-w-[720px] max-w-none"
           />
         </a>
       </section>
