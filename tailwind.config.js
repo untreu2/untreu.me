@@ -19,6 +19,14 @@ export default {
       },
       fontFamily: {
         sans: [
+          '"Nunito Sans"',
+          'ui-sans-serif',
+          'system-ui',
+          '-apple-system',
+          '"Segoe UI"',
+          'sans-serif',
+        ],
+        display: [
           '"Libertinus Serif"',
           'Libertinus',
           'Georgia',

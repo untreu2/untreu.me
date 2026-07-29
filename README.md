@@ -3,7 +3,7 @@
 Personal site of Emir Yorulmaz (untreu) — bitcoin & nostr developer.
 
 Built with **React + Vite + TypeScript + Tailwind CSS**. The visual system is
-monochrome and image-free, with Libertinus Serif used throughout. Posts and
+monochrome, with Libertinus Serif reserved for the homepage name. Posts and
 project notes are authored as Markdown and rendered client-side.
 
 ## Development

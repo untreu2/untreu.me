@@ -6,7 +6,7 @@ export function Home() {
   return (
     <section className="mx-auto flex min-h-screen max-w-content flex-col px-6 py-8 sm:px-8 sm:py-10">
       <div className="animate-fade-up flex flex-1 flex-col justify-center py-20 sm:py-28">
-        <h1 className="max-w-2xl text-6xl font-normal leading-[0.9] tracking-[-0.04em] text-ink sm:text-8xl">
+        <h1 className="max-w-2xl font-display text-6xl font-normal leading-[0.9] tracking-[-0.04em] text-ink sm:text-8xl">
           {profile.name}
         </h1>
 
