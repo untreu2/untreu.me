@@ -2,7 +2,7 @@ _Last updated: 9 July 2026_
 
 This Privacy Policy explains how the Floyd app ("Floyd", "we", "us") collects,
 uses, and protects your information. Floyd is an AI-powered calendar developed by
-Emir Yorulmaz (untreu). By using Floyd you agree to the practices described here.
+Emir Yorulmaz. By using Floyd you agree to the practices described here.
 
 ## Information We Collect
 
