@@ -1,11 +1,10 @@
-import { copyFileSync, existsSync } from 'node:fs'
+import { copyFileSync, existsSync, mkdirSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { defineConfig, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// GitHub Pages serves a static host with no SPA rewrite support. Copying the
-// built index.html to 404.html makes deep links (e.g. /posts/llms) resolve to
-// the same bundle so BrowserRouter can take over client-side.
+// Keep the static GitHub Pages fallback and add a tiny Cloudflare Worker
+// entrypoint so the same build can be hosted without changing the app.
 function spaFallback(): Plugin {
   return {
     name: 'spa-404-fallback',
@@ -16,6 +15,20 @@ function spaFallback(): Plugin {
       if (existsSync(index)) {
         copyFileSync(index, resolve(out, '404.html'))
       }
+
+      const server = resolve(out, 'server')
+      mkdirSync(server, { recursive: true })
+      writeFileSync(
+        resolve(server, 'index.js'),
+        `export default {
+  async fetch(request, env) {
+    const response = await env.ASSETS.fetch(request)
+    if (response.status !== 404) return response
+    return env.ASSETS.fetch(new Request(new URL('/index.html', request.url), request))
+  },
+}
+`,
+      )
     },
   }
 }

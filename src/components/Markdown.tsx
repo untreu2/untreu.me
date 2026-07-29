@@ -7,6 +7,7 @@ export function Markdown({ children }: { children: string }) {
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         components={{
+          img: () => null,
           a: ({ href, children, ...props }) => {
             const isExternal = /^https?:\/\//.test(href ?? '')
             return (

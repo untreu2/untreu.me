@@ -2,9 +2,9 @@
 
 Personal site of Emir Yorulmaz (untreu) — bitcoin & nostr developer.
 
-Built with **React + Vite + TypeScript + Tailwind CSS**. Light, minimalist
-design with `#2596be` as the accent color. Posts and project notes are authored
-as Markdown and rendered client-side.
+Built with **React + Vite + TypeScript + Tailwind CSS**. The visual system is
+monochrome and image-free, with Libertinus Serif used throughout. Posts and
+project notes are authored as Markdown and rendered client-side.
 
 ## Development
 
