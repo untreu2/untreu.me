@@ -12,15 +12,11 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route
           path="/posts/:slug"
-          element={
-            <Article collection={posts} backPath="/" backLabel="home" />
-          }
+          element={<Article collection={posts} />}
         />
         <Route
           path="/floyd/:slug"
-          element={
-            <Article collection={legal} backPath="/" backLabel="home" />
-          }
+          element={<Article collection={legal} />}
         />
         <Route path="*" element={<NotFound />} />
       </Routes>

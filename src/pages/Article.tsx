@@ -1,16 +1,14 @@
 import { useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { Markdown } from '../components/Markdown'
 import { findEntry, type Entry } from '../content'
 import { NotFound } from './NotFound'
 
 interface ArticleProps {
   collection: Entry[]
-  backPath: string
-  backLabel: string
 }
 
-export function Article({ collection, backPath, backLabel }: ArticleProps) {
+export function Article({ collection }: ArticleProps) {
   const { slug } = useParams()
   const entry = findEntry(collection, slug)
 
@@ -29,13 +27,6 @@ export function Article({ collection, backPath, backLabel }: ArticleProps) {
 
   return (
     <article className="mx-auto min-h-screen w-[90vw] max-w-4xl py-8 sm:py-10">
-      <Link
-        to={backPath}
-        className="animate-fade-up inline-flex items-center gap-2 text-base text-muted underline decoration-line underline-offset-4 transition-colors hover:text-ink hover:decoration-ink"
-      >
-        <span aria-hidden>&larr;</span> {backLabel}
-      </Link>
-
       <header className="animate-fade-up flex min-h-[42vh] items-end py-20 sm:py-28">
         <h1 className="max-w-3xl text-5xl font-normal leading-[0.95] tracking-[-0.035em] text-ink sm:text-7xl">
           {entry.title}
