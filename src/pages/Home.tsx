@@ -101,10 +101,6 @@ export function Home() {
         </div>
       )}
 
-      <footer className="animate-fade-up flex items-end justify-between border-t border-line pt-4 text-sm text-muted">
-        <span>Bitcoin &amp; Nostr</span>
-        <span>© {new Date().getFullYear()}</span>
-      </footer>
     </section>
   )
 }
