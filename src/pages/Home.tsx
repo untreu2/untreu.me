@@ -10,9 +10,6 @@ export function Home() {
       </header>
 
       <div className="animate-fade-up flex flex-1 flex-col justify-center py-20 sm:py-28">
-        <p className="mb-5 text-xs font-semibold uppercase tracking-[0.18em] text-muted">
-          Software developer
-        </p>
         <h1 className="max-w-2xl text-6xl font-normal leading-[0.9] tracking-[-0.04em] text-ink sm:text-8xl">
           {profile.name}
         </h1>
