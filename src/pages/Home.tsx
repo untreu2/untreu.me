@@ -38,32 +38,15 @@ export function Home() {
       </div>
 
       <section
-        aria-labelledby="github-activity-heading"
+        aria-label="GitHub activity"
         className="animate-fade-up border-t border-ink py-8"
       >
-        <div className="flex items-baseline justify-between gap-4">
-          <h2
-            id="github-activity-heading"
-            className="text-xs font-semibold uppercase tracking-[0.18em] text-muted"
-          >
-            GitHub activity
-          </h2>
-          <a
-            href="https://github.com/untreu2"
-            target="_blank"
-            rel="noreferrer noopener"
-            className="text-sm underline decoration-line underline-offset-4 hover:decoration-ink"
-          >
-            View profile <span aria-hidden>↗</span>
-          </a>
-        </div>
-
         <a
           href="https://github.com/untreu2"
           target="_blank"
           rel="noreferrer noopener"
           aria-label="View untreu2 on GitHub"
-          className="mt-6 block overflow-x-auto pb-2"
+          className="block overflow-x-auto pb-2"
         >
           <img
             src="https://ghchart.rshah.org/2da44e/untreu2"
