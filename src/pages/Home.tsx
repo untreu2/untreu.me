@@ -5,10 +5,6 @@ import { links, profile } from '../data/profile'
 export function Home() {
   return (
     <section className="mx-auto flex min-h-screen max-w-content flex-col px-6 py-8 sm:px-8 sm:py-10">
-      <header className="animate-fade-up border-b border-ink pb-4 text-sm">
-        <span className="font-semibold">{profile.handle}</span>
-      </header>
-
       <div className="animate-fade-up flex flex-1 flex-col justify-center py-20 sm:py-28">
         <h1 className="max-w-2xl text-6xl font-normal leading-[0.9] tracking-[-0.04em] text-ink sm:text-8xl">
           {profile.name}
