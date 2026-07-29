@@ -6,14 +6,6 @@ export function Home() {
   return (
     <section className="mx-auto flex min-h-screen w-[90vw] max-w-4xl flex-col justify-center py-8 sm:py-10">
       <div className="animate-fade-up pb-16 sm:pb-20">
-        <img
-          src="/favicon.png"
-          alt="Portrait of Emir Yorulmaz"
-          width="112"
-          height="112"
-          className="mb-7 h-24 w-24 rounded-full object-cover sm:h-28 sm:w-28"
-        />
-
         <h1 className="max-w-2xl font-display text-6xl font-normal leading-[0.9] tracking-[-0.04em] text-ink sm:text-8xl">
           {profile.name}
         </h1>
