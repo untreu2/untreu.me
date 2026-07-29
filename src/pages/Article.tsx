@@ -28,7 +28,7 @@ export function Article({ collection }: ArticleProps) {
   return (
     <article className="mx-auto min-h-screen w-[90vw] max-w-4xl py-8 sm:py-10">
       <header className="animate-fade-up flex min-h-[42vh] items-end py-20 sm:py-28">
-        <h1 className="max-w-3xl text-5xl font-normal leading-[0.95] tracking-[-0.035em] text-ink sm:text-7xl">
+        <h1 className="max-w-3xl font-display text-6xl font-normal leading-[0.9] tracking-[-0.04em] text-ink sm:text-8xl">
           {entry.title}
         </h1>
       </header>
