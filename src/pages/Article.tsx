@@ -28,25 +28,25 @@ export function Article({ collection, backPath, backLabel }: ArticleProps) {
   if (!entry) return <NotFound />
 
   return (
-    <article className="mx-auto max-w-content px-6 py-16">
+    <article className="mx-auto min-h-screen w-[90vw] max-w-4xl py-8 sm:py-10">
       <Link
         to={backPath}
-        className="animate-fade-up inline-flex items-center gap-1.5 text-sm font-bold text-muted transition-colors hover:text-accent"
+        className="animate-fade-up inline-flex items-center gap-2 text-base text-muted underline decoration-line underline-offset-4 transition-colors hover:text-ink hover:decoration-ink"
       >
         <span aria-hidden>&larr;</span> {backLabel}
       </Link>
 
-      <h1 className="animate-fade-up mt-6 text-4xl font-extrabold leading-tight tracking-tight text-ink">
-        {entry.title}
-      </h1>
+      <header className="animate-fade-up flex min-h-[42vh] items-end py-20 sm:py-28">
+        <h1 className="max-w-3xl text-5xl font-normal leading-[0.95] tracking-[-0.035em] text-ink sm:text-7xl">
+          {entry.title}
+        </h1>
+      </header>
 
-      <div className="mt-8">
-        <Markdown>{entry.body}</Markdown>
+      <div className="border-t border-ink py-8 sm:py-10">
+        <div className="max-w-content">
+          <Markdown>{entry.body}</Markdown>
+        </div>
       </div>
-
-      <footer className="mt-14 border-t border-line pt-6 text-sm text-muted">
-        written by untreu (emir yorulmaz)
-      </footer>
     </article>
   )
 }
