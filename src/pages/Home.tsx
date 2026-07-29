@@ -1,8 +1,48 @@
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { posts } from '../content'
 import { links, profile } from '../data/profile'
 
+declare global {
+  interface Window {
+    twttr?: {
+      widgets?: {
+        load: (element?: HTMLElement) => void
+      }
+    }
+  }
+}
+
 export function Home() {
+  useEffect(() => {
+    const timeline = document.getElementById('x-timeline')
+    if (!timeline) return
+
+    const loadTimeline = () => window.twttr?.widgets?.load(timeline)
+    const existingScript = document.querySelector<HTMLScriptElement>(
+      'script[src="https://platform.x.com/widgets.js"]',
+    )
+
+    if (existingScript) {
+      if (window.twttr?.widgets) {
+        loadTimeline()
+      } else {
+        existingScript.addEventListener('load', loadTimeline, { once: true })
+      }
+
+      return () => existingScript.removeEventListener('load', loadTimeline)
+    }
+
+    const script = document.createElement('script')
+    script.src = 'https://platform.x.com/widgets.js'
+    script.async = true
+    script.setAttribute('charset', 'utf-8')
+    script.addEventListener('load', loadTimeline, { once: true })
+    document.body.appendChild(script)
+
+    return () => script.removeEventListener('load', loadTimeline)
+  }, [])
+
   return (
     <section className="mx-auto flex min-h-screen max-w-content flex-col px-6 py-8 sm:px-8 sm:py-10">
       <header className="animate-fade-up flex items-center justify-between border-b border-ink pb-4 text-sm">
@@ -37,6 +77,27 @@ export function Home() {
           ))}
         </nav>
       </div>
+
+      <section
+        id="x-timeline"
+        aria-labelledby="x-timeline-heading"
+        className="animate-fade-up border-t border-ink py-8"
+      >
+        <h2
+          id="x-timeline-heading"
+          className="mb-6 text-xs font-semibold uppercase tracking-[0.18em] text-muted"
+        >
+          Posts
+        </h2>
+        <div className="mx-auto max-w-[550px] grayscale">
+          <a
+            className="twitter-timeline"
+            href="https://x.com/_untreu?ref_src=twsrc%5Etfw"
+          >
+            Posts by _untreu
+          </a>
+        </div>
+      </section>
 
       {posts.length > 0 && (
         <div className="animate-fade-up border-t border-ink pt-3">
