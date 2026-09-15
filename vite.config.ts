@@ -14,6 +14,18 @@ function spaFallback(): Plugin {
       const index = resolve(out, 'index.html')
       if (existsSync(index)) {
         copyFileSync(index, resolve(out, '404.html'))
+        // Legal URLs must return successful direct responses on GitHub Pages,
+        // including when opened from the iOS app or checked by a store crawler.
+        for (const route of [
+          'floyd/privacy',
+          'altair/privacy',
+          'altair/health-privacy',
+          'altair/health-notice',
+        ]) {
+          const directory = resolve(out, route)
+          mkdirSync(directory, { recursive: true })
+          copyFileSync(index, resolve(directory, 'index.html'))
+        }
       }
 
       const server = resolve(out, 'server')

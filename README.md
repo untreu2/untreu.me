@@ -50,6 +50,8 @@ three public URLs after deployment before distributing the app’s legal links.
 Pushes to `main` are built and published to GitHub Pages via
 `.github/workflows/deploy.yml`. The custom domain lives in `public/CNAME`, and
 `404.html` is emitted as an SPA fallback so deep links resolve correctly.
+Legal routes also emit their own `index.html` entrypoints so direct policy links
+return successful HTTP responses instead of relying on the 404 fallback.
 
 > One-time setup: in the repository settings, set **Pages → Build and
 > deployment → Source** to **GitHub Actions**.
