@@ -121,9 +121,11 @@ launch. Do not post health information in public GitHub issues or social posts.
 
 ## Age and policy changes
 
-The launch age limit and any child or teen consent arrangements must be settled
-before release. This draft does not represent that parental consent or an age
-restriction is enforced by the current app.
+Altair is intended only for adults aged 18 and over. People under 18 should
+not create an account or submit information. Altair does not offer a parental
+consent route for children or teenagers. If you believe an underage person has
+provided information, use the private request channel once it is confirmed
+below; do not publish their information in a public post.
 
 Material changes will be reflected in the policy date and explained in the app
 where appropriate. New uses or disclosures that require consent need a separate
