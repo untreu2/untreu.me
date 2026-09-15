@@ -3,7 +3,8 @@ _Draft for launch review · Prepared 15 September 2026_
 This separate Consumer Health Data Privacy Policy describes Altair’s collection
 and sharing of consumer health data. Altair is a general wellness app developed by Emir Yorulmaz
 (untreu). This draft requires final operator, processor, and request-contact
-details before publication as a launch policy.
+details before publication as a launch policy. It describes the consent flow
+prepared for the next app release; production rollout is pending.
 
 ## Categories collected and purposes
 
@@ -39,18 +40,42 @@ Altair’s calculations and AI-generated inferences based on that information.
 - **Hosting and database service providers** process the above account-linked
   health content to operate Altair’s server and storage. The hosting operator
   and processing regions must be identified before launch.
-- **OpenRouter and serving AI model providers** process health summaries,
-  relevant profile and meal context, conversation text, instructions, enabled
-  memories, and submitted photos to answer questions and analyze or manage meals.
-  Google Gemini is the configured default model family; the final provider list
-  and routing restrictions must be confirmed before launch.
-- **ElevenLabs** processes microphone audio for transcription and reply text for
-  speech. These can contain the health information you discuss and information
+- **OpenRouter and Google Vertex**, with your separate AI choice, process health
+  summaries, relevant profile and meal context, conversation text, instructions,
+  enabled memories, and submitted photos to answer questions and analyze or
+  manage meals. The prepared release restricts Google Gemini to a Google Vertex
+  route, with no provider fallback and no-training/zero-retention routing
+  requirements. These controls do not establish whole-service regional residency
+  or complete the provider account and contract checks.
+- **ElevenLabs**, with your separate voice choice, processes microphone audio
+  for transcription and reply text for speech. These can contain the health information you discuss and information
   reflected in a reply. Transcribed text is used in the AI flow above.
 
 Altair does not sell consumer health data or use it for advertising. There is no
 affiliate-sharing integration in the current service. Subscription requests to
 Apple and RevenueCat do not include health measurements or conversation content.
+
+## Consent and withdrawal
+
+The prepared release asks adults to choose separately whether Altair may store
+and use the health information they add for wellness history, reports and
+insights; share relevant information with OpenRouter and Google Vertex for AI
+features; and send audio/reply text to ElevenLabs for voice. Processing choices
+start off. Reading these policies or accepting the Terms of Use does not grant
+permission. AI and voice remain unavailable until their respective provider
+privacy setup has been verified.
+
+AI needs health-processing consent; voice additionally needs AI consent.
+Declining AI preserves calculated health reports/history. Declining voice
+preserves text. Declining health processing retains general wellness information
+and account controls. Apple Health access remains a separate optional permission.
+
+Use **Settings → Data & privacy → Privacy & health → Change privacy choices**
+to withdraw a choice. The service blocks new processing for that purpose and
+interrupts active requests; it cannot recall information already transmitted.
+Withdrawal does not automatically delete stored history. Altair records the
+choices, disclosure version and time and checks current consent on its server.
+Material changes to purposes or recipients require a fresh decision.
 
 ## Exercising your rights
 

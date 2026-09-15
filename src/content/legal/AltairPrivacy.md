@@ -8,7 +8,9 @@ Read the separate
 [Consumer Health Data Privacy Policy](/altair/health-privacy) for health-specific
 details and the [health notice](/altair/health-notice) for the app’s limitations.
 Reading this policy or accepting the Terms of Use does not, by itself, give
-permission for health-data collection or disclosure to AI providers.
+permission for health-data collection or disclosure to AI providers. This draft
+describes the consent flow prepared for the next app release; production rollout
+and provider privacy verification remain pending.
 
 ## Information Altair handles
 
@@ -56,22 +58,23 @@ or use it to serve advertising.
 - **RevenueCat** verifies and manages subscription entitlements using your
   Firebase account identifier and purchase information. Health records are not
   included in Altair’s subscription requests.
-- **OpenRouter and the model providers serving requests** process relevant
-  health summaries, profile and meal context, recent conversation messages,
-  instructions, enabled memories, and photos you submit for AI features. The
-  configured default model is Google Gemini; routing and configuration determine
-  the actual serving provider. Altair does not include Firebase credentials or
-  raw HealthKit sample records in AI prompts. Summaries remain health data and
+- **OpenRouter and Google Vertex** process relevant health summaries, profile
+  and meal context, recent conversation messages, instructions, enabled memories,
+  and photos you submit when AI processing is enabled. The prepared release uses
+  Google Gemini through a restricted Google Vertex route, with no provider
+  fallback and no-training/zero-retention routing requirements. Altair does not
+  include Firebase credentials or raw HealthKit sample records in AI prompts. Summaries remain health data and
   are not necessarily anonymous.
 - **ElevenLabs** transcribes streamed microphone audio and converts assistant
   reply text to speech. Spoken words and reply text can contain health
   information. Transcripts also go through the AI conversation flow above.
 
 Provider processing can take place outside your country. Provider retention and
-data-use settings differ by service and contract. This policy does not promise
-that providers retain nothing or that their training restrictions have been
-verified. Deployment regions, applicable transfer safeguards, and provider
-retention terms must be finalized before this draft becomes the launch policy.
+data-use settings differ by service and contract. AI and voice remain unavailable
+in the prepared release until their respective provider privacy setup is
+verified. Consent alone cannot enable an unverified provider. This draft does not
+claim those account and contractual checks are complete. Deployment regions,
+applicable transfer safeguards, and provider retention terms must be finalized before this draft becomes the launch policy.
 
 ## Storage and retention
 
@@ -102,6 +105,25 @@ AI or speech processors need access to relevant information to provide features.
 
 ## Your choices and requests
 
+The prepared release asks for separate choices for **health data on Altair**,
+**AI with OpenRouter and Google**, and **voice with ElevenLabs**, plus confirmation
+that you are at least 18. Processing choices start off, including for existing
+accounts without a current decision. Health processing can be used without AI;
+AI text features can be used without voice. Apple Health access remains optional
+and requires Apple's separate permission.
+
+With health processing off, the app offers general wellness information and
+account controls. With health processing on and AI off, health history and
+calculated reports remain available; AI replies and meal analysis require AI
+consent. Altair saves your choice, disclosure version, revision and time against
+your account, with a history of changes. Account deletion removes those consent
+records from Altair's active database along with other account data.
+
+- Change or withdraw choices under **Settings → Data & privacy → Privacy & health
+  → Change privacy choices**. Turning a choice off stops new processing for that
+  purpose and interrupts active requests. Information already sent cannot be
+  recalled. Withdrawal does not automatically delete stored history. Account
+  deletion is also available from the limited wellness screen.
 - Review or revoke Apple Health access in the Health app’s access settings.
   Revoking access stops future reads; it does not erase already uploaded data.
 - Use text instead of voice; camera and microphone access are controlled through
