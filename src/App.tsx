@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
 import { Layout } from './components/Layout'
-import { legal, posts } from './content'
+import { altairLegal, legal, posts } from './content'
 import { Article } from './pages/Article'
 import { Home } from './pages/Home'
 import { NotFound } from './pages/NotFound'
@@ -19,6 +19,10 @@ export default function App() {
           element={<Article collection={legal} />}
         />
         <Route path="*" element={<NotFound />} />
+        <Route
+          path="/altair/:slug"
+          element={<Article collection={altairLegal} />}
+        />
       </Routes>
     </Layout>
   )

@@ -31,6 +31,20 @@ src/
 2. Register it in `src/content/index.ts` with a `slug`, `title` and
    `description`.
 
+## Altair legal pages
+
+Altair uses `/altair/privacy`, `/altair/health-privacy`, and
+`/altair/health-notice`. The first two are clearly marked launch-review drafts:
+finalize the operator/contact, markets, age policy, processors/regions, consent,
+and retention details before publishing them as effective policies. The footer
+provides separate links, including a distinct consumer-health-policy link.
+Floyd’s `/floyd/privacy` remains separate. Altair uses Apple’s standard EULA for
+Terms of Use.
+
+See the companion altairapp repository’s `docs/PrivacyLaunchReview.md` for the
+code audit, official sources, and remaining release requirements. Verify all
+three public URLs after deployment before distributing the app’s legal links.
+
 ## Deployment
 
 Pushes to `main` are built and published to GitHub Pages via
