@@ -5,10 +5,11 @@ policy explains how the iOS app and its supporting services handle personal
 information. For privacy, access or deletion requests, contact
 [contact@dame.dev](mailto:contact@dame.dev).
 
-The local storage described below applies to Altair's local-data release, whose
-privacy choices include **Use cloud AI** and **Include health context with AI**.
-Records from earlier versions may still be on Altair's server until migration or
-deletion is complete; see **Records from earlier versions** below.
+The local storage described below applies to Altair's local-data release. A
+first-use notice asks for agreement to AI processing and selected health context
+together; voice has an additional first-use notice. Records from earlier versions
+may remain on Altair's server until deleted; see **Records from earlier versions**
+below.
 
 Altair's scores, nutrition estimates and AI replies are informational. They do
 not provide medical advice, diagnosis or treatment. Read the separate
@@ -60,7 +61,7 @@ the device may remove history that Altair cannot recover.
 
 Altair's hosting and database providers process this information to operate
 the service. They also carry the temporary AI and voice requests described
-below and may hold older records pending migration.
+below and may retain older records as described under **Records from earlier versions**.
 
 ## Optional AI processing
 
@@ -71,17 +72,17 @@ Altair's server to **OpenRouter and Google Vertex**, which provide the AI
 response. Meal analysis also uses this flow. A message or photo can contain
 health information even when it did not come from Apple Health.
 
-**Include health context with AI** is a separate choice. If enabled, Altair uses
-your question to select relevant summaries from your on-device health reports,
-profile or meal journal. Only the selected context is sent for that request;
-raw HealthKit sample timelines and the complete health history are not sent.
-Summaries remain sensitive health information and are not necessarily anonymous.
+The AI notice also covers selected health context. Altair uses your question to
+select relevant summaries from your on-device health reports, profile or meal
+journal and relevant conversation history. Only that selected context is sent
+for the request; raw HealthKit sample timelines and the complete health history
+are not sent. Summaries remain sensitive health information and are not
+necessarily anonymous. The current app does not offer an independent switch to
+use AI while excluding health context.
 
-With health context off, Altair omits additional structured health, profile and
-meal context and does not replay stored health-bearing conversation history.
-Information you deliberately include in the current message or photo, your
-response instructions and enabled server notes can still be sent under your
-cloud-AI choice.
+Your agreement is remembered for this account on this device. Agreeing does not
+send a message; processing starts when you request an AI reply or meal analysis.
+You can choose **Not now** and continue using local wellness features.
 
 The local-data service processes these requests temporarily and does not save
 their messages, photos, summaries or replies in Altair's application database.
@@ -89,7 +90,7 @@ Conversation history and resulting meal changes are saved on your device.
 
 ## Optional voice processing
 
-Voice requires its own choice in addition to cloud-AI permission. Microphone
+Voice requires its own first-use agreement in addition to the AI agreement. Microphone
 audio passes through Altair's server to **ElevenLabs** for transcription. The
 transcript is used to select context and obtain the AI response. ElevenLabs also
 receives reply text to generate speech. Audio, transcripts and spoken replies
@@ -112,13 +113,21 @@ is also controlled by iOS; you can use text without granting voice permission.
   described above to provide the features you request.
 
 Altair does not sell personal or consumer health data or use it for advertising.
-Our requirements for AI and voice processors are that they use submitted content
-to provide the requested service, do not use it for advertising or independent
-model training, and provide protection consistent with this policy. Cloud AI
-and voice are unavailable when the required provider privacy setup has not been
-verified. AI routing requests no-training and zero-retention handling; those
-controls do not establish that every vendor record or earlier submission has
-already been deleted.
+The model requests sent through OpenRouter use the configured Google Vertex EU
+route with zero-retention and denied data-collection request settings, without
+fallback to another route. Model requests are unavailable while the server's
+model-provider privacy confirmation is off. These request settings do not by
+themselves verify every provider account setting, contract or historical record.
+
+ElevenLabs speech uses standard processing and may retain submitted audio and
+reply text under its applicable service terms. The model's zero-retention
+settings do not apply to speech, and the current app does not have a separate
+ElevenLabs privacy-readiness gate. ElevenLabs provides account-level model
+improvement controls; their application depends on the production account's
+settings and terms. This policy does not represent all voice processing as
+zero-retention or make an unverified promise that every speech submission is
+excluded from provider training. Contact us for the arrangements applying to
+your data before choosing voice.
 
 Providers can process information outside your country. Retention, processing
 locations and international-transfer arrangements depend on the service and
@@ -163,28 +172,25 @@ us about those records or to make a deletion request.
 ## Records from earlier versions
 
 Earlier Altair versions stored account-linked health records, profiles, meals,
-photos, reports and conversations on the server. The local-data release first
-downloads and verifies a complete copy on your iPhone, then requests removal of
-the corresponding server records. Server records are removed only after that
-verified copy exists and the service validates its confirmation. Interrupted
-migrations can be retried; removal may already have finished if the confirmation
-response was interrupted, while the verified iPhone copy remains available.
-
-Pending migration is shown in the app's privacy choices. AI processing is
-unavailable for that account until migration finishes. The new local history
-is not uploaded as part of migration. Account administration, subscriptions,
-consent records and optional server notes remain as described above. Historical
-backups and prior provider submissions follow their separate lifecycles.
+photos, reports and conversations on the server. This release does not
+transfer that history automatically or delete it when you open the app, accept
+a notice or use AI. Legacy transfer routes are retired, and historical records
+do not gate new AI requests. Any already-copied device history remains local;
+remaining server records are subject to account deletion and applicable retention
+processes. Contact us about access to or deletion of earlier records. Historical
+backups and prior provider submissions have separate retention processes.
 
 ## Your choices and privacy requests
 
-- Choose cloud AI, additional health context and voice separately before use.
-  These options start off when a new privacy decision is needed. Saving choices
-  does not send your message or start recording.
-- Change or withdraw a choice in **Settings → Data & privacy → Privacy & health
-  → Change privacy choices**. Withdrawal stops new processing and interrupts
-  active requests. Information already transmitted cannot be recalled, and
-  withdrawal does not automatically delete saved records.
+- Review the AI/health-context notice before first use and the additional voice
+  notice before voice use. Choose **Not now** to decline. An agreement is
+  remembered; accepting it does not itself send a message or start recording.
+- The current app has no editable cloud-consent switches. To stop sending new
+  information, stop using AI and voice. To request withdrawal of recorded cloud
+  permission, email [contact@dame.dev](mailto:contact@dame.dev). This is a support
+  request, not an instant in-app switch. We may verify your account before
+  updating the server decision. Existing transmitted information cannot be
+  recalled, and withdrawal does not automatically delete saved records.
 - Review or revoke Apple Health access in the Health app's access settings.
   Revocation stops future reads; it does not erase saved reports or discussions.
 - Review, disable or delete notes in **Settings → Data & privacy → Assistant

@@ -6,10 +6,10 @@ access, deletion or appeals, email [contact@dame.dev](mailto:contact@dame.dev).
 Read it with the [Privacy Policy](/altair/privacy) and
 [health notice](/altair/health-notice).
 
-The local storage described here applies to Altair's local-data release, whose
-privacy choices include **Use cloud AI** and **Include health context with AI**.
-Older server records remain subject to the transition described below until
-migration or deletion is complete.
+The local storage described here applies to Altair's local-data release. A
+first-use notice covers AI processing and selected health context together;
+voice has an additional notice. Earlier server records follow the retention
+and deletion description below.
 
 ## Categories, sources and purposes
 
@@ -48,17 +48,17 @@ response instructions on your iPhone. Local health features work without cloud
 AI. There are no background uploads of new health records or full health-history
 batches in this release.
 
-You can choose to share information for a particular cloud feature:
+After you agree to the applicable first-use notice, requests can share:
 
 - **AI with OpenRouter and Google Vertex:** your submitted message or photo,
   relevant conversation text, local instructions and enabled server notes pass
   through Altair's server to these providers for replies and meal analysis.
-- **Additional health context:** a separate choice permits selected summaries
+- **Selected health context:** the AI agreement also permits selected summaries
   from local reports, profile or meal records to accompany the AI request.
   Selection follows your question. Raw HealthKit sample timelines and your
   complete health history are not sent. Summaries remain health information;
   reducing their detail does not make them anonymous.
-- **Voice with ElevenLabs:** a separate voice choice permits microphone audio
+- **Voice with ElevenLabs:** an additional voice agreement permits microphone audio
   to be sent for transcription and AI reply text to be sent for speech. The
   transcript also participates in the AI flow. Health context is selected after
   transcription, when the question is known.
@@ -67,18 +67,19 @@ You can choose to share information for a particular cloud feature:
   are enabled. The model cannot automatically save new notes. Notes from earlier
   versions may remain for review and deletion.
 
-Turning additional health context off does not remove health information you
-deliberately type or photograph, your response instructions or enabled server
-notes from an otherwise permitted AI request. You can disable server notes
-separately. The server processes new AI and voice request content temporarily;
-it does not persist the exchanges, photos, audio, reports or meal journal in its
-application database. The device saves your resulting conversation and journal.
+There is no independent health-context switch in the current app. Messages and
+photos you submit, response instructions and enabled server notes can also
+contain health information. You can disable server notes separately. Altair's
+server processes new AI and voice request content temporarily and does not
+persist these exchanges, photos, audio, reports or the meal journal in its
+application database. Provider retention is separate. The device saves your
+resulting conversation and journal.
 
 ## Recipients and limits on use
 
 Altair's hosting and database providers carry permitted requests, store optional
-notes and account administration records, and hold earlier health content while
-migration is pending. **OpenRouter and Google Vertex** provide AI processing;
+notes and account administration records, and may retain earlier health content
+until deletion. **OpenRouter and Google Vertex** provide AI processing;
 **ElevenLabs** provides transcription and speech. Their purposes and the
 categories shared are described above. If you email us health information in a
 privacy or support request, it is also processed to handle that correspondence.
@@ -86,34 +87,42 @@ privacy or support request, it is also processed to handle that correspondence.
 Altair does not sell consumer health data or use it for advertising. There is
 no affiliate-sharing integration in the current service. Subscription requests
 to Apple and RevenueCat do not include health measurements or conversations.
-Our requirements for AI and voice processors limit submitted content to the
-requested service, exclude advertising and independent model training, and
-require protection consistent with our privacy policy. AI and voice remain
-unavailable when required provider privacy verification is incomplete.
+Model requests through OpenRouter use the configured Google Vertex EU route,
+zero-retention and denied-collection settings without routing fallback. The
+server requires its model-provider privacy confirmation before model requests.
+Those settings do not establish every provider account setting, contract or
+historical deletion.
 
-Processing can occur outside your country. AI routing requests no-training and
-zero-retention handling, but request controls do not erase prior submissions
-or establish the retention of every vendor record. Provider terms, backup
-lifecycles and international-transfer arrangements remain separate from local
-storage. Contact [contact@dame.dev](mailto:contact@dame.dev) for information about
-the recipients and arrangements relevant to your data.
+ElevenLabs uses standard speech processing and may retain microphone audio and
+reply text under its service terms. The model's zero-retention controls do not
+apply to speech, and voice has no separate ElevenLabs privacy-readiness gate.
+ElevenLabs offers account-level model-improvement controls; this policy does
+not assert that the current account has been independently verified or that
+all speech content receives zero-retention or no-training treatment.
+
+Processing can occur outside your country. Provider terms, backups and
+international-transfer arrangements remain separate from local storage.
+Contact [contact@dame.dev](mailto:contact@dame.dev) for the arrangements relevant
+to your data, including speech-provider retention and model-improvement settings.
 
 ## Consent and withdrawal
 
-Apple Health access is an optional permission controlled by Apple. Cloud AI,
-additional health context and ElevenLabs voice have separate choices within
-Altair. Cloud choices start off when a new decision is required. Voice requires
-AI permission; additional structured health context requires its own permission
-in addition to AI. Local reports and manual journal edits work with all cloud
-choices off. Reading a policy or accepting terms does not grant permission.
+Apple Health access is an optional permission controlled by Apple. Before
+first AI use, Altair asks you to agree to messages, submitted photos, relevant
+history and selected health, profile and meal context being processed by cloud
+AI. The agreement also covers local instructions and enabled server notes.
+Voice asks for an additional agreement to ElevenLabs processing. You can choose
+**Not now**. Local reports and manual journal edits remain available without
+these agreements. Reading a policy or accepting terms does not grant permission.
 
-Use **Settings → Data & privacy → Privacy & health → Change privacy choices**
-to withdraw a choice. Altair blocks new processing for that purpose and
-interrupts active requests. It cannot recall information already transmitted.
-Withdrawal does not automatically delete saved records. Your decisions,
-disclosure version, revision and times are recorded against your account to
-enforce your choices. Material changes that require consent prompt a fresh
-decision.
+The app remembers the agreements and has no editable cloud-consent switches.
+To stop sending new information, stop using AI and voice. To request withdrawal
+of recorded cloud permission, email [contact@dame.dev](mailto:contact@dame.dev).
+This is a support request rather than an instant in-app switch; we may verify
+your account before changing the server decision. Information already sent
+cannot be recalled. Withdrawal does not automatically delete saved records.
+Consent decisions, disclosure version, revision and times are recorded against
+your account. Material changes that require consent prompt a fresh decision.
 
 ## Retention, earlier records and deletion
 
@@ -125,14 +134,13 @@ Signing out preserves the account's local history on the same iPhone; Altair
 does not provide cloud restoration or cross-device history syncing.
 
 Earlier versions stored health records, profiles, meals, photos, reports and
-conversations on Altair's server. The local-data release downloads and verifies
-a complete copy before confirming removal of the corresponding server records.
-The service removes those records only after validating the confirmation.
-Interrupted migrations can be retried; server removal may already have finished
-if the confirmation response was interrupted, while the verified iPhone copy
-remains available. The app shows pending migration and blocks AI for that
-account until it finishes.
-Optional server notes and account administration records remain separately.
+conversations on Altair's server. This release does not automatically transfer
+or remove that history when you start the app, agree to processing or request AI.
+Legacy transfer routes are retired; historical records do not block new AI
+requests. Already-copied device history stays local, and remaining server data
+follows account deletion and applicable retention processes. Contact us for
+access or deletion requests about older records. Optional server notes and
+account administration records remain separately.
 
 You can delete meals and conversations locally and inspect, disable or delete
 server notes in Settings. Disabling notes stops their use but does not delete
