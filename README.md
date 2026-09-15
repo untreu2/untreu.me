@@ -34,9 +34,10 @@ src/
 ## Altair legal pages
 
 Altair uses `/altair/privacy`, `/altair/health-privacy`, and
-`/altair/health-notice`. The first two are clearly marked launch-review drafts:
-finalize the operator/contact, markets, age policy, processors/regions, consent,
-and retention details before publishing them as effective policies. The footer
+`/altair/health-notice`. The privacy pages describe the local-data release,
+optional AI/voice processing, explicit server notes, older-record migration and
+retention/deletion limits. Privacy requests use `contact@dame.dev`. Keep provider
+arrangements and production behavior aligned with these disclosures. The footer
 provides separate links, including a distinct consumer-health-policy link.
 Floyd’s `/floyd/privacy` remains separate. Altair uses Apple’s standard EULA for
 Terms of Use.

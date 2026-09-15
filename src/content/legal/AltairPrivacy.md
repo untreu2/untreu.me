@@ -1,165 +1,224 @@
-_Draft for launch review · Prepared 15 September 2026_
+_Last updated 15 September 2026_
 
-This policy describes how Altair, a general wellness app developed by
-Emir Yorulmaz (untreu), handles personal information. It covers the Altair iOS app
-and its supporting service. Altair’s scores, nutrition estimates, and AI responses
-are informational and do not provide medical advice, diagnosis, or treatment.
-Read the separate
-[Consumer Health Data Privacy Policy](/altair/health-privacy) for health-specific
-details and the [health notice](/altair/health-notice) for the app’s limitations.
-Reading this policy or accepting the Terms of Use does not, by itself, give
-permission for health-data collection or disclosure to AI providers. This draft
-describes the consent flow prepared for the next app release; production rollout
-and provider privacy verification remain pending.
+Altair is a general wellness app operated by **Emir Yorulmaz (untreu)**. This
+policy explains how the iOS app and its supporting services handle personal
+information. For privacy, access or deletion requests, contact
+[contact@dame.dev](mailto:contact@dame.dev).
 
-## Information Altair handles
+The local storage described below applies to Altair's local-data release, whose
+privacy choices include **Use cloud AI** and **Include health context with AI**.
+Records from earlier versions may still be on Altair's server until migration or
+deletion is complete; see **Records from earlier versions** below.
 
-- **Account and profile.** Account identifiers, authentication information,
-  verified phone details, name and email when provided, an optional profile
-  picture, timezone, and app preferences. Firebase handles phone verification.
-  Altair’s server keeps a keyed phone fingerprint, the last four digits, and a
-  verification time rather than persisting the full phone number in its user
-  record. Firebase may retain the full number for authentication.
-- **Health and fitness.** Profile details such as age, sex, height, weight,
-  dietary preferences, restrictions, and allergies; the Apple Health categories
-  you permit; meals and nutrition estimates; and derived reports and scores.
-  See the separate health-data policy for categories and sources.
-- **Conversations and images.** Messages, assistant replies, conversation
-  history, submitted photos, custom assistant instructions, and saved memories
-  when remembering is enabled. Health information you type or photograph is
-  sensitive even when it did not come from Apple Health.
-- **Voice.** Microphone audio during voice conversations and the resulting
-  transcripts. Altair streams audio for transcription and keeps the transcript
-  in conversation history. Raw voice recordings are not saved in Altair’s
-  application database; this does not mean a speech provider has no retention.
-- **Subscriptions and operation.** Purchase and entitlement information, usage
-  counts, device and app version information, push notification tokens,
-  notification preferences, and operational request metadata. Apple handles
-  payment details; Altair does not receive your payment card number.
+Altair's scores, nutrition estimates and AI replies are informational. They do
+not provide medical advice, diagnosis or treatment. Read the separate
+[Consumer Health Data Privacy Policy](/altair/health-privacy) and
+[health notice](/altair/health-notice). Reading a policy or accepting the Terms
+of Use does not give permission to share information with AI or voice providers.
 
-## Purposes
+## Information stored on your iPhone
 
-Altair uses this information to authenticate accounts, synchronize approved
-health history, show reports and scores, maintain the meal journal, respond to
-messages, provide speech features, remember context when enabled, deliver
-requested notifications, verify subscriptions, enforce usage limits, and keep
-the service working securely. Altair does not sell personal health information
-or use it to serve advertising.
+- **Apple Health information.** With Apple's separate permission, Altair reads
+  the categories you allow and calculates daily summaries on your device. Raw
+  records remain in Apple Health. Altair does not upload raw HealthKit records
+  or send background health batches to its server.
+- **Health profile and journal.** Age, sex, height, weight, dietary preferences,
+  restrictions, allergies, profile pictures, meal descriptions and photos,
+  eating times, and nutrition estimates are stored locally.
+- **Reports and conversations.** Calculated reports and scores, chat history,
+  voice transcripts, and your response instructions are stored locally. Some
+  saved content may contain health information or other sensitive details.
 
-## Who processes information
+These records support your wellness history, reports, journal and conversations.
+Local health features and manual edits work without cloud-AI permission. The app
+uses iOS file protection for its private files and excludes them from device
+backups. Altair does not provide cloud restoration or cross-device syncing of
+this local history. Protect access to your iPhone; deleting the app or losing
+the device may remove history that Altair cannot recover.
 
-- **Altair’s server and database infrastructure** store account information,
-  approved health history, reports, meals, photos, messages, and settings.
-- **Apple** provides Apple Health permissions, Sign in with Apple where used,
-  App Store purchases, and push delivery.
-- **Firebase (Google)** provides authentication, phone verification, and account
-  management. Firebase and Apple may process technical information required to
-  provide those services.
-- **RevenueCat** verifies and manages subscription entitlements using your
-  Firebase account identifier and purchase information. Health records are not
-  included in Altair’s subscription requests.
-- **OpenRouter and Google Vertex** process relevant health summaries, profile
-  and meal context, recent conversation messages, instructions, enabled memories,
-  and photos you submit when AI processing is enabled. The prepared release uses
-  Google Gemini through a restricted Google Vertex route, with no provider
-  fallback and no-training/zero-retention routing requirements. Altair does not
-  include Firebase credentials or raw HealthKit sample records in AI prompts. Summaries remain health data and
-  are not necessarily anonymous.
-- **ElevenLabs** transcribes streamed microphone audio and converts assistant
-  reply text to speech. Spoken words and reply text can contain health
-  information. Transcripts also go through the AI conversation flow above.
+## Information Altair's services retain
 
-Provider processing can take place outside your country. Provider retention and
-data-use settings differ by service and contract. AI and voice remain unavailable
-in the prepared release until their respective provider privacy setup is
-verified. Consent alone cannot enable an unverified provider. This draft does not
-claim those account and contractual checks are complete. Deployment regions,
-applicable transfer safeguards, and provider retention terms must be finalized before this draft becomes the launch policy.
+- **Account and authentication information:** account identifiers, account name
+  and email when supplied by authentication, verification status and related
+  account metadata. Firebase handles phone verification and may retain your
+  full phone number. Altair's user record stores a keyed phone fingerprint, the
+  last four digits and a verification time instead of the full number.
+- **Subscriptions and operation:** purchase and entitlement information, usage
+  counters, device registrations, app versions, push tokens, notification
+  preferences and operational request metadata. These support authentication,
+  subscriptions, security and service operation. Apple handles payments;
+  Altair does not receive your payment card number.
+- **Privacy choices:** your consent decisions, disclosure version, revision and
+  decision times, including changes. These let the service enforce your choices.
+- **Optional assistant notes:** notes you deliberately save in **Settings →
+  Data & privacy → Assistant memory**. These are an explicit exception to local
+  storage and may contain personal or health information. New notes are not
+  created automatically by the AI. Notes from earlier versions may remain
+  available for you to review and delete.
+- **Requests you send us:** your contact details and correspondence when you
+  email support or exercise a privacy right.
 
-## Storage and retention
+Altair's hosting and database providers process this information to operate
+the service. They also carry the temporary AI and voice requests described
+below and may hold older records pending migration.
 
-Altair stores health history and content against your account on its server.
-The initial Apple Health import covers a rolling 30-day period; subsequent syncs
-add changes. That import window is **not** a 30-day deletion schedule. Account
-content currently remains until deleted; there is no automatic account-content
-expiry schedule in the application.
+## Optional AI processing
 
-Deleting a meal removes its content and photo from the active journal storage.
-An identifier and request hash may remain to prevent a retry from recreating the
-deleted meal. Deleting a saved memory does not erase the conversation it came
-from. Apple Health deletions remove synchronized measurements on a later
-successful sync; minimal synchronization markers remain. Existing reports and
-conversations may still contain information derived from earlier measurements.
+Before using cloud AI, Altair asks for your permission. When you submit a
+request, your message, deliberately attached photos, relevant conversation
+text, local response instructions and enabled server notes pass through
+Altair's server to **OpenRouter and Google Vertex**, which provide the AI
+response. Meal analysis also uses this flow. A message or photo can contain
+health information even when it did not come from Apple Health.
 
-In-app account deletion removes Altair-owned account records and associated
-content from the active database and coordinates authentication-account
-deletion. It does not cancel your Apple subscription or erase Apple Health’s
-original records. Provider records and backups have separate lifecycles. Backup
-expiry, operational-log retention, and provider deletion procedures need to be
-confirmed before launch; immediate erasure from every system is not promised.
+**Include health context with AI** is a separate choice. If enabled, Altair uses
+your question to select relevant summaries from your on-device health reports,
+profile or meal journal. Only the selected context is sent for that request;
+raw HealthKit sample timelines and the complete health history are not sent.
+Summaries remain sensitive health information and are not necessarily anonymous.
 
-The app protects its private account cache using iOS file protection and excludes
-that cache from device backups. Requests to the production service use HTTPS.
-These safeguards do not make the service end-to-end encrypted: its servers and
-AI or speech processors need access to relevant information to provide features.
+With health context off, Altair omits additional structured health, profile and
+meal context and does not replay stored health-bearing conversation history.
+Information you deliberately include in the current message or photo, your
+response instructions and enabled server notes can still be sent under your
+cloud-AI choice.
 
-## Your choices and requests
+The local-data service processes these requests temporarily and does not save
+their messages, photos, summaries or replies in Altair's application database.
+Conversation history and resulting meal changes are saved on your device.
 
-The prepared release asks for separate choices for **health data on Altair**,
-**AI with OpenRouter and Google**, and **voice with ElevenLabs**, plus confirmation
-that you are at least 18. Processing choices start off, including for existing
-accounts without a current decision. Health processing can be used without AI;
-AI text features can be used without voice. Apple Health access remains optional
-and requires Apple's separate permission.
+## Optional voice processing
 
-With health processing off, the app offers general wellness information and
-account controls. With health processing on and AI off, health history and
-calculated reports remain available; AI replies and meal analysis require AI
-consent. Altair saves your choice, disclosure version, revision and time against
-your account, with a history of changes. Account deletion removes those consent
-records from Altair's active database along with other account data.
+Voice requires its own choice in addition to cloud-AI permission. Microphone
+audio passes through Altair's server to **ElevenLabs** for transcription. The
+transcript is used to select context and obtain the AI response. ElevenLabs also
+receives reply text to generate speech. Audio, transcripts and spoken replies
+can contain health information.
 
-- Change or withdraw choices under **Settings → Data & privacy → Privacy & health
-  → Change privacy choices**. Turning a choice off stops new processing for that
-  purpose and interrupts active requests. Information already sent cannot be
-  recalled. Withdrawal does not automatically delete stored history. Account
-  deletion is also available from the limited wellness screen.
-- Review or revoke Apple Health access in the Health app’s access settings.
-  Revoking access stops future reads; it does not erase already uploaded data.
-- Use text instead of voice; camera and microphone access are controlled through
-  iOS permissions. Selecting a photo does not send it until you submit it.
-- Review, delete, or disable saved memories under **Settings → Data & privacy →
-  Assistant memory**. Disabling memory does not delete stored history.
-- Edit or delete meals in **Diet**, change profile information in Settings, and
-  delete the account under **Settings → Account**.
-- Manage notifications in Altair and iOS; manage or cancel subscriptions in the
-  App Store.
+Altair does not save raw voice recordings in its application database. The
+conversation transcript is retained locally on your iPhone. Microphone access
+is also controlled by iOS; you can use text without granting voice permission.
 
-Depending on applicable law, you may have rights to access, correct, obtain a
-portable copy of, or delete your information, restrict or object to processing,
-withdraw consent, and complain to a data-protection authority. A private contact
-channel and a verified process for handling these requests must be added before
-launch. Do not post health information in public GitHub issues or social posts.
+## Other providers and processing safeguards
+
+- **Apple** provides Apple Health permissions, App Store purchases and push
+  delivery, and controls the original records in Apple Health.
+- **Firebase (Google)** provides authentication, phone verification and account
+  management.
+- **RevenueCat** manages subscription entitlements using your account identifier
+  and purchase information. Health measurements and conversation content are
+  not included in Altair's subscription requests.
+- **OpenRouter, Google Vertex and ElevenLabs** process the selected information
+  described above to provide the features you request.
+
+Altair does not sell personal or consumer health data or use it for advertising.
+Our requirements for AI and voice processors are that they use submitted content
+to provide the requested service, do not use it for advertising or independent
+model training, and provide protection consistent with this policy. Cloud AI
+and voice are unavailable when the required provider privacy setup has not been
+verified. AI routing requests no-training and zero-retention handling; those
+controls do not establish that every vendor record or earlier submission has
+already been deleted.
+
+Providers can process information outside your country. Retention, processing
+locations and international-transfer arrangements depend on the service and
+applicable terms. Contact [contact@dame.dev](mailto:contact@dame.dev) for
+information about the providers and arrangements relevant to your request.
+
+Connections to Altair's production service use HTTPS. Cloud AI and voice
+processors need to read the submitted information to provide their services;
+these features are not end-to-end encrypted between only your devices.
+
+## Retention and deletion
+
+**Local history.** Altair refreshes a rolling 90-day window of readable Apple
+Health records to rebuild local summaries. This is a calculation window, not
+an overall 90-day deletion policy. Saved reports, conversations, meals and
+imported history have no automatic expiry. Signing out leaves private history
+on the same iPhone for that account. Deleting a meal or conversation removes
+that item from the local journal or history. Previously saved reports and
+replies may still contain information derived from it.
+
+**Server notes and account records.** Notes remain until you delete them or
+delete your account. Disabling memory stops its use for AI but does not delete
+the notes. Account, subscription, usage, device and consent records are retained
+to operate your account until deletion, subject to the exceptions below.
+Support correspondence is retained as needed to handle the request and related
+legal obligations.
+
+**Account deletion.** Use **Settings → Account** to delete your Altair account.
+This removes active Altair account data and the current iPhone's account files
+and starts deletion of the Firebase identity. Identity deletion is retried if
+it fails. Minimal hashed deletion markers and deletion audit records remain to
+prevent an erased account from being recreated by an old credential. Deletion
+on one iPhone cannot immediately erase private files on another offline device.
+
+Deleting your Altair account does not erase original Apple Health records,
+cancel an App Store subscription or automatically erase records held separately
+by Apple, RevenueCat or other providers. Backups and provider records have
+separate retention and deletion processes; an active-database deletion is not a
+promise of immediate erasure from every backup or third-party system. Contact
+us about those records or to make a deletion request.
+
+## Records from earlier versions
+
+Earlier Altair versions stored account-linked health records, profiles, meals,
+photos, reports and conversations on the server. The local-data release first
+downloads and verifies a complete copy on your iPhone, then requests removal of
+the corresponding server records. Server records are removed only after that
+verified copy exists and the service validates its confirmation. Interrupted
+migrations can be retried; removal may already have finished if the confirmation
+response was interrupted, while the verified iPhone copy remains available.
+
+Pending migration is shown in the app's privacy choices. AI processing is
+unavailable for that account until migration finishes. The new local history
+is not uploaded as part of migration. Account administration, subscriptions,
+consent records and optional server notes remain as described above. Historical
+backups and prior provider submissions follow their separate lifecycles.
+
+## Your choices and privacy requests
+
+- Choose cloud AI, additional health context and voice separately before use.
+  These options start off when a new privacy decision is needed. Saving choices
+  does not send your message or start recording.
+- Change or withdraw a choice in **Settings → Data & privacy → Privacy & health
+  → Change privacy choices**. Withdrawal stops new processing and interrupts
+  active requests. Information already transmitted cannot be recalled, and
+  withdrawal does not automatically delete saved records.
+- Review or revoke Apple Health access in the Health app's access settings.
+  Revocation stops future reads; it does not erase saved reports or discussions.
+- Review, disable or delete notes in **Settings → Data & privacy → Assistant
+  memory**. Edit or delete meals in **Diet**, and delete conversations from
+  conversation history.
+- Manage or cancel subscriptions through the App Store.
+
+Depending on applicable law, you may request access, correction, a portable
+copy or deletion, withdraw consent, restrict or object to processing, or lodge
+a complaint with the relevant authority. Email
+[contact@dame.dev](mailto:contact@dame.dev) and describe the request. We may ask
+for information needed to verify your account and authority before acting.
+Do not send passwords, verification codes or full health records in your first
+email. If you disagree with our response, reply with **Privacy appeal** so it
+can be reviewed. Do not post health information in public GitHub issues or
+social posts.
 
 ## Age and policy changes
 
-Altair is intended only for adults aged 18 and over. People under 18 should
-not create an account or submit information. Altair does not offer a parental
-consent route for children or teenagers. If you believe an underage person has
-provided information, use the private request channel once it is confirmed
-below; do not publish their information in a public post.
+Altair is intended for adults aged 18 and over and does not offer a parental
+consent route for children or teenagers. Contact
+[contact@dame.dev](mailto:contact@dame.dev) if you believe an underage person has
+provided information.
 
-Material changes will be reflected in the policy date and explained in the app
-where appropriate. New uses or disclosures that require consent need a separate
-permission step before they begin.
+We update the date above when this policy changes and explain material changes
+in the app where appropriate. New uses or disclosures that need consent require
+a fresh decision before processing begins.
 
 ## Contact
 
-Developer: **Emir Yorulmaz (untreu)**. Developer profiles:
-[X](https://x.com/_untreu) and [GitHub](https://github.com/untreu2/).
-The operator’s final legal contact details and a private privacy-request address
-are pending launch review. These public profiles are not a place to submit
-health records.
+**Emir Yorulmaz (untreu)** — Altair operator.
+
+Privacy, access, deletion and appeals:
+[contact@dame.dev](mailto:contact@dame.dev).
 
 The app license is covered by
-[Apple’s standard Terms of Use (EULA)](https://www.apple.com/legal/internet-services/itunes/dev/stdeula/).
+[Apple's standard Terms of Use (EULA)](https://www.apple.com/legal/internet-services/itunes/dev/stdeula/).
