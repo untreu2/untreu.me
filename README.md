@@ -36,9 +36,12 @@ src/
 Altair uses `/altair/privacy`, `/altair/health-privacy`, and
 `/altair/health-notice`. The privacy pages describe the device-local health profile,
 account-restored display name and profile photo, optional transient AI/voice
-processing, explicit server notes, and retention/deletion limits. Local health
-profile fields and private history cannot be restored on a fresh installation
-or another device. Privacy requests use `contact@dame.dev`. Keep provider
+processing, explicit server notes, and retention/deletion limits. Speech uses
+OpenRouter and Microsoft Azure's MAI-Transcribe-2 and MAI-Voice-2 with required
+zero-data-retention endpoint eligibility; speech has no EU processing guarantee.
+The matching app/server consent version is `2026-09-16-mai-speech-zdr-v1`.
+Local health profile fields and private history cannot be restored on a fresh
+installation or another device. Privacy requests use `contact@dame.dev`. Keep provider
 arrangements and production behavior aligned with these disclosures. The footer
 provides separate links, including a distinct consumer-health-policy link.
 Floyd’s `/floyd/privacy` remains separate. Altair uses Apple’s standard EULA for

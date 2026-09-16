@@ -9,8 +9,9 @@ This policy describes Altair's device-local health profile release. Your display
 name and profile photo can be restored from your account; your health profile
 and private history cannot. A first-use notice asks for agreement to AI
 processing and selected health context together; voice has an additional notice.
-Local storage does not prevent the selected, temporary processing described
-below. Records from earlier versions follow **Records from earlier versions**.
+This release changes the speech providers to OpenRouter and Microsoft Azure and
+requires a new agreement before use. Local storage does not prevent the selected,
+temporary processing described below. Records from earlier versions follow **Records from earlier versions**.
 
 Altair's scores, nutrition estimates and AI replies are informational. They do
 not provide medical advice, diagnosis or treatment. Read the separate
@@ -106,15 +107,16 @@ Conversation history and resulting meal changes are saved on your device.
 
 ## Optional voice processing
 
-Voice requires its own first-use agreement in addition to the AI agreement. Microphone
-audio passes through Altair's server to **ElevenLabs** for transcription. The
-transcript is used to select context and obtain the AI response. ElevenLabs also
-receives reply text to generate speech. Audio, transcripts and spoken replies
-can contain health information.
+Voice requires its own agreement in addition to the AI agreement. Microphone
+audio passes temporarily through Altair's server and **OpenRouter** to
+**Microsoft Azure's MAI-Transcribe-2** for transcription. The transcript is used
+to select context and obtain the AI response. Reply text passes through the same
+providers to **MAI-Voice-2** to generate speech. Audio, transcripts and spoken
+replies can contain health information.
 
-Altair does not save raw voice recordings in its application database. The
-conversation transcript is retained locally on your iPhone. Microphone access
-is also controlled by iOS; you can use text without granting voice permission.
+Speech uses zero-data-retention endpoints, as described below. Altair does not
+persist raw voice recordings on its server. The conversation transcript is
+retained locally on your iPhone. Microphone access is also controlled by iOS; you can use text without granting voice permission.
 
 ## Other providers and processing safeguards
 
@@ -125,7 +127,7 @@ is also controlled by iOS; you can use text without granting voice permission.
 - **RevenueCat** manages subscription entitlements using your account identifier
   and purchase information. Health measurements and conversation content are
   not included in Altair's subscription requests.
-- **OpenRouter, Google Vertex and ElevenLabs** process the selected information
+- **OpenRouter, Google Vertex and Microsoft Azure** process the selected information
   described above to provide the features you request.
 
 Altair does not sell personal or consumer health data or use it for advertising.
@@ -135,15 +137,14 @@ fallback to another route. Model requests are unavailable while the server's
 model-provider privacy confirmation is off. These request settings do not by
 themselves verify every provider account setting, contract or historical record.
 
-ElevenLabs speech uses standard processing and may retain submitted audio and
-reply text under its applicable service terms. The model's zero-retention
-settings do not apply to speech, and the current app does not have a separate
-ElevenLabs privacy-readiness gate. ElevenLabs provides account-level model
-improvement controls; their application depends on the production account's
-settings and terms. This policy does not represent all voice processing as
-zero-retention or make an unverified promise that every speech submission is
-excluded from provider training. Contact us for the arrangements applying to
-your data before choosing voice.
+Speech uses OpenRouter's MAI-Transcribe-2 and MAI-Voice-2 endpoints served by
+Microsoft Azure. Before sending audio or reply text, Altair requires these
+endpoints to appear in OpenRouter's zero-data-retention catalog. If it cannot
+verify eligible endpoints, voice processing is unavailable. Zero data retention
+applies to submitted and generated speech content after request processing;
+operational and billing metadata may still be retained. Speech is not restricted
+to the EU. This change does not delete information submitted to earlier speech
+providers or establish the status of historical records.
 
 Providers can process information outside your country. Retention, processing
 locations and international-transfer arrangements depend on the service and

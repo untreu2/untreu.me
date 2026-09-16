@@ -9,8 +9,10 @@ Read it with the [Privacy Policy](/altair/privacy) and
 This policy describes Altair's device-local health profile release. Your display
 name and profile photo are saved with your account; your health profile and
 private history are stored on this iPhone. A first-use notice covers AI processing
-and selected health context together; voice has an additional notice. Earlier
-server records follow the retention and deletion description below.
+and selected health context together; voice has an additional notice. This
+release changes the speech providers to OpenRouter and Microsoft Azure and
+requires a new agreement before use. Earlier server records follow the retention
+and deletion description below.
 
 ## Categories, sources and purposes
 
@@ -71,10 +73,11 @@ After you agree to the applicable first-use notice, requests can share:
   Selection follows your question. Raw HealthKit sample timelines and your
   complete health history are not sent. Summaries remain health information;
   reducing their detail does not make them anonymous.
-- **Voice with ElevenLabs:** an additional voice agreement permits microphone audio
-  to be sent for transcription and AI reply text to be sent for speech. The
-  transcript also participates in the AI flow. Health context is selected after
-  transcription, when the question is known.
+- **Voice with OpenRouter and Microsoft Azure:** an additional voice agreement
+  permits microphone audio to be sent to MAI-Transcribe-2 for transcription and
+  AI reply text to MAI-Voice-2 for speech using zero-data-retention endpoints.
+  The transcript also participates in the AI flow. Health context is selected
+  after transcription, when the question is known.
 - **Optional server notes:** notes you explicitly save are stored against your
   account on Altair's server and used in AI requests only when memory and AI
   are enabled. The model cannot automatically save new notes. Notes from earlier
@@ -94,9 +97,9 @@ is separate. The device saves your resulting conversation and journal.
 Altair's hosting and database providers carry permitted requests, store your
 display name, profile photo, optional notes and account administration records,
 and may retain earlier health content until deletion. **OpenRouter and Google
-Vertex** provide AI processing;
-**ElevenLabs** provides transcription and speech. Their purposes and the
-categories shared are described above. If you email us health information in a
+Vertex** provide AI processing; **OpenRouter and Microsoft Azure** provide
+transcription and speech using MAI-Transcribe-2 and MAI-Voice-2. Their purposes
+and the categories shared are described above. If you email us health information in a
 privacy or support request, it is also processed to handle that correspondence.
 
 Altair does not sell consumer health data or use it for advertising. There is
@@ -108,17 +111,19 @@ server requires its model-provider privacy confirmation before model requests.
 Those settings do not establish every provider account setting, contract or
 historical deletion.
 
-ElevenLabs uses standard speech processing and may retain microphone audio and
-reply text under its service terms. The model's zero-retention controls do not
-apply to speech, and voice has no separate ElevenLabs privacy-readiness gate.
-ElevenLabs offers account-level model-improvement controls; this policy does
-not assert that the current account has been independently verified or that
-all speech content receives zero-retention or no-training treatment.
+Before sending audio or reply text, Altair requires the Microsoft Azure speech
+endpoints to appear in OpenRouter's zero-data-retention catalog. Voice is
+unavailable if eligible endpoints cannot be verified. Zero data retention
+applies to submitted and generated speech content after request processing;
+operational and billing metadata may still be retained. Altair does not persist
+raw voice recordings on its server. Speech processing is not restricted to the
+EU. This change does not delete submissions to earlier speech providers or
+establish the status of their historical records.
 
 Processing can occur outside your country. Provider terms, backups and
 international-transfer arrangements remain separate from local storage.
 Contact [contact@dame.dev](mailto:contact@dame.dev) for the arrangements relevant
-to your data, including speech-provider retention and model-improvement settings.
+to your data, including provider retention and processing locations.
 
 ## Consent and withdrawal
 
@@ -126,8 +131,8 @@ Apple Health access is an optional permission controlled by Apple. Before
 first AI use, Altair asks you to agree to messages, submitted photos, relevant
 history and selected health, profile and meal context being processed by cloud
 AI. The agreement also covers local instructions and enabled server notes.
-Voice asks for an additional agreement to ElevenLabs processing. You can choose
-**Not now**. Local reports and manual journal edits remain available without
+Voice asks for an additional agreement to OpenRouter and Microsoft Azure speech
+processing. You can choose **Not now**. Local reports and manual journal edits remain available without
 these agreements. Reading a policy or accepting terms does not grant permission.
 
 The app remembers the agreements and has no editable cloud-consent switches.
