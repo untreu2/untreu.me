@@ -1,15 +1,16 @@
-_Last updated 15 September 2026_
+_Last updated 16 September 2026_
 
 Altair is a general wellness app operated by **Emir Yorulmaz (untreu)**. This
 policy explains how the iOS app and its supporting services handle personal
 information. For privacy, access or deletion requests, contact
 [contact@dame.dev](mailto:contact@dame.dev).
 
-The local storage described below applies to Altair's local-data release. A
-first-use notice asks for agreement to AI processing and selected health context
-together; voice has an additional first-use notice. Records from earlier versions
-may remain on Altair's server until deleted; see **Records from earlier versions**
-below.
+This policy describes Altair's device-local health profile release. Your display
+name and profile photo can be restored from your account; your health profile
+and private history cannot. A first-use notice asks for agreement to AI
+processing and selected health context together; voice has an additional notice.
+Local storage does not prevent the selected, temporary processing described
+below. Records from earlier versions follow **Records from earlier versions**.
 
 Altair's scores, nutrition estimates and AI replies are informational. They do
 not provide medical advice, diagnosis or treatment. Read the separate
@@ -23,9 +24,12 @@ of Use does not give permission to share information with AI or voice providers.
   the categories you allow and calculates daily summaries on your device. Raw
   records remain in Apple Health. Altair does not upload raw HealthKit records
   or send background health batches to its server.
-- **Health profile and journal.** Age, sex, height, weight, dietary preferences,
-  restrictions, allergies, profile pictures, meal descriptions and photos,
-  eating times, and nutrition estimates are stored locally.
+- **Health profile and preferences.** Age, sex, height, weight, dietary
+  preferences, restrictions and allergies are stored on this iPhone, together
+  with your units, time zone and week-start preferences. Altair does not sync
+  these profile fields or preferences to your account for restoration.
+- **Meal journal.** Meal descriptions and photos, eating times and nutrition
+  estimates are stored locally. Profile photos are handled separately below.
 - **Reports and conversations.** Calculated reports and scores, chat history,
   voice transcripts, and your response instructions are stored locally. Some
   saved content may contain health information or other sensitive details.
@@ -34,14 +38,24 @@ These records support your wellness history, reports, journal and conversations.
 Local health features and manual edits work without cloud-AI permission. The app
 uses iOS file protection for its private files and excludes them from device
 backups. Altair does not provide cloud restoration or cross-device syncing of
-this local history. Protect access to your iPhone; deleting the app or losing
-the device may remove history that Altair cannot recover.
+this health profile, preferences or private history. Deleting the app, a fresh
+installation or changing devices starts with new local data. Your display name
+and profile photo can return when you sign in, but Altair cannot recover the
+other local records. Returning accounts skip health setup; you can add local
+profile details in Settings. With your permission, available Apple Health
+information can be read again. That does not restore old meals, conversations,
+response instructions or other Altair-only history.
 
 ## Information Altair's services retain
 
-- **Account and authentication information:** account identifiers, account name
-  and email when supplied by authentication, verification status and related
-  account metadata. Firebase handles phone verification and may retain your
+- **Display name and profile photo:** the name and photo you choose are saved
+  with your account so they can be restored on a new installation or device.
+  A photo or name you supply can itself contain sensitive information. This
+  account sync does not include your health profile or personalization fields.
+- **Account and authentication information:** account identifiers, email when
+  supplied by authentication, verification status, adult confirmation status,
+  and related account metadata. Firebase handles phone
+  verification and may retain your
   full phone number. Altair's user record stores a keyed phone fingerprint, the
   last four digits and a verification time instead of the full number.
 - **Subscriptions and operation:** purchase and entitlement information, usage
@@ -85,7 +99,9 @@ send a message; processing starts when you request an AI reply or meal analysis.
 You can choose **Not now** and continue using local wellness features.
 
 The local-data service processes these requests temporarily and does not save
-their messages, photos, summaries or replies in Altair's application database.
+their messages, attached photos, selected profile values, summaries or replies
+in Altair's application database. This is separate from storing the profile
+photo you choose for your account and any notes you explicitly save.
 Conversation history and resulting meal changes are saved on your device.
 
 ## Optional voice processing
@@ -140,16 +156,19 @@ these features are not end-to-end encrypted between only your devices.
 
 ## Retention and deletion
 
-**Local history.** Altair refreshes a rolling 90-day window of readable Apple
-Health records to rebuild local summaries. This is a calculation window, not
-an overall 90-day deletion policy. Saved reports, conversations, meals and
-imported history have no automatic expiry. Signing out leaves private history
-on the same iPhone for that account. Deleting a meal or conversation removes
-that item from the local journal or history. Previously saved reports and
+**Local profile and history.** Altair refreshes a rolling 90-day window of
+readable Apple Health records to rebuild local summaries. This is a calculation
+window, not an overall 90-day deletion policy. Saved reports, conversations, meals and
+imported history have no automatic expiry. Signing out leaves the local health
+profile, preferences and private history on the same iPhone for that account.
+Deleting a meal or conversation removes that item from the local journal or
+history. Previously saved reports and
 replies may still contain information derived from it.
 
-**Server notes and account records.** Notes remain until you delete them or
-delete your account. Disabling memory stops its use for AI but does not delete
+**Name, profile photo, notes and account records.** Your display name and profile
+photo remain with the account until changed, removed where supported, or deleted
+with the account. Notes remain until you delete them or delete your account.
+Disabling memory stops its use for AI but does not delete
 the notes. Account, subscription, usage, device and consent records are retained
 to operate your account until deletion, subject to the exceptions below.
 Support correspondence is retained as needed to handle the request and related
@@ -171,12 +190,18 @@ us about those records or to make a deletion request.
 
 ## Records from earlier versions
 
-Earlier Altair versions stored account-linked health records, profiles, meals,
-photos, reports and conversations on the server. This release does not
-transfer that history automatically or delete it when you open the app, accept
-a notice or use AI. Legacy transfer routes are retired, and historical records
-do not gate new AI requests. Any already-copied device history remains local;
-remaining server records are subject to account deletion and applicable retention
+Earlier Altair versions stored account-linked health records, health profiles,
+meals, photos, reports and conversations on the server. The server update for
+this release removes previously saved health-profile and personalization values
+from active account profiles, while preserving your display name and profile
+photo. This removal does not erase those values from historical backups or
+previous provider submissions.
+
+Other earlier health records, meals, reports and conversations are not
+automatically transferred or deleted when you open the app, accept a notice or
+use AI. Legacy transfer routes are retired, and historical records do not gate
+new AI requests. Any already-copied device history remains local; remaining
+server records are subject to account deletion and applicable retention
 processes. Contact us about access to or deletion of earlier records. Historical
 backups and prior provider submissions have separate retention processes.
 

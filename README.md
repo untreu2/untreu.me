@@ -34,9 +34,11 @@ src/
 ## Altair legal pages
 
 Altair uses `/altair/privacy`, `/altair/health-privacy`, and
-`/altair/health-notice`. The privacy pages describe the local-data release,
-optional AI/voice processing, explicit server notes, older-record migration and
-retention/deletion limits. Privacy requests use `contact@dame.dev`. Keep provider
+`/altair/health-notice`. The privacy pages describe the device-local health profile,
+account-restored display name and profile photo, optional transient AI/voice
+processing, explicit server notes, and retention/deletion limits. Local health
+profile fields and private history cannot be restored on a fresh installation
+or another device. Privacy requests use `contact@dame.dev`. Keep provider
 arrangements and production behavior aligned with these disclosures. The footer
 provides separate links, including a distinct consumer-health-policy link.
 Floyd’s `/floyd/privacy` remains separate. Altair uses Apple’s standard EULA for
