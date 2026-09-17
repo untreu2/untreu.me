@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { Markdown } from '../components/Markdown'
 import { findEntry, type Entry } from '../content'
+import { profile } from '../data/profile'
 import { NotFound } from './NotFound'
 
 interface ArticleProps {
@@ -17,9 +18,9 @@ export function Article({ collection }: ArticleProps) {
   }, [slug])
 
   useEffect(() => {
-    if (entry) document.title = `${entry.title} — untreu`
+    if (entry) document.title = `${entry.title} — ${profile.name}`
     return () => {
-      document.title = 'untreu'
+      document.title = profile.name
     }
   }, [entry])
 

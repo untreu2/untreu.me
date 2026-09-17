@@ -1,7 +1,7 @@
 export const profile = {
   name: 'emir yorulmaz',
   handle: 'untreu',
-  bio: 'Bitcoin maxi. Building software stuff.',
+  bio: 'Building software stuff.',
 }
 
 export interface SocialLink {
