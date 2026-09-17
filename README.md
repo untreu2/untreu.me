@@ -39,13 +39,16 @@ account-restored display name and profile photo, optional transient AI/voice
 processing, explicit server notes, and retention/deletion limits. The prepared
 17 September 2026 revision names OpenAI GPT-Live for continuous active-session
 speech and GPT-5.6 Luna for text, context planning, photos and meal analysis.
-The matching app/server consent version is `2026-09-17-openai-live-luna-v1` and
+The matching app/server consent version is `2026-09-17-openai-standard-v1` and
 requires a fresh shared agreement covering AI, selected health context and voice.
-These source changes have not been deployed and do
-not establish OpenAI key configuration, approved project ZDR or regional
-processing. The pages are marked as prepared for the matching release. Publish
-and activate them with the app/server rollout once the actual OpenAI key/project
-controls have been verified; no blanket deletion or EU-residency claim is made.
+This revision discloses standard OpenAI abuse-monitoring retention of request
+and response content normally for up to 30 days, with legal/safety exceptions.
+Training/data-sharing opt-ins remain off. Responses storage and Live session
+recordings are disabled, but that does not remove abuse-monitoring retention.
+The server defaults to disabled processing and requires an explicit standard
+or approved-ZDR retention mode. This source update is not a deployment record.
+Publish the prepared policies with the matching app/server revision and fresh
+consent; no ZDR or EU-residency promise is made for standard mode.
 The matching app asks once before first AI or voice use and remembers the
 agreement for the account and policy. Acceptance does not send a message or
 start recording. There are no in-app permission-off controls; the policies give

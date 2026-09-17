@@ -1,6 +1,6 @@
-_Prepared 17 September 2026 for the OpenAI release_
+_Prepared 17 September 2026 for the OpenAI standard-retention release_
 
-This revision takes effect when the matching OpenAI release is made available.
+This revision takes effect when the matching standard-retention release is made available.
 It does not announce that deployment has happened. Earlier releases may use the
 providers named in their accepted notices.
 
@@ -9,12 +9,12 @@ policy explains how the iOS app and its supporting services handle personal
 information. For privacy, access or deletion requests, contact
 [contact@dame.dev](mailto:contact@dame.dev).
 
-This policy describes Altair's OpenAI release and device-local health profile. Your display
+This policy describes Altair's OpenAI standard-retention release and device-local health profile. Your display
 name and profile photo can be restored from your account; your health profile
 and private history cannot. One shared first-use notice asks for agreement to AI
 processing, selected health context and continuous cloud voice together.
-This release changes AI and speech processing to OpenAI and requires a fresh
-agreement before first AI or voice use. Local storage does not prevent the selected,
+This revision discloses standard OpenAI retention and requires a fresh shared
+agreement before AI or voice use, even if you accepted an earlier notice. Local storage does not prevent the selected,
 temporary processing described below. Records from earlier versions follow **Records from earlier versions**.
 
 Altair's scores, nutrition estimates and AI replies are informational. They do
@@ -152,20 +152,19 @@ operational records and do not contain the recording or transcript.
   above to provide GPT-Live speech and GPT-5.6 Luna replies and analysis.
 
 Altair does not sell personal or consumer health data or use it for advertising.
-Altair requires verification of approved, applicable OpenAI Zero Data Retention
-controls for the API key and project before enabling AI or voice. Training and
-data-sharing opt-ins must be disabled. The deployment must meet those conditions;
-this policy and the app's agreement do not enable or prove provider controls.
+Altair uses OpenAI's standard API retention for the processing described here.
+OpenAI may keep request and response content, including submitted text, photos,
+selected health context and voice content, in abuse-monitoring logs normally
+for up to 30 days. Longer retention may apply when required by law or reasonably
+necessary to protect services or third parties from harm. OpenAI does not train
+on API content by default; Altair keeps training and data-sharing opt-ins off.
 
-Altair requests no saved Responses or Live session recordings and disables prompt
-cache writes for Luna. These settings do not by themselves establish Zero Data
-Retention. OpenAI's standard API does not use content for training unless the
-customer opts in, but its default abuse-monitoring logs can retain content for
-up to 30 days, with documented exceptions. Approved ZDR controls have endpoint
-and feature limitations, and operational/billing metadata may still be retained.
-Images flagged for potential child sexual abuse material may be retained for
-safety review even with ZDR.
-The controls do not promise deletion of all provider data or historical records.
+Altair requests no stored AI responses or Live session recordings and disables
+prompt-cache writes for Luna. These settings do not remove OpenAI's
+abuse-monitoring retention and are not a Zero Data Retention guarantee.
+Operational/billing metadata has separate retention rules. Images flagged for
+potential child sexual abuse material may be retained for safety review. These
+controls do not promise immediate deletion of provider data or historical records.
 See [OpenAI's data controls](https://developers.openai.com/api/docs/guides/your-data).
 
 OpenAI supports regional options, but choosing a model does not guarantee
