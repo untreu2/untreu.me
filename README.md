@@ -36,25 +36,10 @@ src/
 Altair uses `/altair/privacy`, `/altair/health-privacy`, and
 `/altair/health-notice`. The privacy pages describe the device-local health profile,
 account-restored display name and profile photo, optional transient AI/voice
-processing, explicit server notes, and retention/deletion limits. The prepared
-17 September 2026 revision names OpenAI GPT-Live for continuous active-session
-speech and GPT-5.6 Luna for text, context planning, photos and meal analysis.
-The matching app/server consent version is `2026-09-17-openai-standard-v1` and
-requires a fresh shared agreement covering AI, selected health context and voice.
-This revision discloses standard OpenAI abuse-monitoring retention of request
-and response content normally for up to 30 days, with legal/safety exceptions.
-Training/data-sharing opt-ins remain off. Responses storage and Live session
-recordings are disabled, but that does not remove abuse-monitoring retention.
-The server defaults to disabled processing and requires an explicit standard
-or approved-ZDR retention mode. This source update is not a deployment record.
-Publish the prepared policies with the matching app/server revision and fresh
-consent; no ZDR or EU-residency promise is made for standard mode.
-The matching app asks once before first AI or voice use and remembers the
-agreement for the account and policy. Acceptance does not send a message or
-start recording. There are no in-app permission-off controls; the policies give
-the support contact for privacy requests. Ending a call stops new audio
-transmission, and server-side revocation still blocks processing. Saved voice history contains
-delegated exchanges, not every live caption or spoken utterance.
+processing, explicit server notes, and retention/deletion limits. Speech uses
+OpenRouter and Microsoft Azure's MAI-Transcribe-2 and MAI-Voice-2 with required
+zero-data-retention endpoint eligibility; speech has no EU processing guarantee.
+The matching app/server consent version is `2026-09-16-mai-speech-zdr-v1`.
 Local health profile fields and private history cannot be restored on a fresh
 installation or another device. Privacy requests use `contact@dame.dev`. Keep provider
 arrangements and production behavior aligned with these disclosures. The footer

@@ -1,8 +1,4 @@
-_Prepared 17 September 2026 for the OpenAI standard-retention release_
-
-This revision takes effect when the matching standard-retention release is made available.
-It does not announce that deployment has happened. Earlier releases may use the
-providers named in their accepted notices.
+_Last updated 16 September 2026_
 
 This separate Consumer Health Data Privacy Policy explains how **Emir Yorulmaz
 (untreu)**, the operator of Altair, handles consumer health data. For privacy,
@@ -10,12 +6,12 @@ access, deletion or appeals, email [contact@dame.dev](mailto:contact@dame.dev).
 Read it with the [Privacy Policy](/altair/privacy) and
 [health notice](/altair/health-notice).
 
-This policy describes Altair's OpenAI standard-retention release and device-local health profile. Your display
+This policy describes Altair's device-local health profile release. Your display
 name and profile photo are saved with your account; your health profile and
-private history are stored on this iPhone. One shared first-use notice covers AI
-processing, selected health context and continuous cloud voice together. This
-revision discloses standard OpenAI retention and requires a fresh shared agreement
-before AI or voice use, even if you accepted an earlier notice. Earlier server records follow the retention
+private history are stored on this iPhone. A first-use notice covers AI processing
+and selected health context together; voice has an additional notice. This
+release changes the speech providers to OpenRouter and Microsoft Azure and
+requires a new agreement before use. Earlier server records follow the retention
 and deletion description below.
 
 ## Categories, sources and purposes
@@ -67,22 +63,21 @@ service-operation records also remain on the server, as described in the
 the temporary, selected AI and voice processing described below or the optional
 server notes you deliberately save.
 
-After you agree to the shared first-use notice, requests can share:
+After you agree to the applicable first-use notice, requests can share:
 
-- **AI with OpenAI:** your submitted message or photo, relevant conversation
-  text, local instructions and enabled server notes pass through Altair's server
-  to GPT-5.6 Luna for context selection, replies, photo and meal analysis.
+- **AI with OpenRouter and Google Vertex:** your submitted message or photo,
+  relevant conversation text, local instructions and enabled server notes pass
+  through Altair's server to these providers for replies and meal analysis.
 - **Selected health context:** the AI agreement also permits selected summaries
   from local reports, profile or meal records to accompany the AI request.
   Selection follows your question. Raw HealthKit sample timelines and your
   complete health history are not sent. Summaries remain health information;
   reducing their detail does not make them anonymous.
-- **Voice with OpenAI:** the shared agreement covers continuous microphone
-  audio transmission through Altair to GPT-Live during the active voice session,
-  including silence and while the assistant speaks. The transcript participates
-  in the delegated Luna AI flow; relevant health context is selected once the
-  question is known. Selected context and validated results can return to
-  GPT-Live for speech. End voice to stop capture and new transmission.
+- **Voice with OpenRouter and Microsoft Azure:** an additional voice agreement
+  permits microphone audio to be sent to MAI-Transcribe-2 for transcription and
+  AI reply text to MAI-Voice-2 for speech using zero-data-retention endpoints.
+  The transcript also participates in the AI flow. Health context is selected
+  after transcription, when the question is known.
 - **Optional server notes:** notes you explicitly save are stored against your
   account on Altair's server and used in AI requests only when memory and AI
   are enabled. The model cannot automatically save new notes. Notes from earlier
@@ -95,44 +90,35 @@ server processes new AI and voice request content temporarily and does not
 persist these exchanges, attached photos, selected profile values, audio,
 reports or the meal journal in its application database. This is separate from
 your account profile photo and notes you deliberately save. Provider retention
-is separate. The device saves delegated exchanges and resulting journal changes.
-Live captions and other GPT-Live speech are not a complete saved session transcript.
-A ready voice session counts toward your AI allowance even if silent or handled
-locally. Its first delegated reply is included; later delegated replies use
-additional allowance. The service records usage counts separately from content.
+is separate. The device saves your resulting conversation and journal.
 
 ## Recipients and limits on use
 
 Altair's hosting and database providers carry permitted requests, store your
 display name, profile photo, optional notes and account administration records,
-and may retain earlier health content until deletion. **OpenAI** provides
-GPT-5.6 Luna AI processing and GPT-Live speech. The purposes and categories
-shared are described above. If you email us health information in a
+and may retain earlier health content until deletion. **OpenRouter and Google
+Vertex** provide AI processing; **OpenRouter and Microsoft Azure** provide
+transcription and speech using MAI-Transcribe-2 and MAI-Voice-2. Their purposes
+and the categories shared are described above. If you email us health information in a
 privacy or support request, it is also processed to handle that correspondence.
 
 Altair does not sell consumer health data or use it for advertising. There is
 no affiliate-sharing integration in the current service. Subscription requests
 to Apple and RevenueCat do not include health measurements or conversations.
-Altair uses OpenAI's standard API retention. Submitted and generated content,
-including selected health information, messages, photos and voice content, may
-be retained in abuse-monitoring logs normally for up to 30 days. Longer retention
-may apply when required by law or reasonably necessary to protect services or
-third parties from harm. OpenAI does not train on API content by default; Altair
-keeps training and data-sharing opt-ins off.
+Model requests through OpenRouter use the configured Google Vertex EU route,
+zero-retention and denied-collection settings without routing fallback. The
+server requires its model-provider privacy confirmation before model requests.
+Those settings do not establish every provider account setting, contract or
+historical deletion.
 
-Altair requests no stored AI responses or Live recordings and disables Luna
-prompt-cache writes. Altair does not persist raw voice recordings on its server.
-These settings do not remove OpenAI's abuse-monitoring retention and are not a
-Zero Data Retention guarantee. Operational/billing metadata has separate
-retention rules. Images flagged for potential child sexual abuse material may
-be retained for safety review. These controls do not promise immediate deletion
-of provider data, backups or historical submissions.
-See [OpenAI's data controls](https://developers.openai.com/api/docs/guides/your-data).
-
-Regional support must be verified for the actual project, endpoint and other
-services; this policy does not guarantee EU-only or end-to-end EU processing.
-Changing providers does not delete prior submissions to OpenRouter, Google
-Vertex, Microsoft Azure or ElevenLabs.
+Before sending audio or reply text, Altair requires the Microsoft Azure speech
+endpoints to appear in OpenRouter's zero-data-retention catalog. Voice is
+unavailable if eligible endpoints cannot be verified. Zero data retention
+applies to submitted and generated speech content after request processing;
+operational and billing metadata may still be retained. Altair does not persist
+raw voice recordings on its server. Speech processing is not restricted to the
+EU. This change does not delete submissions to earlier speech providers or
+establish the status of their historical records.
 
 Processing can occur outside your country. Provider terms, backups and
 international-transfer arrangements remain separate from local storage.
@@ -141,24 +127,20 @@ to your data, including provider retention and processing locations.
 
 ## Consent and withdrawal
 
-Apple Health access is an optional permission controlled by Apple. Before first
-AI or voice use, Altair presents one shared notice with policy links. Agreement
-covers messages, submitted photos, relevant history, selected health, profile
-and meal context, local instructions and enabled server notes processed by AI,
-plus continuous active-session audio processing by OpenAI GPT-Live. You can
-choose **Not now**. Local reports and manual journal edits remain available
-without agreement. Reading a policy or accepting terms does not grant permission.
+Apple Health access is an optional permission controlled by Apple. Before
+first AI use, Altair asks you to agree to messages, submitted photos, relevant
+history and selected health, profile and meal context being processed by cloud
+AI. The agreement also covers local instructions and enabled server notes.
+Voice asks for an additional agreement to OpenRouter and Microsoft Azure speech
+processing. You can choose **Not now**. Local reports and manual journal edits remain available without
+these agreements. Reading a policy or accepting terms does not grant permission.
 
-The app remembers agreement for the account and policy version. Accepting it
-does not send a message or start the microphone; you must deliberately request
-AI processing or start a call. Voice also requires iOS microphone permission.
-There are no in-app controls to turn AI or voice permission off. End an active
-call and stop using AI and voice to stop sending new information. For privacy
-requests, including withdrawal of recorded consent, email
-[contact@dame.dev](mailto:contact@dame.dev). We may verify your account before
-updating its recorded choice. Server-side revocation still blocks processing.
-Information already sent cannot be recalled. Withdrawal does not automatically
-delete saved records or disable local health features.
+The app remembers the agreements and has no editable cloud-consent switches.
+To stop sending new information, stop using AI and voice. To request withdrawal
+of recorded cloud permission, email [contact@dame.dev](mailto:contact@dame.dev).
+This is a support request rather than an instant in-app switch; we may verify
+your account before changing the server decision. Information already sent
+cannot be recalled. Withdrawal does not automatically delete saved records.
 Consent decisions, disclosure version, revision and times are recorded against
 your account. Material changes that require consent prompt a fresh decision.
 
@@ -177,9 +159,9 @@ details in Settings. Apple Health data can be read again with permission, but
 that does not restore old meals, conversations or other Altair-only records.
 
 Earlier versions stored health records, health profiles, meals, photos, reports
-and conversations on Altair's server. The earlier device-local profile update removed saved health-profile and
-personalization values from active account profiles; your display name and
-profile photo remain. Historical backups and
+and conversations on Altair's server. The server update for this release removes
+previously saved health-profile and personalization values from active account
+profiles; your display name and profile photo remain. Historical backups and
 prior provider submissions have separate deletion processes.
 
 Other earlier health records, meals, reports and conversations are not
