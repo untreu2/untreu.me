@@ -36,10 +36,22 @@ src/
 Altair uses `/altair/privacy`, `/altair/health-privacy`, and
 `/altair/health-notice`. The privacy pages describe the device-local health profile,
 account-restored display name and profile photo, optional transient AI/voice
-processing, explicit server notes, and retention/deletion limits. Speech uses
-OpenRouter and Microsoft Azure's MAI-Transcribe-2 and MAI-Voice-2 with required
-zero-data-retention endpoint eligibility; speech has no EU processing guarantee.
-The matching app/server consent version is `2026-09-16-mai-speech-zdr-v1`.
+processing, explicit server notes, and retention/deletion limits. The prepared
+17 September 2026 revision names OpenAI GPT-Live for continuous active-session
+speech and GPT-5.6 Luna for text, context planning, photos and meal analysis.
+The matching app/server consent version is `2026-09-17-openai-live-luna-v1` and
+requires a fresh shared agreement covering AI, selected health context and voice.
+These source changes have not been deployed and do
+not establish OpenAI key configuration, approved project ZDR or regional
+processing. The pages are marked as prepared for the matching release. Publish
+and activate them with the app/server rollout once the actual OpenAI key/project
+controls have been verified; no blanket deletion or EU-residency claim is made.
+The matching app asks once before first AI or voice use and remembers the
+agreement for the account and policy. Acceptance does not send a message or
+start recording. There are no in-app permission-off controls; the policies give
+the support contact for privacy requests. Ending a call stops new audio
+transmission, and server-side revocation still blocks processing. Saved voice history contains
+delegated exchanges, not every live caption or spoken utterance.
 Local health profile fields and private history cannot be restored on a fresh
 installation or another device. Privacy requests use `contact@dame.dev`. Keep provider
 arrangements and production behavior aligned with these disclosures. The footer
