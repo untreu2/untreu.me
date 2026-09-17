@@ -1,4 +1,4 @@
-_Last updated 16 September 2026_
+_Last updated 17 September 2026_
 
 Altair is a general wellness app operated by **Emir Yorulmaz (untreu)**. This
 policy explains how the iOS app and its supporting services handle personal
@@ -176,6 +176,8 @@ Support correspondence is retained as needed to handle the request and related
 legal obligations.
 
 **Account deletion.** Use **Settings → Account** to delete your Altair account.
+An **Account** menu also provides deletion while signed in during setup or
+when the app cannot finish loading.
 This removes active Altair account data and the current iPhone's account files
 and starts deletion of the Firebase identity. Identity deletion is retried if
 it fails. Minimal hashed deletion markers and deletion audit records remain to
@@ -211,12 +213,17 @@ backups and prior provider submissions have separate retention processes.
 - Review the AI/health-context notice before first use and the additional voice
   notice before voice use. Choose **Not now** to decline. An agreement is
   remembered; accepting it does not itself send a message or start recording.
-- The current app has no editable cloud-consent switches. To stop sending new
-  information, stop using AI and voice. To request withdrawal of recorded cloud
-  permission, email [contact@dame.dev](mailto:contact@dame.dev). This is a support
-  request, not an instant in-app switch. We may verify your account before
-  updating the server decision. Existing transmitted information cannot be
-  recalled, and withdrawal does not automatically delete saved records.
+- Withdraw permission in **Settings → Data & privacy → Privacy & health**.
+  Choose **Turn off voice** to stop voice processing, or **Turn off cloud AI**
+  to stop cloud AI, selected health-context sharing and voice. Altair stops
+  active requests on this device and blocks new submissions immediately. The
+  change is sent to your account; if it cannot be saved, the page shows that
+  the account update is pending and offers **Retry account update**. Other
+  devices and server processing receive the withdrawal when that update succeeds.
+  Permission stays off on this device while the update is pending. To enable a
+  feature again after synchronization, review its notice and agree again.
+  Existing transmitted information cannot be recalled, and withdrawal does not
+  automatically delete saved records. Local health features remain available.
 - Review or revoke Apple Health access in the Health app's access settings.
   Revocation stops future reads; it does not erase saved reports or discussions.
 - Review, disable or delete notes in **Settings → Data & privacy → Assistant

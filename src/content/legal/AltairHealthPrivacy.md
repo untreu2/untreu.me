@@ -1,4 +1,4 @@
-_Last updated 16 September 2026_
+_Last updated 17 September 2026_
 
 This separate Consumer Health Data Privacy Policy explains how **Emir Yorulmaz
 (untreu)**, the operator of Altair, handles consumer health data. For privacy,
@@ -135,12 +135,17 @@ Voice asks for an additional agreement to OpenRouter and Microsoft Azure speech
 processing. You can choose **Not now**. Local reports and manual journal edits remain available without
 these agreements. Reading a policy or accepting terms does not grant permission.
 
-The app remembers the agreements and has no editable cloud-consent switches.
-To stop sending new information, stop using AI and voice. To request withdrawal
-of recorded cloud permission, email [contact@dame.dev](mailto:contact@dame.dev).
-This is a support request rather than an instant in-app switch; we may verify
-your account before changing the server decision. Information already sent
-cannot be recalled. Withdrawal does not automatically delete saved records.
+The app remembers the agreements. Withdraw them in **Settings → Data & privacy
+→ Privacy & health** using **Turn off voice** or **Turn off cloud AI**. Turning
+off cloud AI also withdraws selected health-context sharing and voice permission.
+Active requests on this device stop and new submissions are blocked immediately;
+local health features and manual edits remain available. Altair saves the change
+to your account. If that update fails, permission stays off on this device and
+the page shows the pending update with **Retry account update**. The server and
+other devices receive the withdrawal when the account update succeeds. After
+synchronization, enabling the feature again requires agreement to its notice.
+Information already sent cannot be recalled. Withdrawal does not automatically
+delete saved records.
 Consent decisions, disclosure version, revision and times are recorded against
 your account. Material changes that require consent prompt a fresh decision.
 
