@@ -35,11 +35,17 @@ src/
 
 Altair uses `/altair/privacy`, `/altair/health-privacy`, and
 `/altair/health-notice`. The privacy pages describe the device-local health profile,
-account-restored display name and profile photo, optional transient AI/voice
+account-restored display name and profile photo, optional transient AI
 processing, explicit server notes, and retention/deletion limits. Speech uses
-OpenRouter and Microsoft Azure's MAI-Transcribe-2 and MAI-Voice-2 with required
-zero-data-retention endpoint eligibility; speech has no EU processing guarantee.
-The matching app/server consent version is `2026-09-16-mai-speech-zdr-v1`.
+Apple’s on-device speech recognition and ElevenLabs speech generation. Microphone
+audio stays on the iPhone. Recognized text and selected context pass through
+Altair’s server and OpenRouter to Google Vertex; only completed reply/action-
+confirmation text goes through Altair’s server to ElevenLabs. Text can contain
+health information. The matching app/server consent version is
+`2026-09-18-local-stt-elevenlabs-tts-v1`; old grants need renewal. Verify licensing,
+training opt-out and applicable provider privacy terms before enabling TTS.
+The policies do not promise zero retention for speech. No publication or live
+deployment is part of these source changes.
 Local health profile fields and private history cannot be restored on a fresh
 installation or another device. Privacy requests use `contact@dame.dev`. Keep provider
 arrangements and production behavior aligned with these disclosures. The footer
