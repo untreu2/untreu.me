@@ -10,10 +10,11 @@ This policy describes Altair's device-local health profile release. Your display
 name and profile photo are saved with your account; your health profile and
 private history are stored on this iPhone. A first-use notice covers AI processing
 and selected health context together; voice has an additional notice. This
-release uses Apple’s on-device transcription and ElevenLabs speech generation and
-asks existing users for a new agreement. Microphone audio stays on the iPhone.
-Recognized text and selected context use cloud AI; completed reply/confirmation
-text passes through Altair’s server to ElevenLabs for speech. Earlier server records follow the
+release uses ElevenLabs for live transcription and speech generation and asks
+existing users for a new agreement. Microphone audio streams through Altair’s
+server to ElevenLabs. Recognized text and selected context use cloud AI;
+completed reply/confirmation text also passes through Altair’s server to
+ElevenLabs for speech. Earlier server records follow the
 retention and deletion description below.
 
 ## Categories, sources and purposes
@@ -62,8 +63,8 @@ account for restoration on another device. They may contain sensitive details
 you choose to include. Account, authentication, subscription, consent and
 service-operation records also remain on the server, as described in the
 [Privacy Policy](/altair/privacy). Local health-profile storage does not prevent
-the temporary AI and speech processing, including recognized voice text and
-reply text, described below or the optional server notes you deliberately save.
+the temporary AI and speech processing, including microphone audio, recognized
+voice text and reply text, described below or the optional server notes you deliberately save.
 
 After you agree to the applicable first-use notice, requests can share:
 
@@ -75,11 +76,11 @@ After you agree to the applicable first-use notice, requests can share:
   Selection follows your question. Raw HealthKit sample timelines and your
   complete health history are not sent. Summaries remain health information;
   reducing their detail does not make them anonymous.
-- **Voice transcription on your iPhone:** after voice agreement and iOS
-  microphone permission, Apple transcribes audio on this device. Microphone audio
-  is not sent to Altair’s server, ElevenLabs or Apple for transcription. Apple
-  may download language assets before use. Recognized text participates in the
-  OpenRouter/Google Vertex AI flow, which selects context after transcription.
+- **Voice transcription with ElevenLabs:** after voice agreement and iOS
+  microphone permission, microphone audio streams through Altair’s server to
+  ElevenLabs and its service providers for live transcription. Audio may contain
+  health information. Recognized text participates in the OpenRouter/Google
+  Vertex AI flow, which selects context after transcription.
 - **Speech with ElevenLabs:** completed reply and action-confirmation text goes
   through Altair’s server to ElevenLabs and its service providers to generate
   speech. That text can contain health details from the conversation, selected
@@ -94,8 +95,9 @@ There is no independent health-context switch in the current app. Messages and
 photos you submit, response instructions and enabled server notes can also
 contain health information. You can disable server notes separately. Altair's
 server processes new AI and speech requests temporarily and does not persist
-these exchanges, generated speech audio, attached photos, selected profile values,
-reports or the meal journal in its application database. This is separate from
+these exchanges, microphone recordings, generated speech audio, attached photos,
+selected profile values, reports or the meal journal in its application database.
+Speech audio is handled in memory, without recording it to server storage. This is separate from
 your account profile photo and notes you deliberately save. Provider retention
 is separate. The device saves your resulting conversation and journal.
 
@@ -105,10 +107,9 @@ Altair's hosting and database providers carry permitted requests, store your
 display name, profile photo, optional notes and account administration records,
 and may retain earlier health content until deletion. **OpenRouter and Google
 Vertex** provide AI processing, including replies to recognized voice text.
-**Apple’s speech frameworks** transcribe microphone audio on the device.
-**ElevenLabs and its service providers** generate speech from completed reply/
-confirmation text, which can include health data. They do not receive microphone
-audio from Altair. The purposes and categories shared are
+**ElevenLabs and its service providers** transcribe microphone audio and generate
+speech from completed reply/confirmation text. Audio and text can include health
+data. The purposes and categories shared are
 described above. If you email us health information in a privacy or support
 request, it is also processed to handle that correspondence.
 
@@ -116,8 +117,7 @@ Altair does not sell consumer health data or use it for advertising. There is
 no affiliate-sharing integration in the current service. Subscription requests
 to Apple and RevenueCat do not include health measurements or conversations.
 Model requests through OpenRouter use the configured Google Vertex EU route,
-zero-retention and denied-collection settings without routing fallback. The
-server requires its model-provider privacy confirmation before model requests.
+zero-retention and denied-collection settings without routing fallback.
 Those settings do not establish every provider account setting, contract or
 historical deletion.
 
@@ -128,8 +128,7 @@ We do not promise zero retention or no training for speech. Its
 [Zero Retention Mode](https://elevenlabs.io/docs/eleven-api/resources/zero-retention-mode)
 requires an eligible Enterprise arrangement and supported, configured requests;
 the OpenRouter AI route’s settings do not cover ElevenLabs. Voice needs the
-speech service connection. Transcription remains on-device with no cloud
-transcription fallback. Changing
+speech service connection for transcription and generated speech. Changing
 providers does not delete prior speech submissions or historical records.
 
 Processing can occur outside your country. Provider terms, backups and
@@ -143,9 +142,9 @@ Apple Health access is an optional permission controlled by Apple. Before
 first AI use, Altair asks you to agree to messages, submitted photos, relevant
 history and selected health, profile and meal context being processed by cloud
 AI. The agreement also covers local instructions and enabled server notes.
-Voice asks for an additional agreement to on-device transcription, sharing
-completed reply/confirmation text with ElevenLabs, and using recognized text
-and selected context for cloud AI. Microphone permission is separately controlled
+Voice asks for an additional agreement to streaming microphone audio to
+ElevenLabs for transcription, sharing completed reply/confirmation text with
+ElevenLabs for speech, and using recognized text and selected context for cloud AI. Microphone permission is separately controlled
 in iOS. You can choose **Not now**. Local reports and manual journal edits remain available without these
 agreements. Reading a policy or accepting terms does not grant permission.
 

@@ -37,15 +37,17 @@ Altair uses `/altair/privacy`, `/altair/health-privacy`, and
 `/altair/health-notice`. The privacy pages describe the device-local health profile,
 account-restored display name and profile photo, optional transient AI
 processing, explicit server notes, and retention/deletion limits. Speech uses
-Apple’s on-device speech recognition and ElevenLabs speech generation. Microphone
-audio stays on the iPhone. Recognized text and selected context pass through
-Altair’s server and OpenRouter to Google Vertex; only completed reply/action-
-confirmation text goes through Altair’s server to ElevenLabs. Text can contain
-health information. The matching app/server consent version is
-`2026-09-18-local-stt-elevenlabs-tts-v1`; old grants need renewal. Verify licensing,
-training opt-out and applicable provider privacy terms before enabling TTS.
-The policies do not promise zero retention for speech. No publication or live
-deployment is part of these source changes.
+ElevenLabs live transcription and speech generation. Microphone audio streams
+through Altair’s server to ElevenLabs; recognized text and selected context pass
+through Altair’s server and OpenRouter to Google Vertex. Completed reply/action-
+confirmation text also goes to ElevenLabs for speech. Audio and text can contain
+health information. Altair handles speech audio in memory without recording it.
+The matching app/server consent version is `2026-09-18-elevenlabs-streaming-v1`;
+old grants need renewal. Provider account privacy settings, licensing and
+applicable terms are managed separately from runtime credentials.
+The policies do not promise zero retention for speech. Pushing the website’s
+main branch runs the existing GitHub Pages publication workflow; backend
+deployment and physical-device voice checks remain separate.
 Local health profile fields and private history cannot be restored on a fresh
 installation or another device. Privacy requests use `contact@dame.dev`. Keep provider
 arrangements and production behavior aligned with these disclosures. The footer

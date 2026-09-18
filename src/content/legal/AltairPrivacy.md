@@ -9,11 +9,11 @@ This policy describes Altair's device-local health profile release. Your display
 name and profile photo can be restored from your account; your health profile
 and private history cannot. A first-use notice asks for agreement to AI
 processing and selected health context together; voice has an additional notice.
-This release uses Apple’s on-device transcription and ElevenLabs speech generation
-and asks for a new agreement before use, including if you agreed to an earlier
-version. Microphone audio stays on your iPhone. Recognized text and selected
-context use cloud AI, and completed reply or action-confirmation text passes
-through Altair’s server to ElevenLabs for speech. Local storage does not prevent the
+This release uses ElevenLabs for live transcription and speech generation and
+asks for a new agreement before use, including if you agreed to an earlier
+version. Microphone audio streams through Altair’s server to ElevenLabs.
+Recognized text and selected context use cloud AI, and completed reply or
+action-confirmation text passes through Altair’s server to ElevenLabs for speech. Local storage does not prevent the
 selected, temporary AI processing described below. Records from earlier versions
 follow **Records from earlier versions**.
 
@@ -80,7 +80,8 @@ response instructions or other Altair-only history.
 
 Altair's hosting and database providers process this information to operate
 the service. They also carry the temporary AI and speech requests, including
-recognized voice text and text sent for speech generation, described below and may retain older records as described under
+microphone audio, recognized voice text and text sent for speech generation,
+described below and may retain older records as described under
 **Records from earlier versions**.
 
 ## Optional AI processing
@@ -114,10 +115,10 @@ Conversation history and resulting meal changes are saved on your device.
 
 Voice requires its own agreement in addition to the AI agreement and separate
 iOS microphone permission. You are speaking with an AI assistant. Recording
-begins when you start a call. Apple’s **SpeechTranscriber** recognizes microphone
-audio on this iPhone; that audio is not sent to Altair’s server, ElevenLabs or
-Apple for transcription. Apple may download language assets before first use.
-The app does not fall back to cloud transcription.
+begins when you start a call. Microphone audio streams through **Altair’s server
+to ElevenLabs and its service providers** for live transcription. Partial text
+can appear while you speak; the completed transcript is used for your request.
+Your audio can contain health information and other details you choose to say.
 
 Recognized text selects context and obtains a reply through **Altair’s server,
 OpenRouter and Google Vertex**, as described above. After the response is
@@ -126,17 +127,16 @@ text** passes through Altair’s server to **ElevenLabs and its service provider
 to generate the speech you hear. This text can contain health information from
 the conversation, selected health context, instructions or enabled notes.
 
-Altair handles speech requests temporarily and does not save generated audio in
-its application database. Conversation transcripts stay on your iPhone.
+Altair handles microphone and generated audio in memory without saving speech
+recordings on its server. Conversation transcripts stay on your iPhone.
 ElevenLabs’ retention is separate, as explained below. You can use text without
-voice permission. Transcription depends on device/language support and installed
-assets; AI replies and speech generation need a network connection.
+voice permission. Transcription, AI replies and speech generation need a network
+connection.
 
 ## Other providers and processing safeguards
 
-- **Apple** provides Apple Health permissions, App Store purchases, push
-  delivery and on-device speech recognition with downloadable language assets.
-  Apple controls the original records in Apple Health.
+- **Apple** provides Apple Health and microphone permissions, App Store
+  purchases and push delivery. Apple controls the original records in Apple Health.
 - **Firebase (Google)** provides authentication, phone verification and account
   management.
 - **RevenueCat** manages subscription entitlements using your account identifier
@@ -145,16 +145,15 @@ assets; AI replies and speech generation need a network connection.
 - **OpenRouter and Google Vertex** process the selected AI information described
   above, including recognized voice text and selected context, to provide the
   responses you request.
-- **ElevenLabs and its service providers** process completed reply/confirmation
-  text to generate speech, including health information contained in that text.
-  They do not receive your microphone audio from Altair.
+- **ElevenLabs and its service providers** process microphone audio for live
+  transcription and completed reply/confirmation text to generate speech.
+  Audio, transcripts and reply text may contain health information.
 
 Altair does not sell personal or consumer health data or use it for advertising.
 The model requests sent through OpenRouter use the configured Google Vertex EU
 route with zero-retention and denied data-collection request settings, without
-fallback to another route. Model requests are unavailable while the server's
-model-provider privacy confirmation is off. These request settings do not by
-themselves verify every provider account setting, contract or historical record.
+fallback to another route. These request settings do not by themselves verify
+every provider account setting, contract or historical record.
 
 ElevenLabs speech is separate from the OpenRouter AI route. ElevenLabs retains
 speech request and response data by default. Its retention, possible use for
@@ -172,7 +171,8 @@ applicable terms. Contact [contact@dame.dev](mailto:contact@dame.dev) for
 information about the providers and arrangements relevant to your request.
 
 Connections to Altair's production service use encrypted transport. Cloud AI
-and speech processors need to read submitted text and selected context to provide their services; these requests are not end-to-end encrypted
+and speech processors need to process submitted audio, text and selected context
+to provide their services; these requests are not end-to-end encrypted
 between only your devices.
 
 ## Retention and deletion
