@@ -36,16 +36,32 @@ src/
 Altair uses `/altair/privacy`, `/altair/health-privacy`, and
 `/altair/health-notice`. The privacy pages describe the device-local health profile,
 account-restored display name and profile photo, optional transient AI
-processing, explicit server notes, and retention/deletion limits. Speech uses
+processing, explicit account memory, and retention/deletion limits. Memory notes
+are saved only on a confirmed user request and become available to cloud AI
+across signed-in devices. Settings offers an account-wide memory on/off switch
+and Clear memory. Off prevents note retrieval for AI and new saves but retains
+notes; on resumes use under the saved AI consent. New accounts default on, with
+no memory use or saves before the first AI agreement; existing opt-outs remain.
+Clear works in either state without changing the switch. It removes server
+notes and then old local notes on
+the current iPhone, preserving ingredients, instructions and conversations.
+Legacy local notes remain unshared unless the user chooses Save to account in
+a separate review while memory is on; renewing AI consent or turning memory on
+alone does not import them. Switching memory does not repeat privacy consent.
+Conversation history may still mention notes while memory is off. Speech uses
 ElevenLabs live transcription and speech generation. Microphone audio streams
 through Altair’s server to ElevenLabs; recognized text and selected context pass
 through Altair’s server and OpenRouter to Google Vertex. Completed reply/action-
 confirmation text also goes to ElevenLabs for speech. Audio and text can contain
 health information. Altair handles speech audio in memory without recording it.
-The matching app/server consent version is `2026-09-18-elevenlabs-streaming-v1`;
-old grants need renewal. Provider account privacy settings, licensing and
+The matching app/server consent version is `2026-09-19-account-memory-v1`;
+old grants need renewal. The AI/account-memory notice is shown before the first
+dialogue; its decision is saved with the account and reused without asking for
+privacy consent per conversation or note. Withdrawal or a material policy
+change requires a renewed choice. Note-action confirmations remain separate.
+Provider account privacy settings, licensing and
 applicable terms are managed separately from runtime credentials.
-The policies do not promise zero retention for speech. Pushing the website’s
+The policies do not promise zero retention or no training for provider data. Pushing the website’s
 main branch runs the existing GitHub Pages publication workflow; backend
 deployment and physical-device voice checks remain separate.
 Local health profile fields and private history cannot be restored on a fresh

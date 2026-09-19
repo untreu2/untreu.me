@@ -1,21 +1,22 @@
-_Last updated 18 September 2026_
+_Last updated 19 September 2026_
 
 Altair is a general wellness app operated by **Emir Yorulmaz (untreu)**. This
 policy explains how the iOS app and its supporting services handle personal
 information. For privacy, access or deletion requests, contact
 [contact@dame.dev](mailto:contact@dame.dev).
 
-This policy describes Altair's device-local health profile release. Your display
-name and profile photo can be restored from your account; your health profile
-and private history cannot. A first-use notice asks for agreement to AI
-processing and selected health context together; voice has an additional notice.
-This release uses ElevenLabs for live transcription and speech generation and
-asks for a new agreement before use, including if you agreed to an earlier
-version. Microphone audio streams through Altair’s server to ElevenLabs.
-Recognized text and selected context use cloud AI, and completed reply or
-action-confirmation text passes through Altair’s server to ElevenLabs for speech. Local storage does not prevent the
-selected, temporary AI processing described below. Records from earlier versions
-follow **Records from earlier versions**.
+This release keeps your health profile and conversation history on your iPhone
+and stores assistant memory with your account. Your display name, profile photo
+and saved account memory can be used when you sign in on another device; your
+local health profile and private history cannot be restored. Before cloud AI
+use, a renewed notice asks for agreement to AI processing, selected health
+context and account memory, including if you agreed to an earlier version.
+Only a detail you explicitly ask Altair to remember and confirm is saved as a
+new account note. Voice requires an additional agreement. Microphone audio
+streams through Altair’s server to ElevenLabs; recognized text and selected
+context use cloud AI. Completed reply or action-confirmation text passes to
+ElevenLabs for speech. Records from earlier versions follow **Records from
+earlier versions** below.
 
 Altair's scores, nutrition estimates and AI replies are informational. They do
 not provide medical advice, diagnosis or treatment. Read the separate
@@ -38,6 +39,10 @@ of Use does not give permission to use AI or voice features.
 - **Reports and conversations.** Calculated reports and scores, chat history,
   voice transcripts, and your response instructions are stored locally. Some
   saved content may contain health information or other sensitive details.
+- **Earlier device-only assistant notes.** These remain on the iPhone and are
+  excluded from AI requests unless you explicitly choose to save them to your
+  account in the separate review described below. Agreeing to cloud AI does not
+  upload these notes.
 
 These records support your wellness history, reports, journal and conversations.
 Local health features and manual edits work without cloud-AI permission. The app
@@ -70,11 +75,14 @@ response instructions or other Altair-only history.
   Altair does not receive your payment card number.
 - **Privacy choices:** your consent decisions, disclosure version, revision and
   decision times, including changes. These let the service enforce your choices.
-- **Optional assistant notes:** notes you deliberately save in **Settings →
-  Data & privacy → Assistant memory**. These are an explicit exception to local
-  storage and may contain personal or health information. New notes are not
-  created automatically by the AI. Notes from earlier versions may remain
-  available for you to review and delete.
+- **Assistant memory:** details you explicitly ask Altair to remember and
+  confirm are saved as notes with your account for future conversations,
+  including on another signed-in device. Notes may contain personal or health
+  information you choose to provide. Altair does not automatically extract
+  memory from Apple Health, your health profile, journal or ordinary
+  conversations. Earlier device-only notes are saved to the account only after
+  the separate import review. Existing server notes remain account notes until
+  you clear them or delete the account.
 - **Requests you send us:** your contact details and correspondence when you
   email support or exercise a privacy right.
 
@@ -86,12 +94,14 @@ described below and may retain older records as described under
 
 ## Optional AI processing
 
-Before using cloud AI, Altair asks for your permission. When you submit a
-request, your message, deliberately attached photos, relevant conversation
-text, local response instructions and enabled server notes pass through
-Altair's server to **OpenRouter and Google Vertex**, which provide the AI
-response. Meal analysis also uses this flow. A message or photo can contain
-health information even when it did not come from Apple Health.
+Before your first AI dialogue, Altair presents the AI and account-memory notice
+and asks for your permission. When you submit a request, your message,
+deliberately attached photos, relevant conversation text and local response
+instructions pass through Altair's server to
+**OpenRouter and Google Vertex**, which provide the AI response. Saved account
+notes are included only while memory is on. Meal analysis also uses this flow.
+A message or photo can contain health information even when it did not come
+from Apple Health.
 
 The AI notice also covers selected health context. Altair uses your question to
 select relevant summaries from your on-device health reports, profile or meal
@@ -101,9 +111,24 @@ are not sent. Summaries remain sensitive health information and are not
 necessarily anonymous. The current app does not offer an independent switch to
 use AI while excluding health context.
 
-Your agreement is remembered for this account on this device. Agreeing does not
-send a message; processing starts when you request an AI reply or meal analysis.
-You can choose **Not now** and continue using local wellness features.
+Your decision is saved with your account and remembered for later use, including
+on another signed-in device. The privacy notice is not repeated for each
+conversation or saved note while the current agreement remains valid. A new
+choice is required after withdrawal or a material policy change requiring
+renewed consent. Confirming a requested note change is an action review, not a
+new privacy agreement. Agreeing does not send a message; processing starts when
+you request an AI reply or meal analysis.
+You can choose **Not now** and continue using local wellness features. Account
+memory has an account-wide on/off switch in **Settings → Data & privacy →
+Assistant memory**, alongside **Clear memory**. Turning memory off stops
+retrieving saved notes for AI requests and prevents new note saves, while
+retaining existing notes. Turning it on resumes their use under your current
+AI agreement; changing this switch does not ask for privacy consent again.
+Memory starts on for new accounts, but no notes are used or saved before the
+first AI agreement. Existing saved off choices are preserved. A separate
+confirmed request to remember a detail is required to create a note; agreeing
+to the notice or turning memory on does not itself create notes or import
+earlier device-only notes.
 
 The local-data service processes these requests temporarily and does not save
 their messages, attached photos, selected profile values, summaries or replies
@@ -113,8 +138,8 @@ Conversation history and resulting meal changes are saved on your device.
 
 ## Optional voice processing
 
-Voice requires its own agreement in addition to the AI agreement and separate
-iOS microphone permission. You are speaking with an AI assistant. Recording
+Before first voice use, voice requires its own agreement if not already granted,
+in addition to the AI agreement and separate iOS microphone permission. You are speaking with an AI assistant. Recording
 begins when you start a call. Microphone audio streams through **Altair’s server
 to ElevenLabs and its service providers** for live transcription. Partial text
 can appear while you speak; the completed transcript is used for your request.
@@ -125,7 +150,7 @@ OpenRouter and Google Vertex**, as described above. After the response is
 completed, validated and saved on your device, **reply and action-confirmation
 text** passes through Altair’s server to **ElevenLabs and its service providers**
 to generate the speech you hear. This text can contain health information from
-the conversation, selected health context, instructions or enabled notes.
+the conversation, selected health context, instructions or saved account notes.
 
 Altair handles microphone and generated audio in memory without saving speech
 recordings on its server. Conversation transcripts stay on your iPhone.
@@ -153,7 +178,8 @@ Altair does not sell personal or consumer health data or use it for advertising.
 The model requests sent through OpenRouter use the configured Google Vertex EU
 route with zero-retention and denied data-collection request settings, without
 fallback to another route. These request settings do not by themselves verify
-every provider account setting, contract or historical record.
+every provider account setting, contract or historical record. They are not a
+blanket guarantee of zero retention or no model training.
 
 ElevenLabs speech is separate from the OpenRouter AI route. ElevenLabs retains
 speech request and response data by default. Its retention, possible use for
@@ -186,14 +212,29 @@ Deleting a meal or conversation removes that item from the local journal or
 history. Previously saved reports and
 replies may still contain information derived from it.
 
-**Name, profile photo, notes and account records.** Your display name and profile
-photo remain with the account until changed, removed where supported, or deleted
-with the account. Notes remain until you delete them or delete your account.
-Disabling memory stops its use for AI but does not delete
-the notes. Account, subscription, usage, device and consent records are retained
-to operate your account until deletion, subject to the exceptions below.
-Support correspondence is retained as needed to handle the request and related
-legal obligations.
+**Assistant memory.** Saved account notes have no automatic expiry. They remain
+until you ask Altair to forget them, use **Settings → Data & privacy → Assistant
+memory → Clear memory**, or delete your account. Clear memory requires
+confirmation and removes all saved notes from the active account memory store,
+including while memory is off. Clearing does not change the memory switch.
+After the server confirms deletion, the current iPhone also removes its earlier
+device-only notes and memory copies. A failed clear is shown as a failure.
+Clearing memory leaves ingredients, response instructions and conversation
+history intact. A previous conversation or reply can still mention a forgotten
+detail; delete that conversation separately if you want to remove it from local
+history. Turning memory off stops retrieval into AI requests and new saves
+without deleting notes. It does not remove details already present in a
+conversation, which can still be included as conversation context. Turning off
+cloud AI also stops memory use and new saves. Clearing active memory does not
+recall information already sent to providers or immediately erase backups or
+private files on another offline device.
+
+**Name, profile photo and account records.** Your display name and profile photo
+remain with the account until changed, removed where supported, or deleted with
+the account. Account, subscription, usage, device and consent records are
+retained to operate your account until deletion, subject to the exceptions
+below. Support correspondence is retained as needed to handle the request and
+related legal obligations.
 
 **Account deletion.** Use **Settings → Account** to delete your Altair account.
 An **Account** menu also provides deletion while signed in during setup or
@@ -212,6 +253,14 @@ promise of immediate erasure from every backup or third-party system. Contact
 us about those records or to make a deletion request.
 
 ## Records from earlier versions
+
+Earlier device-only assistant notes are not uploaded or included in AI requests
+automatically. If these notes are present, the app offers a separate review of
+the notes with **Save to account** and **Keep on iPhone** choices. Saving them
+requires your explicit choice, memory to be on and current cloud-AI agreement.
+Keeping them on the iPhone leaves them outside the assistant's shared context. The general AI
+agreement alone does not authorize this import. Clear memory also removes these
+earlier notes from the current iPhone after the server confirms its deletion.
 
 Earlier Altair versions stored account-linked health records, health profiles,
 meals, photos, reports and conversations on the server. The server update for
@@ -247,9 +296,13 @@ backups and prior provider submissions have separate retention processes.
 - You can also revoke microphone access in iOS Settings to stop recording.
 - Review or revoke Apple Health access in the Health app's access settings.
   Revocation stops future reads; it does not erase saved reports or discussions.
-- Review, disable or delete notes in **Settings → Data & privacy → Assistant
-  memory**. Edit or delete meals in **Diet**, and delete conversations from
-  conversation history.
+- Ask Altair to remember or forget a detail through its confirmation flow. Use
+  **Settings → Data & privacy → Assistant memory → Clear memory** to clear all
+  saved account notes and earlier notes on this iPhone, whether memory is on
+  or off. Use the account-wide memory switch to stop memory use and new saves
+  without deleting stored notes. Turning off cloud AI also stops memory use.
+  Edit or delete meals in
+  **Diet**, and delete conversations from conversation history.
 - Manage or cancel subscriptions through the App Store.
 
 Depending on applicable law, you may request access, correction, a portable
