@@ -21,6 +21,7 @@ function spaFallback(): Plugin {
           'altair/privacy',
           'altair/health-privacy',
           'altair/health-notice',
+          'altair/support',
         ]) {
           const directory = resolve(out, route)
           mkdirSync(directory, { recursive: true })

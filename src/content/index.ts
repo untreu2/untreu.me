@@ -14,6 +14,7 @@ import floydPrivacy from './legal/FloydPrivacy.md?raw'
 import altairPrivacy from './legal/AltairPrivacy.md?raw'
 import altairHealthPrivacy from './legal/AltairHealthPrivacy.md?raw'
 import altairHealthNotice from './legal/AltairHealthNotice.md?raw'
+import altairSupport from './legal/AltairSupport.md?raw'
 
 // Legal / policy pages, rendered with the same Markdown article layout.
 export const legal: Entry[] = [
@@ -26,6 +27,12 @@ export const legal: Entry[] = [
 ]
 
 export const altairLegal: Entry[] = [
+  {
+    slug: 'support',
+    title: 'Altair Support',
+    description: 'Help with sign-in, Apple Health, subscriptions, and privacy in Altair.',
+    body: altairSupport,
+  },
   {
     slug: 'privacy',
     title: 'Altair Privacy Policy',
