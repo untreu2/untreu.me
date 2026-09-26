@@ -1,4 +1,4 @@
-_Last updated 19 September 2026_
+_Last updated 26 September 2026_
 
 This separate Consumer Health Data Privacy Policy explains how **Emir Yorulmaz
 (untreu)**, the operator of Altair, handles consumer health data. For privacy,
@@ -9,10 +9,12 @@ Read it with the [Privacy Policy](/altair/privacy) and
 This release keeps your health profile and conversation history on the iPhone
 and stores assistant memory with your account. The renewed cloud-AI notice
 covers AI processing, selected health context, and the storage and use of
-account memory. Existing users must agree again before use. New memory notes
-are created only when you explicitly ask Altair to remember a detail and
-confirm it; health data is not automatically extracted into memory. Voice has
-an additional notice. Microphone audio streams through Altair’s server to
+account memory. Existing users must agree again before use. The current notice
+also names **TypeSafe**, whose Jev model reads answers to confirmations. Older
+app versions cannot show it and must be updated before AI works again. New
+memory notes are created only when you explicitly ask Altair to remember a
+detail and confirm it; health data is not automatically extracted into memory.
+Voice has an additional notice. Microphone audio streams through Altair’s server to
 ElevenLabs. Recognized text and selected context use cloud AI; completed
 reply/confirmation text also passes to ElevenLabs for speech. Earlier local
 notes and server records follow the retention and deletion description below.
@@ -72,10 +74,17 @@ health summaries, your profile, journal or ordinary conversations into memory.
 
 After you agree to the applicable first-use notice, requests can share:
 
-- **AI with OpenRouter and Google Vertex:** your submitted message or photo,
+- **AI with OpenRouter and Google:** your submitted message or photo,
   relevant conversation text and local instructions pass through Altair's server
   to these providers for replies and meal analysis. Saved account notes are
   included only while memory is on.
+- **Confirmations with TypeSafe:** when you answer a request to confirm a
+  proposed change, such as saving a meal or workout, your typed or spoken
+  answer, the confirmation question and the number of proposed items pass
+  through Altair's server and OpenRouter to TypeSafe's Jev model, which tells
+  whether you confirmed. The question can contain health data, such as a meal
+  and its calories. Jev receives nothing else: no account identifier, profile
+  or conversation history.
 - **Selected health context:** the AI agreement also permits selected summaries
   from local reports, profile or meal records to accompany the AI request.
   Selection follows your question. Raw HealthKit sample timelines and your
@@ -85,7 +94,7 @@ After you agree to the applicable first-use notice, requests can share:
   microphone permission, microphone audio streams through Altair’s server to
   ElevenLabs and its service providers for live transcription. Audio may contain
   health information. Recognized text participates in the OpenRouter/Google
-  Vertex AI flow, which selects context after transcription.
+  AI flow, which selects context after transcription.
 - **Speech with ElevenLabs:** completed reply and action-confirmation text goes
   through Altair’s server to ElevenLabs and its service providers to generate
   speech. That text can contain health details from the conversation, selected
@@ -94,7 +103,7 @@ After you agree to the applicable first-use notice, requests can share:
 - **Assistant memory:** details you explicitly ask to remember and confirm
   are stored as notes against your account on Altair's server. Under your
   current cloud-AI agreement and while memory is on, saved notes may be
-  included in future text and voice requests to OpenRouter and Google Vertex.
+  included in future text and voice requests to OpenRouter and Google.
   If a spoken reply mentions a saved detail, it also passes to ElevenLabs for
   speech. New notes are not
   created automatically. Earlier device-only notes require a separate explicit
@@ -121,8 +130,10 @@ is separate. The device saves your resulting conversation and journal.
 
 Altair's hosting and database providers carry permitted requests, store your
 display name, profile photo, saved account notes and account administration records,
-and may retain earlier health content until deletion. **OpenRouter and Google
-Vertex** provide AI processing, including replies to recognized voice text.
+and may retain earlier health content until deletion. **OpenRouter and Google**
+provide AI processing, including replies to recognized voice text.
+**TypeSafe (TypeSafe AI, Inc.)** reads typed or spoken answers to confirmations,
+with the confirmation question and item count, through OpenRouter.
 **ElevenLabs and its service providers** transcribe microphone audio and generate
 speech from completed reply/confirmation text. Audio and text can include health
 data. The purposes and categories shared are
@@ -132,8 +143,10 @@ request, it is also processed to handle that correspondence.
 Altair does not sell consumer health data or use it for advertising. There is
 no affiliate-sharing integration in the current service. Subscription requests
 to Apple and RevenueCat do not include health measurements or conversations.
-Model requests through OpenRouter use the configured Google Vertex EU route,
-zero-retention and denied-collection settings without routing fallback.
+AI reply and meal-analysis requests through OpenRouter go only to Google, with
+zero-retention and denied-collection settings and no routing fallback.
+Requests to TypeSafe's Jev also use zero-retention and
+denied-collection settings; see the [TypeSafe Privacy Policy](https://typesafe.ai/legal/privacy-policy).
 Those settings do not establish every provider account setting, contract or
 historical deletion. They are not a blanket guarantee of zero retention or no
 model training.
@@ -158,7 +171,8 @@ to your data, including provider retention and processing locations.
 Apple Health access is an optional permission controlled by Apple. Before
 your first AI dialogue, Altair asks you to agree to messages, submitted photos, relevant
 history and selected health, profile and meal context being processed by cloud
-AI. The renewed agreement also covers local instructions and the storage and
+AI, including TypeSafe's reading of your answers to confirmations. The renewed
+agreement also covers local instructions and the storage and
 future use of notes you explicitly ask to save with your account. Agreeing does
 not create a note or import earlier device-only notes; those require a separate
 explicit choice.

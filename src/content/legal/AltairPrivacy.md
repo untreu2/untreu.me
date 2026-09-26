@@ -1,4 +1,4 @@
-_Last updated 19 September 2026_
+_Last updated 26 September 2026_
 
 Altair is a general wellness app operated by **Emir Yorulmaz (untreu)**. This
 policy explains how the iOS app and its supporting services handle personal
@@ -11,6 +11,9 @@ and saved account memory can be used when you sign in on another device; your
 local health profile and private history cannot be restored. Before cloud AI
 use, a renewed notice asks for agreement to AI processing, selected health
 context and account memory, including if you agreed to an earlier version.
+The current notice also names **TypeSafe**, whose Jev model reads your answers
+to confirmations. Older app versions cannot show it, so they must be updated
+before AI works again.
 Only a detail you explicitly ask Altair to remember and confirm is saved as a
 new account note. Voice requires an additional agreement. Microphone audio
 streams through Altair’s server to ElevenLabs; recognized text and selected
@@ -98,10 +101,18 @@ Before your first AI dialogue, Altair presents the AI and account-memory notice
 and asks for your permission. When you submit a request, your message,
 deliberately attached photos, relevant conversation text and local response
 instructions pass through Altair's server to
-**OpenRouter and Google Vertex**, which provide the AI response. Saved account
+**OpenRouter and Google**, which provide the AI response. Saved account
 notes are included only while memory is on. Meal analysis also uses this flow.
 A message or photo can contain health information even when it did not come
 from Apple Health.
+
+When Altair asks you to confirm a proposed change, such as saving a meal or a
+workout, and you answer in the conversation, your answer, the confirmation
+question and the number of proposed items pass through Altair's server and
+OpenRouter to **TypeSafe's Jev** model, which tells whether you confirmed,
+declined or asked for something else. The question can contain health
+information, such as a meal and its calories. Jev receives nothing else: no
+account identifier, profile or conversation history.
 
 The AI notice also covers selected health context. Altair uses your question to
 select relevant summaries from your on-device health reports, profile or meal
@@ -146,7 +157,8 @@ can appear while you speak; the completed transcript is used for your request.
 Your audio can contain health information and other details you choose to say.
 
 Recognized text selects context and obtains a reply through **Altair’s server,
-OpenRouter and Google Vertex**, as described above. After the response is
+OpenRouter and Google**, as described above. A spoken answer to a
+confirmation also goes to **TypeSafe's Jev**, as described above. After the response is
 completed, validated and saved on your device, **reply and action-confirmation
 text** passes through Altair’s server to **ElevenLabs and its service providers**
 to generate the speech you hear. This text can contain health information from
@@ -167,19 +179,25 @@ connection.
 - **RevenueCat** manages subscription entitlements using your account identifier
   and purchase information. Health measurements and conversation content are
   not included in Altair's subscription requests.
-- **OpenRouter and Google Vertex** process the selected AI information described
+- **OpenRouter and Google** process the selected AI information described
   above, including recognized voice text and selected context, to provide the
   responses you request.
+- **TypeSafe (TypeSafe AI, Inc.)** processes your typed or spoken answers to
+  confirmations, with the confirmation question and item count, received
+  through OpenRouter, to tell whether you confirmed.
 - **ElevenLabs and its service providers** process microphone audio for live
   transcription and completed reply/confirmation text to generate speech.
   Audio, transcripts and reply text may contain health information.
 
 Altair does not sell personal or consumer health data or use it for advertising.
-The model requests sent through OpenRouter use the configured Google Vertex EU
-route with zero-retention and denied data-collection request settings, without
-fallback to another route. These request settings do not by themselves verify
-every provider account setting, contract or historical record. They are not a
-blanket guarantee of zero retention or no model training.
+AI reply and meal-analysis requests sent through OpenRouter go only to Google,
+with zero-retention and denied data-collection request settings and no
+fallback to another provider. Requests to TypeSafe's Jev also
+use zero-retention and denied data-collection request settings; TypeSafe's
+handling is described in the [TypeSafe Privacy Policy](https://typesafe.ai/legal/privacy-policy).
+These request settings do not by themselves verify every provider account
+setting, contract or historical record. They are not a blanket guarantee of
+zero retention or no model training.
 
 ElevenLabs speech is separate from the OpenRouter AI route. ElevenLabs retains
 speech request and response data by default. Its retention, possible use for

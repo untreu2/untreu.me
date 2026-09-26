@@ -51,11 +51,14 @@ alone does not import them. Switching memory does not repeat privacy consent.
 Conversation history may still mention notes while memory is off. Speech uses
 ElevenLabs live transcription and speech generation. Microphone audio streams
 through Altair’s server to ElevenLabs; recognized text and selected context pass
-through Altair’s server and OpenRouter to Google Vertex. Completed reply/action-
+through Altair’s server and OpenRouter to Google Vertex. Answers to
+confirmations, with the question and item count, also go through OpenRouter to
+TypeSafe's Jev decision model. Completed reply/action-
 confirmation text also goes to ElevenLabs for speech. Audio and text can contain
 health information. Altair handles speech audio in memory without recording it.
-The matching app/server consent version is `2026-09-19-account-memory-v1`;
-old grants need renewal. The AI/account-memory notice is shown before the first
+The matching app/server consent version is `2026-09-26-typesafe-jev-v1`;
+old grants need renewal and no longer allow AI; the App Store 1.0.1 build,
+which cannot show the new notice, asks its users to update. The AI/account-memory notice is shown before the first
 dialogue; its decision is saved with the account and reused without asking for
 privacy consent per conversation or note. Withdrawal or a material policy
 change requires a renewed choice. Note-action confirmations remain separate.
