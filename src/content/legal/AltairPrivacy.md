@@ -11,9 +11,9 @@ and saved account memory can be used when you sign in on another device; your
 local health profile and private history cannot be restored. Before cloud AI
 use, a renewed notice asks for agreement to AI processing, selected health
 context and account memory, including if you agreed to an earlier version.
-The current notice also names **TypeSafe**, whose Jev model reads your answers
-to confirmations. Older app versions cannot show it, so they must be updated
-before AI works again.
+The current notice also names **TypeSafe**, whose Jev model classifies current
+messages or transcripts for meal/workout intake, limited workout checks and
+answers to confirmations, as described below.
 Only a detail you explicitly ask Altair to remember and confirm is saved as a
 new account note. Voice requires an additional agreement. Microphone audio
 streams through Altair’s server to ElevenLabs; recognized text and selected
@@ -106,13 +106,24 @@ notes are included only while memory is on. Meal analysis also uses this flow.
 A message or photo can contain health information even when it did not come
 from Apple Health.
 
+Your current message or completed voice transcript can also pass through
+Altair's server and OpenRouter to **TypeSafe's Jev** model to count distinct meal
+and completed-workout events and identify missing portions or durations. This
+intake check receives only that current text. For a limited check of a proposed
+new workout, Jev receives the current text with the proposed activity and
+duration to check whether the text supports them. These intake and workout
+checks do not include photos, audio, saved conversation history, profile fields
+or journal records. The text itself can contain health information. These
+classifications do not save a meal or workout or replace your action confirmation.
+
 When Altair asks you to confirm a proposed change, such as saving a meal or a
 workout, and you answer in the conversation, your answer, the confirmation
 question and the number of proposed items pass through Altair's server and
 OpenRouter to **TypeSafe's Jev** model, which tells whether you confirmed,
 declined or asked for something else. The question can contain health
-information, such as a meal and its calories. Jev receives nothing else: no
-account identifier, profile or conversation history.
+information, such as a meal and its calories. This confirmation check receives
+only that answer, question and item count, without account identifiers,
+additional profile fields or conversation history.
 
 The AI notice also covers selected health context. Altair uses your question to
 select relevant summaries from your on-device health reports, profile or meal
@@ -157,8 +168,10 @@ can appear while you speak; the completed transcript is used for your request.
 Your audio can contain health information and other details you choose to say.
 
 Recognized text selects context and obtains a reply through **Altair’s server,
-OpenRouter and Google**, as described above. A spoken answer to a
-confirmation also goes to **TypeSafe's Jev**, as described above. After the response is
+OpenRouter and Google**, as described above. The current transcript can also
+go to **TypeSafe's Jev** for the intake and limited workout checks described
+above; a spoken answer to a confirmation also goes to Jev with its question and
+item count. After the response is
 completed, validated and saved on your device, **reply and action-confirmation
 text** passes through Altair’s server to **ElevenLabs and its service providers**
 to generate the speech you hear. This text can contain health information from
@@ -182,9 +195,11 @@ connection.
 - **OpenRouter and Google** process the selected AI information described
   above, including recognized voice text and selected context, to provide the
   responses you request.
-- **TypeSafe (TypeSafe AI, Inc.)** processes your typed or spoken answers to
-  confirmations, with the confirmation question and item count, received
-  through OpenRouter, to tell whether you confirmed.
+- **TypeSafe (TypeSafe AI, Inc.)** receives current messages or transcripts
+  through OpenRouter for meal/workout counts and missing-detail checks. A
+  limited workout check also includes the proposed activity and duration.
+  Confirmation checks include your answer, the question and item count.
+  The limits for each check are described above.
 - **ElevenLabs and its service providers** process microphone audio for live
   transcription and completed reply/confirmation text to generate speech.
   Audio, transcripts and reply text may contain health information.

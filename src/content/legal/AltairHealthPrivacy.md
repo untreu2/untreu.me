@@ -10,8 +10,9 @@ This release keeps your health profile and conversation history on the iPhone
 and stores assistant memory with your account. The renewed cloud-AI notice
 covers AI processing, selected health context, and the storage and use of
 account memory. Existing users must agree again before use. The current notice
-also names **TypeSafe**, whose Jev model reads answers to confirmations. Older
-app versions cannot show it and must be updated before AI works again. New
+also names **TypeSafe**, whose Jev model classifies current messages or
+transcripts for meal/workout intake, limited workout checks and answers to
+confirmations, as described below. New
 memory notes are created only when you explicitly ask Altair to remember a
 detail and confirm it; health data is not automatically extracted into memory.
 Voice has an additional notice. Microphone audio streams through Altair’s server to
@@ -83,8 +84,18 @@ After you agree to the applicable first-use notice, requests can share:
   answer, the confirmation question and the number of proposed items pass
   through Altair's server and OpenRouter to TypeSafe's Jev model, which tells
   whether you confirmed. The question can contain health data, such as a meal
-  and its calories. Jev receives nothing else: no account identifier, profile
-  or conversation history.
+  and its calories. This confirmation check receives only the answer, question
+  and item count, without account identifiers, additional profile fields or
+  conversation history.
+- **Meal/workout intake and checks with TypeSafe:** your current message or
+  completed voice transcript can pass through Altair's server and OpenRouter
+  to Jev to count distinct meal and completed-workout events and identify
+  missing portions or durations. Intake receives only that current text. A
+  limited check of a proposed new workout also includes the proposed activity
+  and duration, to check whether the text supports them. These checks do not
+  include photos, audio, saved conversation history, profile fields or journal
+  records. The text itself can contain health information. The checks do not
+  save meals or workouts or replace your action confirmation.
 - **Selected health context:** the AI agreement also permits selected summaries
   from local reports, profile or meal records to accompany the AI request.
   Selection follows your question. Raw HealthKit sample timelines and your
@@ -94,7 +105,8 @@ After you agree to the applicable first-use notice, requests can share:
   microphone permission, microphone audio streams through Altair’s server to
   ElevenLabs and its service providers for live transcription. Audio may contain
   health information. Recognized text participates in the OpenRouter/Google
-  AI flow, which selects context after transcription.
+  AI flow, which selects context after transcription, and the bounded TypeSafe
+  checks described above.
 - **Speech with ElevenLabs:** completed reply and action-confirmation text goes
   through Altair’s server to ElevenLabs and its service providers to generate
   speech. That text can contain health details from the conversation, selected
@@ -132,8 +144,10 @@ Altair's hosting and database providers carry permitted requests, store your
 display name, profile photo, saved account notes and account administration records,
 and may retain earlier health content until deletion. **OpenRouter and Google**
 provide AI processing, including replies to recognized voice text.
-**TypeSafe (TypeSafe AI, Inc.)** reads typed or spoken answers to confirmations,
-with the confirmation question and item count, through OpenRouter.
+**TypeSafe (TypeSafe AI, Inc.)** receives current messages or transcripts through
+OpenRouter for meal/workout counts and missing-detail checks. Limited workout
+checks also include the proposed activity and duration; confirmation checks
+include your answer, the question and item count, as described above.
 **ElevenLabs and its service providers** transcribe microphone audio and generate
 speech from completed reply/confirmation text. Audio and text can include health
 data. The purposes and categories shared are
@@ -171,7 +185,8 @@ to your data, including provider retention and processing locations.
 Apple Health access is an optional permission controlled by Apple. Before
 your first AI dialogue, Altair asks you to agree to messages, submitted photos, relevant
 history and selected health, profile and meal context being processed by cloud
-AI, including TypeSafe's reading of your answers to confirmations. The renewed
+AI, including the TypeSafe intake, workout and confirmation checks described
+above. The renewed
 agreement also covers local instructions and the storage and
 future use of notes you explicitly ask to save with your account. Agreeing does
 not create a note or import earlier device-only notes; those require a separate
