@@ -183,7 +183,7 @@ export function AltairServer() {
     }
   }, [serverUrl])
 
-  const lock = useCallback((message = 'Dashboard locked.') => {
+  const lock = useCallback((message = '') => {
     loginController.current?.abort()
     requestController.current?.abort()
     setSession(null)
@@ -282,13 +282,16 @@ export function AltairServer() {
 
   let configured = true
   try { adminServerUrl(serverUrl) } catch { configured = false }
-  return <div className="admin-dashboard">
+  return <div className={`admin-dashboard${session ? '' : ' admin-dashboard-locked'}`}>
     <div className="admin-shell">
-      <nav className="admin-breadcrumb" aria-label="Breadcrumb"><Link to="/">untreu.me</Link><span aria-hidden="true">/</span><span>Altair</span><span aria-hidden="true">/</span><span>Admin</span></nav>
       {!session ? <div className="admin-lock-screen">
-        <div className="admin-login-intro"><div className="admin-eyebrow">Altair operations</div><h1>A clear view<br />of Altair.</h1><p>Follow the journey from first open to first answer, then understand how the app is used.</p><div className="admin-login-topics"><span>01 <strong>Onboarding</strong></span><span>02 <strong>Usage & actions</strong></span><span>03 <strong>Reliability</strong></span></div></div>
-        <section className="admin-login-card" aria-labelledby="admin-login-title"><h2 id="admin-login-title">Unlock the dashboard</h2><p>Private, first-party action analytics.</p><form onSubmit={(event) => void unlock(event)}><label htmlFor="admin-password">Dashboard password</label><input id="admin-password" name="password" type="password" value={password} onChange={(event) => setPassword(event.target.value)} autoComplete="off" autoCapitalize="off" spellCheck={false} required disabled={isUnlocking || !configured} aria-describedby="admin-login-status admin-password-note" /><button className="admin-button admin-button-primary" disabled={isUnlocking || !password || !configured} type="submit">{isUnlocking ? 'Unlocking…' : 'Unlock dashboard'}</button></form><div id="admin-login-status" role="status" className={lockedMessage || !configured ? 'admin-status-message' : ''}>{!configured ? 'The server address is not configured for a secure connection.' : lockedMessage}</div><p id="admin-password-note" className="admin-login-note">The session stays in this tab’s memory. Reloading locks the dashboard. No message or health content is included.</p></section>
+        <form className="admin-login-form" aria-label="Unlock dashboard" onSubmit={(event) => void unlock(event)}>
+          <input id="admin-password" name="password" type="password" aria-label="Dashboard password" placeholder="Password" value={password} onChange={(event) => setPassword(event.target.value)} autoComplete="off" autoCapitalize="off" spellCheck={false} required disabled={isUnlocking || !configured} aria-describedby="admin-login-status" />
+          <button className="admin-button admin-button-primary" disabled={isUnlocking || !password || !configured} type="submit">{isUnlocking ? 'Unlocking…' : 'Unlock dashboard'}</button>
+          <div id="admin-login-status" role="status" className={lockedMessage || !configured ? 'admin-status-message' : ''}>{!configured ? 'The server address is not configured for a secure connection.' : lockedMessage}</div>
+        </form>
       </div> : <>
+        <nav className="admin-breadcrumb" aria-label="Breadcrumb"><Link to="/">untreu.me</Link><span aria-hidden="true">/</span><span>Altair</span><span aria-hidden="true">/</span><span>Admin</span></nav>
         <header className="admin-header"><div><div className="admin-eyebrow">Altair operations</div><h1>From first open<br className="admin-mobile-break" /> to everyday use.</h1><p>First-party action telemetry · Pseudonymous actors</p></div><div className="admin-header-controls"><span className="admin-live">{isLoading ? 'Refreshing…' : updatedAt ? `Updated ${clock.format(updatedAt)}` : 'Waiting for data'}</span><div><button className="admin-button admin-button-quiet" disabled={isLoading} onClick={() => setRefresh((value) => value + 1)} type="button">Refresh</button><button className="admin-button admin-button-quiet" type="button" onClick={() => void logout()}>Lock</button></div></div></header>
         <form className="admin-filters" onSubmit={applyFilters} aria-label="Metrics filters"><div><label htmlFor="admin-from">From</label><input id="admin-from" type="date" value={draftFilters.from} onChange={(event) => setDraftFilters((value) => ({ ...value, from: event.target.value }))} required /></div><div><label htmlFor="admin-to">Through</label><input id="admin-to" type="date" value={draftFilters.to} onChange={(event) => setDraftFilters((value) => ({ ...value, to: event.target.value }))} required /></div><div><label htmlFor="admin-version">App version</label><select id="admin-version" value={draftFilters.appVersion} onChange={(event) => setDraftFilters((value) => ({ ...value, appVersion: event.target.value }))}><option value="">All versions</option>{versionOptions.current.map((version) => <option key={version} value={version}>{version}</option>)}</select></div><div><label htmlFor="admin-provider">Provider</label><select id="admin-provider" value={draftFilters.provider} onChange={(event) => setDraftFilters((value) => ({ ...value, provider: event.target.value as MetricsFilters['provider'] }))}><option value="">All providers</option>{providers.map((provider) => <option key={provider} value={provider}>{providerLabel(provider)}</option>)}</select></div><button className="admin-button admin-button-primary" type="submit">Apply filters</button>{filterError && <p className="admin-filter-error" role="alert">{filterError}</p>}</form>
         <div className="admin-status-region" aria-live="polite">{error && <p className="admin-status-message">{error}</p>}</div>

@@ -11,7 +11,7 @@ npm run test:build
 VITE_ALTAIR_SERVER_URL=http://127.0.0.1:7001 npm run dev -- --host 127.0.0.1
 ```
 
-Open `/altair/admin` and use the backend-configured dashboard password. `VITE_ALTAIR_SERVER_URL` defaults to `https://altair.grass.build`. This setting is public configuration; never put a password, digest, or token in it or another Vite environment variable. The client permits HTTPS origins and HTTP loopback origins for local review. Remote HTTP URLs, embedded credentials, paths, query strings, and fragments are rejected.
+Open `/altair/admin` and use the backend-configured dashboard password. The locked page shows only a password input and an unlock button; login errors appear when needed. `VITE_ALTAIR_SERVER_URL` defaults to `https://altair.grass.build`. This setting is public configuration; never put a password, digest, or token in it or another Vite environment variable. The client permits HTTPS origins and HTTP loopback origins for local review. Remote HTTP URLs, embedded credentials, paths, query strings, and fragments are rejected.
 
 The current Node runtime can run the tests directly with built-in TypeScript stripping and `node:test`; no test or chart dependencies were added. The JSON fixture under `tests/fixtures` is synthetic test data and is never imported into the dashboard or used as a live fallback. All live numbers come from the authenticated metrics endpoint.
 
