@@ -1,6 +1,6 @@
-# Altair server dashboard
+# Altair admin dashboard
 
-`/altair/server` is a private action-analytics dashboard for Altair. The frontend is a lazily loaded React route before the `/altair/:slug` legal routes. Vite generates `dist/altair/server/index.html` for a successful static deep link with a `noindex, nofollow, noarchive` robots tag. The page adds the same tag while mounted. Backend authentication, rather than the URL or robots tag, protects metrics.
+`/altair/admin` is a private action-analytics dashboard for Altair; `/altair/server` remains an alias. Both lazily loaded React routes precede the `/altair/:slug` legal routes. Vite generates `dist/altair/admin/index.html` and `dist/altair/server/index.html` for successful static deep links with a `noindex, nofollow, noarchive` robots tag. The page adds the same tag while mounted. Backend authentication, rather than the URL or robots tag, protects metrics.
 
 ## Local review
 
@@ -11,7 +11,7 @@ npm run test:build
 VITE_ALTAIR_SERVER_URL=http://127.0.0.1:7001 npm run dev -- --host 127.0.0.1
 ```
 
-Open `/altair/server` and use the backend-configured dashboard password. `VITE_ALTAIR_SERVER_URL` defaults to `https://altair.grass.build`. This setting is public configuration; never put a password, digest, or token in it or another Vite environment variable. The client permits HTTPS origins and HTTP loopback origins for local review. Remote HTTP URLs, embedded credentials, paths, query strings, and fragments are rejected.
+Open `/altair/admin` and use the backend-configured dashboard password. `VITE_ALTAIR_SERVER_URL` defaults to `https://altair.grass.build`. This setting is public configuration; never put a password, digest, or token in it or another Vite environment variable. The client permits HTTPS origins and HTTP loopback origins for local review. Remote HTTP URLs, embedded credentials, paths, query strings, and fragments are rejected.
 
 The current Node runtime can run the tests directly with built-in TypeScript stripping and `node:test`; no test or chart dependencies were added. The JSON fixture under `tests/fixtures` is synthetic test data and is never imported into the dashboard or used as a live fallback. All live numbers come from the authenticated metrics endpoint.
 
@@ -42,4 +42,4 @@ Requests omit credentials and referrer, disable cache and redirects, and have a 
 - Returning usage measures actor returns on exact UTC calendar days 1, 7, and 30. Return activity can use any version; immature windows remain `null` and are labeled “Not mature,” rather than shown as zero. Coverage starts with the first currently retained event and advances as old events expire; it is not a claim of tracking’s all-time start. There is no historical backfill.
 - Latency comes from measured server requests. Typed handler/stream failures are shown even when streaming has already returned HTTP 200; the dashboard does not infer success from that status. Empty snapshots show zero counts, no latency value, and an explicit empty state. No live demo data is fabricated.
 
-The companion Altair server owns ingestion allowlists, hashing, 90-day event retention, account deletion/retired installation enforcement, rate limiting, token expiry, CORS, and the password digest. Publication and backend deployment are separate approval steps; this dashboard change prepares a reviewable local build and does not publish it.
+The companion Altair server owns ingestion allowlists, hashing, 90-day event retention, account deletion/retired installation enforcement, rate limiting, token expiry, CORS, and the password digest. Pushing the website's main branch publishes both dashboard URLs through GitHub Pages. Backend deployment remains a separate release.

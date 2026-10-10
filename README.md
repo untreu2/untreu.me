@@ -90,7 +90,7 @@ Pushes to `main` are built and published to GitHub Pages via
 `404.html` is emitted as an SPA fallback so deep links resolve correctly.
 Legal routes also emit their own `index.html` entrypoints so direct policy links
 return successful HTTP responses instead of relying on the 404 fallback.
-`/altair/server` also has a direct entrypoint with a `noindex` robots tag. It is
+`/altair/admin` and its `/altair/server` alias have direct entrypoints with a `noindex` robots tag. This is
 an authenticated Altair action dashboard with memory-only sessions. See
 [the dashboard contract and local-review guide](docs/AltairServerDashboard.md).
 

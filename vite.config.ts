@@ -27,11 +27,14 @@ function spaFallback(): Plugin {
           mkdirSync(directory, { recursive: true })
           copyFileSync(index, resolve(directory, 'index.html'))
         }
-        const dashboard = resolve(out, 'altair/server')
-        mkdirSync(dashboard, { recursive: true })
-        writeFileSync(resolve(dashboard, 'index.html'), readFileSync(index, 'utf8')
+        const dashboardHtml = readFileSync(index, 'utf8')
           .replace('<head>', '<head>\n    <meta name="robots" content="noindex, nofollow, noarchive" />')
-          .replace(/<title>[^<]*<\/title>/, '<title>Altair server · untreu.me</title>'))
+          .replace(/<title>[^<]*<\/title>/, '<title>Altair admin · untreu.me</title>')
+        for (const route of ['altair/admin', 'altair/server']) {
+          const dashboard = resolve(out, route)
+          mkdirSync(dashboard, { recursive: true })
+          writeFileSync(resolve(dashboard, 'index.html'), dashboardHtml)
+        }
       }
 
       const server = resolve(out, 'server')

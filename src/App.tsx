@@ -21,7 +21,7 @@ export default function App() {
           path="/floyd/:slug"
           element={<Article collection={legal} />}
         />
-        <Route path="/altair/server" element={<Suspense fallback={<p className="mx-auto max-w-4xl px-6 py-16 text-sm text-muted" role="status">Loading dashboard…</p>}><AltairServer /></Suspense>} />
+        {['/altair/admin', '/altair/server'].map((path) => <Route key={path} path={path} element={<Suspense fallback={<p className="mx-auto max-w-4xl px-6 py-16 text-sm text-muted" role="status">Loading dashboard…</p>}><AltairServer /></Suspense>} />)}
         <Route
           path="/altair/:slug"
           element={<Article collection={altairLegal} />}

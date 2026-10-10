@@ -166,7 +166,7 @@ export function AltairServer() {
 
   useEffect(() => {
     const oldTitle = document.title
-    document.title = 'Altair server · untreu.me'
+    document.title = 'Altair admin · untreu.me'
     const previousRobots = document.querySelector<HTMLMetaElement>('meta[name="robots"]')
     const robots = previousRobots ?? document.createElement('meta')
     const previousContent = previousRobots?.content
@@ -284,7 +284,7 @@ export function AltairServer() {
   try { adminServerUrl(serverUrl) } catch { configured = false }
   return <div className="admin-dashboard">
     <div className="admin-shell">
-      <nav className="admin-breadcrumb" aria-label="Breadcrumb"><Link to="/">untreu.me</Link><span aria-hidden="true">/</span><span>Altair</span><span aria-hidden="true">/</span><span>Server</span></nav>
+      <nav className="admin-breadcrumb" aria-label="Breadcrumb"><Link to="/">untreu.me</Link><span aria-hidden="true">/</span><span>Altair</span><span aria-hidden="true">/</span><span>Admin</span></nav>
       {!session ? <div className="admin-lock-screen">
         <div className="admin-login-intro"><div className="admin-eyebrow">Altair operations</div><h1>A clear view<br />of Altair.</h1><p>Follow the journey from first open to first answer, then understand how the app is used.</p><div className="admin-login-topics"><span>01 <strong>Onboarding</strong></span><span>02 <strong>Usage & actions</strong></span><span>03 <strong>Reliability</strong></span></div></div>
         <section className="admin-login-card" aria-labelledby="admin-login-title"><h2 id="admin-login-title">Unlock the dashboard</h2><p>Private, first-party action analytics.</p><form onSubmit={(event) => void unlock(event)}><label htmlFor="admin-password">Dashboard password</label><input id="admin-password" name="password" type="password" value={password} onChange={(event) => setPassword(event.target.value)} autoComplete="off" autoCapitalize="off" spellCheck={false} required disabled={isUnlocking || !configured} aria-describedby="admin-login-status admin-password-note" /><button className="admin-button admin-button-primary" disabled={isUnlocking || !password || !configured} type="submit">{isUnlocking ? 'Unlocking…' : 'Unlock dashboard'}</button></form><div id="admin-login-status" role="status" className={lockedMessage || !configured ? 'admin-status-message' : ''}>{!configured ? 'The server address is not configured for a secure connection.' : lockedMessage}</div><p id="admin-password-note" className="admin-login-note">The session stays in this tab’s memory. Reloading locks the dashboard. No message or health content is included.</p></section>
