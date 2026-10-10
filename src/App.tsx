@@ -1,9 +1,12 @@
+import { lazy, Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { Layout } from './components/Layout'
 import { altairLegal, legal, posts } from './content'
 import { Article } from './pages/Article'
 import { Home } from './pages/Home'
 import { NotFound } from './pages/NotFound'
+
+const AltairServer = lazy(() => import('./pages/AltairServer').then((module) => ({ default: module.AltairServer })))
 
 export default function App() {
   return (
@@ -18,11 +21,12 @@ export default function App() {
           path="/floyd/:slug"
           element={<Article collection={legal} />}
         />
-        <Route path="*" element={<NotFound />} />
+        <Route path="/altair/server" element={<Suspense fallback={<p className="mx-auto max-w-4xl px-6 py-16 text-sm text-muted" role="status">Loading dashboard…</p>}><AltairServer /></Suspense>} />
         <Route
           path="/altair/:slug"
           element={<Article collection={altairLegal} />}
         />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Layout>
   )

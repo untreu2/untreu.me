@@ -1,4 +1,4 @@
-_Last updated 26 September 2026_
+_Last updated 10 October 2026_
 
 Altair is a general wellness app operated by **Emir Yorulmaz (untreu)**. This
 policy explains how the iOS app and its supporting services handle personal
@@ -71,11 +71,21 @@ response instructions or other Altair-only history.
   verification and may retain your
   full phone number. Altair's user record stores a keyed phone fingerprint, the
   last four digits and a verification time instead of the full number.
+  Before sign-in, a temporary Firebase anonymous account supports the first
+  text replies and saves your permission choices. Linking Apple or phone
+  sign-in keeps that account identifier; choosing an existing account instead
+  discards the temporary account. Unlinked anonymous accounts inactive for
+  30 days are removed from Altair and Firebase. Voice and purchases require
+  Apple or phone sign-in.
 - **Subscriptions and operation:** purchase and entitlement information, usage
   counters, device registrations, app versions, push tokens, notification
   preferences and operational request metadata. These support authentication,
   subscriptions, security and service operation. Apple handles payments;
   Altair does not receive your payment card number.
+- **Product actions and timings:** first-party onboarding and usage events,
+  described under **Product usage and onboarding** below. These help us measure
+  where people stop during setup, which features they use and whether requests
+  succeed.
 - **Privacy choices:** your consent decisions, disclosure version, revision and
   decision times, including changes. These let the service enforce your choices.
 - **Assistant memory:** details you explicitly ask Altair to remember and
@@ -94,6 +104,45 @@ the service. They also carry the temporary AI and speech requests, including
 microphone audio, recognized voice text and text sent for speech generation,
 described below and may retain older records as described under
 **Records from earlier versions**.
+
+## Product usage and onboarding
+
+Altair sends a fixed set of action events to its own server, including before
+sign-in. Examples include opening the app, viewing or continuing setup,
+accepting or declining an AI or voice notice, attempts to sign in, viewing or
+dismissing the save-progress prompt, starting and completing an assistant
+request, navigating screens, saving or deleting a record, reviewing a proposed
+action, entering voice, and purchase or restore outcomes. Events describe the
+action and outcome, without the contents of what you entered or saved.
+
+Each event may include its time, app version and build, a randomly generated
+installation and session identifier, a fixed screen or action category,
+authentication provider, a fixed outcome or error category, and elapsed time.
+When a request is authenticated, the server can associate its events with your
+account. Installation identifiers allow us to count activity before and after
+sign-in. The private dashboard displays pseudonymous identifiers; this does
+not make account-linked events anonymous. The server also records request
+outcomes and duration, so we can distinguish an answer returned by the service
+from an answer displayed by the app.
+
+This event stream excludes messages, replies, photos, audio, transcripts,
+names, phone numbers, health measurements, profile values, meal or workout
+contents, saved notes, record identifiers and free-form error text. A screen
+or action category can still show that you used a particular app feature.
+The events are used to improve onboarding, feature reliability and service
+operation. They are not sold, used for advertising or shared with a separate
+analytics SDK or service. Altair's hosting and database providers store them
+for this first-party purpose.
+
+The app temporarily queues up to 250 events on your iPhone for up to seven
+days to retry failed uploads. Uploaded event history is retained for up to
+90 days and then removed from the active database. Account deletion removes
+account-associated events and earlier unsigned events that can be matched
+through their installation or session identifiers. The current iPhone also
+discards pending events for the deleted account. Events that cannot be linked
+to an account expire under the same 90-day limit. Backups follow their
+separate deletion process. You can contact us about access or deletion using
+the privacy-request instructions below.
 
 ## Optional AI processing
 
@@ -264,9 +313,10 @@ private files on another offline device.
 
 **Name, profile photo and account records.** Your display name and profile photo
 remain with the account until changed, removed where supported, or deleted with
-the account. Account, subscription, usage, device and consent records are
+the account. Account, subscription, service-usage counters, device and consent records are
 retained to operate your account until deletion, subject to the exceptions
-below. Support correspondence is retained as needed to handle the request and
+below. Product-action event history follows the shorter retention period
+under **Product usage and onboarding**. Support correspondence is retained as needed to handle the request and
 related legal obligations.
 
 **Account deletion.** Use **Settings → Account** to delete your Altair account.

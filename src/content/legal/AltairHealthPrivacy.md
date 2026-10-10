@@ -1,4 +1,4 @@
-_Last updated 26 September 2026_
+_Last updated 10 October 2026_
 
 This separate Consumer Health Data Privacy Policy explains how **Emir Yorulmaz
 (untreu)**, the operator of Altair, handles consumer health data. For privacy,
@@ -139,6 +139,15 @@ your account profile photo and notes you deliberately save. Provider retention
 is separate. The device saves your resulting conversation and journal.
 
 ## Recipients and limits on use
+
+Altair also collects first-party product-action events to understand onboarding
+and feature use. These include fixed screen and action categories, outcomes
+and timings, without health measurements, messages, photos, audio, transcripts,
+profile values, meal or workout contents or saved notes. A feature interaction
+can still reveal that you used that part of Altair. See **Product usage and
+onboarding** in the [Privacy Policy](/altair/privacy) for identifiers, account
+association, retention and deletion. Product-action events are not sent to the
+AI or speech providers.
 
 Altair's hosting and database providers carry permitted requests, store your
 display name, profile photo, saved account notes and account administration records,

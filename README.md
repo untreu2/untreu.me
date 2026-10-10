@@ -13,6 +13,8 @@ npm install
 npm run dev      # start the dev server
 npm run build    # type-check + production build to dist/
 npm run preview  # preview the production build
+npm test         # dashboard contract/data-transformation tests (Node with TS stripping)
+npm run test:build # check generated dashboard/deep-link artifacts after a build
 ```
 
 ## Structure
@@ -88,6 +90,9 @@ Pushes to `main` are built and published to GitHub Pages via
 `404.html` is emitted as an SPA fallback so deep links resolve correctly.
 Legal routes also emit their own `index.html` entrypoints so direct policy links
 return successful HTTP responses instead of relying on the 404 fallback.
+`/altair/server` also has a direct entrypoint with a `noindex` robots tag. It is
+an authenticated Altair action dashboard with memory-only sessions. See
+[the dashboard contract and local-review guide](docs/AltairServerDashboard.md).
 
 > One-time setup: in the repository settings, set **Pages → Build and
 > deployment → Source** to **GitHub Actions**.

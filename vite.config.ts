@@ -1,4 +1,4 @@
-import { copyFileSync, existsSync, mkdirSync, writeFileSync } from 'node:fs'
+import { copyFileSync, existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { defineConfig, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
@@ -27,6 +27,11 @@ function spaFallback(): Plugin {
           mkdirSync(directory, { recursive: true })
           copyFileSync(index, resolve(directory, 'index.html'))
         }
+        const dashboard = resolve(out, 'altair/server')
+        mkdirSync(dashboard, { recursive: true })
+        writeFileSync(resolve(dashboard, 'index.html'), readFileSync(index, 'utf8')
+          .replace('<head>', '<head>\n    <meta name="robots" content="noindex, nofollow, noarchive" />')
+          .replace(/<title>[^<]*<\/title>/, '<title>Altair server · untreu.me</title>'))
       }
 
       const server = resolve(out, 'server')

@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "coverage": {
+    "started_at": "2026-10-10T06:00:00Z",
+    "raw_retention_days": 90,
+    "mode": "first_party_actions_only",
+    "historical_events_available": false,
+    "cohort_filter_mode": "first_open_version_provider_activity",
+    "retention_return_versions": "any"
+  },
+  "filters": { "from": "2026-10-01", "to": "2026-10-10", "app_version": "", "provider": "", "page": 1, "limit": 25 },
+  "filter_options": { "app_versions": ["1.0", "1.1.2"], "providers": ["anonymous", "apple.com", "phone"] },
+  "summary": { "events": 32, "actors": 3, "sessions": 5, "questions": 4, "answers": 3, "account_required": 1, "auth_failures": 1, "server_errors": 2, "latency_samples": 10, "p50_latency_ms": 125, "p95_latency_ms": 980.5 },
+  "daily": [
+    { "date": "2026-10-09", "events": 12, "actors": 2, "sessions": 2, "questions": 1, "answers": 1, "account_required": 0, "errors": 1 },
+    { "date": "2026-10-10", "events": 20, "actors": 3, "sessions": 3, "questions": 3, "answers": 2, "account_required": 1, "errors": 2 }
+  ],
+  "funnel": [
+    { "step": "first_open", "source": "client", "events": 3, "actors": 3 },
+    { "step": "intro_continue", "source": "client", "events": 3, "actors": 3 },
+    { "step": "anonymous_created", "source": "server", "events": 2, "actors": 2 },
+    { "step": "consent_given", "source": "server", "events": 2, "actors": 2 },
+    { "step": "answer_completed", "source": "server", "events": 3, "actors": 2 },
+    { "step": "save_progress_view", "source": "client", "events": 3, "actors": 2 },
+    { "step": "account_linked", "source": "server", "events": 1, "actors": 1 },
+    { "step": "account_required", "source": "server", "events": 1, "actors": 1 }
+  ],
+  "actions": [
+    { "name": "question_submit", "source": "client", "events": 4, "actors": 3 },
+    { "name": "answer_completed", "source": "server", "events": 3, "actors": 2 },
+    { "name": "save_progress_view", "source": "client", "events": 3, "actors": 2 }
+  ],
+  "providers": [
+    { "provider": "none", "sign_ins": 0, "links": 0, "failures": 1 },
+    { "provider": "anonymous", "sign_ins": 0, "links": 0, "failures": 0 },
+    { "provider": "apple.com", "sign_ins": 1, "links": 1, "failures": 0 }
+  ],
+  "errors": [{ "code": "firebase_operation_not_allowed", "events": 1 }, { "code": "http_503", "events": 2 }],
+  "latency": [{ "date": "2026-10-10", "samples": 10, "p50_ms": 125, "p95_ms": 980.5 }],
+  "retention": [
+    { "cohort_date": "2026-10-09", "actors": 2, "day_1": 1, "day_7": null, "day_30": null },
+    { "cohort_date": "2026-10-10", "actors": 1, "day_1": null, "day_7": null, "day_30": null }
+  ],
+  "recent": {
+    "total": 32, "page": 1, "limit": 25,
+    "items": [
+      { "id": "123e4567-e89b-42d3-a456-426614174000", "timestamp": "2026-10-10T06:03:00.123Z", "name": "save_progress_view", "source": "client", "actor": "a1111111111111111111111111111111", "session": "b1111111111111111111111111111111", "surface": "save_progress", "provider": "anonymous", "reason": "required", "error_code": "", "duration_ms": 0, "app_version": "1.1.2", "app_build": "42", "status": 0 },
+      { "id": "123e4567-e89b-42d3-a456-426614174001", "timestamp": "2026-10-10T06:02:00Z", "name": "server_request", "source": "server", "actor": null, "session": null, "surface": "", "provider": "", "reason": "", "error_code": "http_503", "duration_ms": 980, "app_version": "", "app_build": "", "status": 503 },
+      { "id": "123e4567-e89b-42d3-a456-426614174002", "timestamp": "2026-10-10T06:01:00Z", "name": "intro_continue", "source": "client", "actor": "c1111111111111111111111111111111", "session": "d1111111111111111111111111111111", "surface": "intro", "provider": "none", "reason": "continue", "error_code": "", "duration_ms": 2, "app_version": "1.0", "app_build": "41", "status": 0 }
+    ]
+  }
+}
