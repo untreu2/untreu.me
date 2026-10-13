@@ -58,7 +58,7 @@ export function Home() {
 
       <section aria-label="Projects" className="animate-fade-up py-8">
         <h2 className="mb-5 text-2xl font-semibold tracking-tight text-ink">
-          Projects
+          Projects I built on my own
         </h2>
         <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {projects.map((project) => (
