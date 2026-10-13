@@ -13,7 +13,6 @@ export function Home() {
         <p className="mt-8 max-w-xl text-xl leading-relaxed text-ink sm:text-2xl">
           {profile.bio}
         </p>
-        <p className="mt-1 text-base text-muted">{profile.location}</p>
 
         <nav aria-label="Social links" className="mt-9 flex flex-wrap items-center gap-x-7 gap-y-3">
           {links.map((link) => (

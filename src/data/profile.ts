@@ -2,7 +2,6 @@ export const profile = {
   name: 'emir yorulmaz',
   handle: 'untreu',
   bio: 'Building software stuff.',
-  location: 'Istanbul, Turkey',
 }
 
 export interface SocialLink {
