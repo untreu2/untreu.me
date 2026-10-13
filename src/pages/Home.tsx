@@ -42,11 +42,18 @@ export function Home() {
           className="block w-full overflow-x-auto pb-2"
         >
           <img
-            src="https://ghchart.rshah.org/2da44e/untreu2"
+            // Saved at deploy time (see deploy.yml) so it loads from this site;
+            // falls back to the live chart service if the copy is missing.
+            src="/github-chart.svg"
             alt="GitHub contribution chart for untreu2"
-            loading="lazy"
+            width={663}
+            height={104}
             decoding="async"
             className="h-auto w-full min-w-[720px] max-w-none"
+            onError={(event) => {
+              const remote = 'https://ghchart.rshah.org/2da44e/untreu2'
+              if (event.currentTarget.src !== remote) event.currentTarget.src = remote
+            }}
             // On narrow screens the chart scrolls; start at the most recent months.
             onLoad={(event) => {
               const scroller = event.currentTarget.parentElement

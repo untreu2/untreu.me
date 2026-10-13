@@ -3,6 +3,9 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+  # Redeploy daily so the saved GitHub contribution chart stays current.
+  schedule:
+    - cron: '0 3 * * *'
   workflow_dispatch:
 
 permissions:
@@ -26,6 +29,13 @@ jobs:
           cache: npm
 
       - run: npm ci
+
+      # Save the contribution chart into the build so visitors load it from
+      # this site instead of the slow third-party service. The page falls back
+      # to the live chart if this download fails.
+      - name: Download GitHub contribution chart
+        run: curl -fsSL --retry 3 --max-time 30 https://ghchart.rshah.org/2da44e/untreu2 -o public/github-chart.svg || echo "Chart download failed; the page will use the live chart."
+
       - run: npm run build
 
       - uses: actions/upload-pages-artifact@v3

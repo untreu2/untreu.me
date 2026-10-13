@@ -17,3 +17,6 @@ dist-ssr
 .vscode/*
 !.vscode/extensions.json
 .idea
+
+# Downloaded during deploy
+public/github-chart.svg
