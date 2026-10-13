@@ -57,76 +57,77 @@ export function Home() {
       </section>
 
       <section aria-label="Projects" className="animate-fade-up py-8">
-        <h2 className="mb-8 text-2xl font-semibold tracking-tight text-ink">
+        <h2 className="mb-5 text-2xl font-semibold tracking-tight text-ink">
           Projects
         </h2>
-        <ol className="relative">
-          {projects.map((project, index) => (
-            <li key={project.name} className="relative grid grid-cols-[2.5rem_1fr] gap-3 pb-12 last:pb-0 sm:grid-cols-[4rem_1fr] sm:gap-8">
-              {index < projects.length - 1 && (
-                <span aria-hidden className="absolute bottom-0 left-5 top-12 w-px bg-line sm:left-8 sm:top-[4.5rem]" />
-              )}
-              <img
-                src={project.logo}
-                alt={`${project.name} logo`}
-                loading="lazy"
-                decoding="async"
-                className="h-10 w-10 rounded-[22%] border border-line bg-surface object-cover sm:h-16 sm:w-16"
-              />
-              <div>
-                <h3 className="text-2xl font-semibold tracking-tight text-ink">
-                  {project.name} <span className="ml-1 align-middle text-sm font-normal text-muted">({project.date})</span>
-                </h3>
-                <p className="mt-1 text-sm text-muted">{project.tagline}</p>
-                <ul aria-label={`${project.name} stack`} className="mt-3 flex flex-wrap gap-2">
-                  {project.stack.map((id) => (
-                    <li
-                      key={id}
-                      className="inline-flex items-center gap-1.5 rounded-full border border-line bg-surface px-2 py-0.5 text-xs text-ink"
-                    >
-                      <img src={tech[id].logo} alt="" aria-hidden className="h-3 w-3" />
-                      {tech[id].name}
-                    </li>
-                  ))}
-                </ul>
-                <p className="mt-4 max-w-2xl text-base leading-relaxed text-ink/90 sm:text-lg">{project.story}</p>
-                <a
-                  href={project.href}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className="group mt-5 block overflow-hidden rounded-2xl border border-line bg-surface transition-colors hover:border-ink"
-                >
-                  {project.link.kind === 'app-store' ? (
-                    <div className="grid grid-cols-3 gap-2 bg-accent-soft p-3">
-                      {project.link.previews.map((src, i) => (
-                        <img
-                          key={src}
-                          src={src}
-                          alt={`${project.name} App Store screenshot ${i + 1}`}
-                          loading="lazy"
-                          decoding="async"
-                          className="aspect-[6/13] w-full rounded-lg object-cover"
-                        />
-                      ))}
-                    </div>
-                  ) : (
+        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {projects.map((project) => (
+            <li key={project.name}>
+              <a
+                href={project.href}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-surface transition-colors hover:border-ink"
+              >
+                {project.link.kind === 'app-store' ? (
+                  <div className="grid h-32 grid-cols-3 gap-1.5 overflow-hidden bg-accent-soft px-3 pt-3">
+                    {project.link.previews.map((src, i) => (
+                      <img
+                        key={src}
+                        src={src}
+                        alt={`${project.name} App Store screenshot ${i + 1}`}
+                        loading="lazy"
+                        decoding="async"
+                        className="w-full rounded-t-lg object-cover object-top"
+                      />
+                    ))}
+                  </div>
+                ) : (
+                  <img
+                    src={project.link.previews[0]}
+                    alt={`${project.link.label} website`}
+                    loading="lazy"
+                    decoding="async"
+                    className="h-32 w-full object-cover object-left-top"
+                  />
+                )}
+                <div className="flex flex-1 flex-col border-t border-line p-4">
+                  <div className="flex items-center gap-3">
                     <img
-                      src={project.link.previews[0]}
-                      alt={`${project.link.label} website`}
+                      src={project.logo}
+                      alt={`${project.name} logo`}
                       loading="lazy"
                       decoding="async"
-                      className="aspect-[16/10] w-full object-cover object-top"
+                      className="h-9 w-9 shrink-0 rounded-[22%] border border-line object-cover"
                     />
-                  )}
-                  <span className="flex items-center justify-between gap-4 border-t border-line px-4 py-3 text-sm">
-                    <span className="font-semibold text-ink">{project.link.label}</span>
+                    <div className="min-w-0">
+                      <h3 className="text-base font-semibold leading-tight text-ink">
+                        {project.name} <span className="text-xs font-normal text-muted">({project.date})</span>
+                      </h3>
+                      <p className="text-xs text-muted">{project.tagline}</p>
+                    </div>
+                  </div>
+                  <p className="mt-3 text-sm leading-relaxed text-ink/85">{project.story}</p>
+                  <ul aria-label={`${project.name} stack`} className="mt-auto flex flex-wrap gap-1.5 pt-4">
+                    {project.stack.map((id) => (
+                      <li
+                        key={id}
+                        className="inline-flex items-center gap-1 rounded-full border border-line px-2 py-0.5 text-[11px] text-ink"
+                      >
+                        <img src={tech[id].logo} alt="" aria-hidden className="h-3 w-3" />
+                        {tech[id].name}
+                      </li>
+                    ))}
+                  </ul>
+                  <span className="mt-4 flex items-center justify-between text-xs font-semibold text-ink">
+                    {project.link.label}
                     <span aria-hidden className="text-muted transition-colors group-hover:text-ink">↗</span>
                   </span>
-                </a>
-              </div>
+                </div>
+              </a>
             </li>
           ))}
-        </ol>
+        </ul>
       </section>
 
 

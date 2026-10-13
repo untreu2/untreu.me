@@ -52,7 +52,7 @@ export const projects: Project[] = [
     logo: '/projects/altair.png',
     href: 'https://apps.apple.com/us/app/altair-ai-health-diet-coach/id6802138197',
     story:
-      'Everything before this led here. Altair is the most ambitious thing I have shipped: a voice-first health agent you talk to or show a photo, and it logs your meals and workouts, reads Apple Health, and turns your day into a single health score. It is the first time I owned the whole stack end to end, from the SwiftUI app to a Go and PostgreSQL backend on Google Cloud, subscriptions included.',
+      'Everything before this led here. A voice-first health agent: talk to it or snap a photo, and it logs your meals and workouts, reads Apple Health, and scores your day. My first time owning the whole stack, app to backend.',
     stack: ['swift', 'go', 'postgresql', 'docker', 'googlecloud', 'firebase'],
     link: { kind: 'app-store', label: 'View on the App Store', previews: ['/projects/previews/altair-1.jpg', '/projects/previews/altair-2.jpg', '/projects/previews/altair-3.jpg'] },
   },
@@ -63,7 +63,7 @@ export const projects: Project[] = [
     logo: '/projects/floyd.png',
     href: 'https://apps.apple.com/us/app/floyd-ai-powered-calendar/id6787791794',
     story:
-      'Floyd was the test of whether Dame actually worked. I built it on top of Dame\'s infrastructure, and it was also my move from Flutter to native SwiftUI: a calendar you can just talk to, turning plain language into events and reminders. It made it to the App Store, and it gave me the confidence to go after something bigger.',
+      'The test of whether Dame actually worked, and my move from Flutter to native SwiftUI. A calendar you just talk to, now on the App Store.',
     stack: ['swift', 'go', 'postgresql', 'docker', 'googlecloud', 'firebase'],
     link: { kind: 'app-store', label: 'View on the App Store', previews: ['/projects/previews/floyd-1.jpg', '/projects/previews/floyd-2.jpg', '/projects/previews/floyd-3.jpg'] },
   },
@@ -74,7 +74,7 @@ export const projects: Project[] = [
     logo: '/projects/dame.png',
     href: 'https://dame.dev',
     story:
-      'After shipping small apps on my own, the bottleneck was clear: too much of the work was repetitive. So I built Dame, an autonomous AI engineer that turns goals into editable plans on GitHub and keeps the developer in the loop. Multiple models cross-check each other, and each task goes to the most efficient one. It became my first paid product, and the foundation for everything that came after.',
+      'Shipping apps alone showed me how much of the work was repetitive, so I built an AI engineer that turns goals into editable plans on GitHub. My first paid product, and the base for everything after.',
     stack: ['typescript', 'react', 'tailwind', 'go', 'postgresql', 'docker', 'googlecloud', 'firebase'],
     link: { kind: 'website', label: 'dame.dev', previews: ['/projects/previews/dame-site.jpg'] },
   },
@@ -85,7 +85,7 @@ export const projects: Project[] = [
     logo: '/projects/wisdom.png',
     href: 'https://apps.apple.com/us/app/wisdom-note-taking-app/id6744746646',
     story:
-      'With one app out, I wanted the next one to take privacy seriously. Wisdom is a simple note-taking app that is fully offline, encrypted, and open source, built with Flutter and shipped to the App Store. Your notes never leave your device.',
+      'With one app out, I wanted the next one to take privacy seriously: notes that stay offline, encrypted, and open source.',
     stack: ['flutter', 'dart'],
     link: { kind: 'app-store', label: 'View on the App Store', previews: ['/projects/previews/wisdom-1.jpg', '/projects/previews/wisdom-2.jpg', '/projects/previews/wisdom-3.jpg'] },
   },
@@ -96,7 +96,7 @@ export const projects: Project[] = [
     logo: '/projects/humble.png',
     href: 'https://apps.apple.com/us/app/humble-fasting-app/id6557081711',
     story:
-      'Where it all started. Humble is a small, open-source fasting timer and my first app on the App Store, built with Flutter. It taught me what it takes to take something from an idea to a real product in people\'s hands. These days I am rebuilding it natively in SwiftUI.',
+      'Where it all started. An open-source fasting timer and my first app on the App Store, built with Flutter.',
     stack: ['flutter', 'dart'],
     link: { kind: 'app-store', label: 'View on the App Store', previews: ['/projects/previews/humble-1.jpg', '/projects/previews/humble-2.jpg', '/projects/previews/humble-3.jpg'] },
   },
