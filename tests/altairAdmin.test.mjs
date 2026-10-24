@@ -2,7 +2,7 @@ import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import test from 'node:test'
 import {
-  AdminRequestError, adminServerUrl, chartPoints, completeDaily, decodeMetrics, decodeSession, defaultFilters,
+  AdminRequestError, adminServerUrl, chartPoints, completeDaily, decodeMetrics, decodeSession, defaultFilters, funnelBaseStep,
   lastMetricsPage, loadMetrics, loginAdmin, logoutAdmin, metricsQuery, percent, providerLabel, validateFilters,
 } from '../src/lib/altairAdmin.ts'
 import { actionLabel, errorLabel, reasonLabel, surfaceLabel } from '../src/lib/altairTelemetryLabels.ts'
@@ -58,6 +58,23 @@ test('rejects incompatible schemas, untyped text, raw identities, invalid counts
     mutate(value)
     assert.throws(() => decodeMetrics(value), kind('contract'))
   }
+})
+
+test('accepts the newcomer intro cohort and measures the funnel against its intro_view base', () => {
+  const value = clone()
+  value.coverage.cohort_filter_mode = 'first_intro_view_version_provider_activity'
+  value.funnel[0].step = 'intro_view'
+  const report = decodeMetrics(value)
+  assert.equal(report.coverage.cohort_filter_mode, 'first_intro_view_version_provider_activity')
+  assert.equal(funnelBaseStep(report.coverage.cohort_filter_mode), 'intro_view')
+  assert.equal(funnelBaseStep(decodeMetrics(fixture).coverage.cohort_filter_mode), 'first_open')
+  value.funnel[1].actors = 4
+  assert.throws(() => decodeMetrics(value), kind('contract'))
+  const unknown = clone()
+  unknown.coverage.cohort_filter_mode = 'all_installations'
+  assert.throws(() => decodeMetrics(unknown), kind('contract'))
+  assert.equal(actionLabel('intro_view'), 'Intro shown')
+  assert.equal(reasonLabel('first_answer'), 'Answer prompt')
 })
 
 test('allows a real empty snapshot without inventing demo activity or retention values', () => {

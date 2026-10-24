@@ -42,11 +42,20 @@ export interface RecentAction {
   status: number
 }
 
+// The server moved its newcomer cohort from first_open to the first intro_view;
+// both are accepted so the dashboard and server can be released in either order.
+export type CohortFilterMode = 'first_intro_view_version_provider_activity' | 'first_open_version_provider_activity'
+const cohortFilterModes: readonly string[] = ['first_intro_view_version_provider_activity', 'first_open_version_provider_activity']
+
+export function funnelBaseStep(mode: CohortFilterMode): 'intro_view' | 'first_open' {
+  return mode === 'first_intro_view_version_provider_activity' ? 'intro_view' : 'first_open'
+}
+
 export interface AdminMetrics {
   schema_version: 1
   coverage: {
     started_at: string | null; raw_retention_days: number; mode: 'first_party_actions_only'; historical_events_available: false
-    cohort_filter_mode: 'first_open_version_provider_activity'; retention_return_versions: 'any'
+    cohort_filter_mode: CohortFilterMode; retention_return_versions: 'any'
   }
   filters: { from: string; to: string; app_version: string; provider: '' | Provider; page: number; limit: number }
   filter_options: { app_versions: string[]; providers: Provider[] }
@@ -217,7 +226,7 @@ export function decodeMetrics(value: unknown): AdminMetrics {
   if (item.schema_version !== 1) throw new AdminRequestError('contract')
   const coverage = record(item.coverage)
   if (coverage.mode !== 'first_party_actions_only' || coverage.historical_events_available !== false
-      || coverage.cohort_filter_mode !== 'first_open_version_provider_activity' || coverage.retention_return_versions !== 'any') {
+      || !cohortFilterModes.includes(coverage.cohort_filter_mode as string) || coverage.retention_return_versions !== 'any') {
     throw new AdminRequestError('contract')
   }
   const filters = record(item.filters)
@@ -238,7 +247,7 @@ export function decodeMetrics(value: unknown): AdminMetrics {
       started_at: coverage.started_at === null ? null : timestamp(coverage.started_at),
       raw_retention_days: count(coverage.raw_retention_days),
       mode: 'first_party_actions_only', historical_events_available: false,
-      cohort_filter_mode: 'first_open_version_provider_activity', retention_return_versions: 'any',
+      cohort_filter_mode: coverage.cohort_filter_mode as CohortFilterMode, retention_return_versions: 'any',
     },
     filters: decodedFilters,
     filter_options: { app_versions: filterOptions.app_versions.map(version), providers: filterOptions.providers.map((item) => provider(item)) },
@@ -275,7 +284,8 @@ export function decodeMetrics(value: unknown): AdminMetrics {
       || result.recent.items.length > result.recent.limit || result.recent.total < result.recent.items.length) {
     throw new AdminRequestError('contract')
   }
-  const cohortSize = result.funnel.find((step) => step.step === 'first_open')?.actors ?? 0
+  const baseStep = funnelBaseStep(result.coverage.cohort_filter_mode)
+  const cohortSize = result.funnel.find((step) => step.step === baseStep)?.actors ?? 0
   if (result.funnel.some((step) => step.actors > cohortSize)
       || new Set(result.recent.items.map((row) => row.id)).size !== result.recent.items.length
       || new Set(result.daily.map((row) => row.date)).size !== result.daily.length) {

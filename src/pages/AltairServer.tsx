@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import type { FormEvent, ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import {
-  AdminRequestError, adminServerUrl, chartPoints, completeDaily, defaultFilters, loadMetrics, loginAdmin,
+  AdminRequestError, adminServerUrl, chartPoints, completeDaily, defaultFilters, funnelBaseStep, loadMetrics, loginAdmin,
   logoutAdmin, lastMetricsPage, percent, providerLabel, providers, validateFilters,
 } from '../lib/altairAdmin'
 import type { AdminMetrics, AdminSession, EventSource, MetricsFilters, RecentAction } from '../lib/altairAdmin'
@@ -74,16 +74,19 @@ function Traffic({ report }: { report: AdminMetrics }) {
 
 function Funnel({ report }: { report: AdminMetrics }) {
   const steps = report.funnel.filter((row) => row.step !== 'account_required')
-  const base = steps.find((row) => row.step === 'first_open')?.actors ?? 0
+  const newcomers = funnelBaseStep(report.coverage.cohort_filter_mode) === 'intro_view'
+  const base = steps.find((row) => row.step === funnelBaseStep(report.coverage.cohort_filter_mode))?.actors ?? 0
   const maximum = Math.max(base, ...steps.map((row) => row.actors), 1)
-  return <Panel title="Onboarding funnel" detail="Checkpoint completion for the first-tracked-open cohort in this window." className="admin-funnel">
+  return <Panel title="Onboarding funnel" detail={newcomers ? 'Checkpoint completion for newcomers whose first intro was shown in this window.' : 'Checkpoint completion for the first-tracked-open cohort in this window.'} className="admin-funnel">
     <ol>{steps.map((step) => <li key={`${step.step}-${step.source}`}>
       <div className="admin-funnel-label"><span>{actionLabel(step.step)}</span><strong>{integer.format(step.actors)}</strong></div>
       <div className="admin-funnel-track"><span style={{ width: `${step.actors / maximum * 100}%` }} /></div>
       <div className="admin-funnel-meta"><Source source={step.source} /><span>{base > 0 ? `${Math.min(100, percent(step.actors, base) ?? 0).toFixed(0)}% of cohort` : 'No cohort yet'}</span></div>
     </li>)}</ol>
     {!steps.length && <Empty>No onboarding checkpoints recorded in this window.</Empty>}
-    <p className="admin-footnote">Version selects the first tracked open; provider selects cohort actors with that provider’s activity in this window, preserving their pre-sign-in steps. Existing installations first seen after instrumentation are included. Checkpoints are not an ordered path; older clients without first-open telemetry are excluded.</p>
+    <p className="admin-footnote">{newcomers
+      ? 'Version selects the first intro shown; provider selects cohort actors with that provider’s activity in this window, preserving their pre-sign-in steps. Installations that were onboarded before updating never see the intro and are excluded. Checkpoints are not an ordered path; older clients without intro telemetry are excluded.'
+      : 'Version selects the first tracked open; provider selects cohort actors with that provider’s activity in this window, preserving their pre-sign-in steps. Existing installations first seen after instrumentation are included. Checkpoints are not an ordered path; older clients without first-open telemetry are excluded.'}</p>
   </Panel>
 }
 
