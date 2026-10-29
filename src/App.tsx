@@ -1,7 +1,7 @@
 import { lazy, Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { Layout } from './components/Layout'
-import { altairLegal, legal, posts } from './content'
+import { altairLegal, easyBurnLegal, legal, posts } from './content'
 import { Article } from './pages/Article'
 import { Home } from './pages/Home'
 import { NotFound } from './pages/NotFound'
@@ -25,6 +25,10 @@ export default function App() {
         <Route
           path="/altair/:slug"
           element={<Article collection={altairLegal} />}
+        />
+        <Route
+          path="/easyburn/:slug"
+          element={<Article collection={easyBurnLegal} />}
         />
         <Route path="*" element={<NotFound />} />
       </Routes>

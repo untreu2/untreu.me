@@ -15,7 +15,7 @@ test('the production build emits both direct dashboard entrypoints with robots p
     for (const [, asset] of assets) assert.ok(existsSync(resolve(dist, asset.slice(1))), `${route}: ${asset}`)
   }
   assert.equal(readFileSync(resolve(dist, 'index.html'), 'utf8').includes('name="robots"'), false)
-  for (const route of ['altair/privacy', 'altair/health-privacy', 'altair/health-notice', 'altair/support', 'floyd/privacy']) {
+  for (const route of ['altair/privacy', 'altair/health-privacy', 'altair/health-notice', 'altair/support', 'floyd/privacy', 'easyburn/privacy', 'easyburn/terms', 'easyburn/support']) {
     assert.equal(readFileSync(resolve(dist, route, 'index.html'), 'utf8').includes('name="robots"'), false)
   }
 })

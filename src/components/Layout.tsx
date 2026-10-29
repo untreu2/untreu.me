@@ -14,6 +14,9 @@ export function Layout({ children }: { children: ReactNode }) {
           <Link className="underline underline-offset-4 hover:text-ink" to="/altair/privacy">Altair Privacy</Link>
           <Link className="underline underline-offset-4 hover:text-ink" to="/altair/health-privacy">Altair Consumer Health Data Privacy</Link>
           <Link className="underline underline-offset-4 hover:text-ink" to="/altair/health-notice">Altair Health Notice</Link>
+          <Link className="underline underline-offset-4 hover:text-ink" to="/easyburn/support">EasyBurn Support</Link>
+          <Link className="underline underline-offset-4 hover:text-ink" to="/easyburn/privacy">EasyBurn Privacy</Link>
+          <Link className="underline underline-offset-4 hover:text-ink" to="/easyburn/terms">EasyBurn Terms</Link>
         </nav>
       </footer>}
     </div>

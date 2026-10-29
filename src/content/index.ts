@@ -15,6 +15,9 @@ import altairPrivacy from './legal/AltairPrivacy.md?raw'
 import altairHealthPrivacy from './legal/AltairHealthPrivacy.md?raw'
 import altairHealthNotice from './legal/AltairHealthNotice.md?raw'
 import altairSupport from './legal/AltairSupport.md?raw'
+import easyBurnPrivacy from './legal/EasyBurnPrivacy.md?raw'
+import easyBurnTerms from './legal/EasyBurnTerms.md?raw'
+import easyBurnSupport from './legal/EasyBurnSupport.md?raw'
 
 // Legal / policy pages, rendered with the same Markdown article layout.
 export const legal: Entry[] = [
@@ -50,6 +53,27 @@ export const altairLegal: Entry[] = [
     title: 'Altair Health Notice',
     description: 'The limits of Altair’s wellness information, scores, and AI estimates.',
     body: altairHealthNotice,
+  },
+]
+
+export const easyBurnLegal: Entry[] = [
+  {
+    slug: 'support',
+    title: 'EasyBurn Support',
+    description: 'Help with EasyBurn subscriptions, food logging, Apple Health and local data.',
+    body: easyBurnSupport,
+  },
+  {
+    slug: 'privacy',
+    title: 'EasyBurn Privacy Policy',
+    description: 'How EasyBurn handles your local log, food estimates, subscriptions and usage counts.',
+    body: easyBurnPrivacy,
+  },
+  {
+    slug: 'terms',
+    title: 'EasyBurn Terms of Use',
+    description: 'The license, subscription terms and estimate limits that apply to EasyBurn.',
+    body: easyBurnTerms,
   },
 ]
 

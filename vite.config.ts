@@ -22,6 +22,9 @@ function spaFallback(): Plugin {
           'altair/health-privacy',
           'altair/health-notice',
           'altair/support',
+          'easyburn/privacy',
+          'easyburn/terms',
+          'easyburn/support',
         ]) {
           const directory = resolve(out, route)
           mkdirSync(directory, { recursive: true })

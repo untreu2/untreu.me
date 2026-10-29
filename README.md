@@ -83,6 +83,15 @@ See the companion altairapp repository’s `docs/PrivacyLaunchReview.md` for the
 code audit, official sources, and remaining release requirements. Verify all
 three public URLs after deployment before distributing the app’s legal links.
 
+## EasyBurn legal pages
+
+EasyBurn uses `/easyburn/privacy`, `/easyburn/terms` and `/easyburn/support`.
+The privacy policy mirrors the app's account-free local log, transient
+OpenRouter food estimates, direct Open Food Facts barcode lookups, Apple and
+RevenueCat subscription processing and opt-in aggregate setup counts. Terms
+point to Apple's standard EULA and summarize subscriptions and estimate limits.
+Keep these pages aligned with the easyburnapp and easyburnserver behavior.
+
 ## Deployment
 
 Pushes to `main` are built and published to GitHub Pages via
