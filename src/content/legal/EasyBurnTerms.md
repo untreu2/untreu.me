@@ -22,9 +22,11 @@ Start Over does not cancel a subscription. Refunds are handled by Apple.
 ## Estimates are not medical advice
 
 EasyBurn is for adults aged 18 or older. It provides general calorie and weight
-estimates, not medical advice, diagnosis or treatment. Food estimates, daily
-burn, estimated loss and goal dates can be inaccurate. Review food estimates
-before adding them, and check with a doctor before changing your diet or
+estimates, not medical advice, diagnosis or treatment. Food and workout estimates, daily
+burn, estimated loss and goal dates can be inaccurate. Review estimates
+before adding them. Workout descriptions are interpreted online; workout calories
+are calculated on your iPhone using your weight, which is not sent to the estimation
+service. Check with a doctor before changing your diet or
 exercise, particularly if you have a health condition.
 
 ## Your data

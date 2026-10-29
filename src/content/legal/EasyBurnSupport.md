@@ -23,9 +23,13 @@ in to the Apple Account used for the purchase. Contact Apple to
 [request a refund](https://reportaproblem.apple.com/); refunds are handled by
 Apple.
 
-## Food estimates and barcodes
+## Food and workout estimates and barcodes
 
-Food estimates are approximate. Review and edit a result before adding it. An
+Food and workout estimates are approximate. Describe your food with portions, or
+your workout with duration and intensity, and choose **Estimate**. Review and edit
+the result before choosing **Add to log**. The server interprets workouts; their
+calories are calculated on your iPhone using your weight. Health records, body
+measurements and weight history are not sent to the estimation service. An
 online estimate needs a connection and an active subscription. If a request
 fails, your draft stays available; you can enter calories manually or use a
 clearly labelled built-in estimate when offered for recognized foods.
@@ -60,7 +64,7 @@ hold a cloud copy of your diary to restore for you.
 ## Estimates and safety
 
 EasyBurn is for adults and provides general calorie and weight estimates, not
-medical advice. Food estimates, daily burn, estimated loss and goal dates can be
+medical advice. Food and workout estimates, daily burn, estimated loss and goal dates can be
 inaccurate. Check with a doctor before changing your diet or exercise,
 particularly if you have a health condition.
 

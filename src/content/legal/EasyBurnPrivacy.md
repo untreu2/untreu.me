@@ -2,7 +2,7 @@ _Last updated 29 October 2026_
 
 EasyBurn is a calorie-deficit tracker for iPhone operated by **Emir Yorulmaz
 (untreu)**. This policy explains how EasyBurn handles information when you use
-the iPhone app and its food-estimation service. For privacy questions or
+the iPhone app and its food and workout estimation service. For privacy questions or
 requests, contact [contact@dame.dev](mailto:contact@dame.dev).
 
 ## Your log stays on your iPhone
@@ -39,16 +39,24 @@ metadata. Camera frames used to recognize barcodes are not uploaded. Meal and
 trial reminders are local notifications; you can change their permissions in
 iPhone Settings.
 
-## Food estimates
+## Food and workout estimates
 
-When you request an estimate, your submitted food description, any selected
+When you request an estimate, your submitted food or workout description, any selected
 meal photo, an optional clarification answer and the app's language are sent
 through the EasyBurn server to OpenRouter and its model provider. They are used
-to generate the estimate. This is separate from uploading your saved log:
+to generate the estimate. Workout descriptions can include the activity, duration
+and intensity that you type. The provider returns the interpreted activity,
+duration and an estimated intensity value (MET). EasyBurn calculates the workout's
+calories on your iPhone using your weight and net MET, subtracting resting energy.
+Your weight is not sent for that calculation. This is separate from uploading your saved log:
 Health records, your body profile and weight history are not included. Please
 avoid including unrelated personal information in descriptions or photos.
 
-The EasyBurn server processes food descriptions, photos and model replies in
+The app explains this sharing before the first request. People who previously
+accepted the food-only disclosure see the expanded explanation before their first
+request after updating. You review an estimate before adding it to the log.
+
+The EasyBurn server processes descriptions, photos and model replies in
 memory and does not save them in its database or request logs. Our requests
 require OpenRouter routing that denies provider data collection and uses
 endpoints marked for zero data retention; an unavailable compliant endpoint
@@ -81,17 +89,18 @@ subscription information, including the product, transaction identifiers,
 subscription status, renewal and trial dates. RevenueCat receives subscription
 transactions and anonymous purchase identifiers through Apple server
 notifications for subscription reporting. We do not provide RevenueCat with your
-diary, food photos, body details or Health records, and we do not link those
-purchase identifiers to onboarding counts.
+diary, food photos, body details or Health records.
 
-To authorize food estimates, the app sends Apple's signed subscription
+To authorize estimates, the app sends Apple's signed subscription
 transaction to the EasyBurn server. During a billing grace period it also sends
 signed renewal information. The server checks this evidence and stores
 anonymous session identifiers, hashed session tokens, keyed hashes of
 subscription identifiers, subscription status and bounded usage counters. It
 processes network addresses to apply abuse limits, using keyed hashes for
 rate-limit and quota records. Operational logs record request status and
-duration without food contents.
+duration without description or image contents. The combined food/workout estimate
+route does not write routine application request logs; bounded provider-failure
+diagnostics contain failure codes, not submitted descriptions or model replies.
 
 Expired sessions and anonymous identities without sessions are removed
 regularly. Sessions last no more than 30 days. Estimate-usage counters older
@@ -102,24 +111,17 @@ transaction records under their applicable terms. See
 [Apple's privacy policy](https://www.apple.com/legal/privacy/) and
 [RevenueCat's privacy policy](https://www.revenuecat.com/privacy).
 
-## Anonymous app counts
+## Setup and paywall analytics
 
-If you enable optional anonymous usage counts, EasyBurn sends limited event
-names, such as which setup screen was reached or whether the paywall was shown,
-to understand where people leave setup and improve the app. This option is off
-by default. You can change it in Profile's Privacy page; turning it off stops
-future reports.
+EasyBurn no longer collects onboarding progress or paywall-view analytics.
+Older app versions may still send event requests, but the server ignores their
+contents without recording counts or analytics request logs.
 
-Reports contain only an allowed event name. They do not include your answers,
-food, photos, Health records, weight, goal, email address, advertising
-identifier or a persistent analytics identifier, and are not joined to your
-subscription or food-estimation session. We store the event's total for a
-server calendar day for up to 90 days, rather than an individual journey. A
-network connection exposes your IP address while the request is handled; a
-temporary keyed hash is used in memory for short-lived abuse limits, without
-saving the address or logging these event requests. We cannot identify or
-remove one person's contribution after it has been combined into an aggregate
-count.
+Anonymous totals collected before this change contain only a UTC date, event
+name and combined count, with no individual journey or attached identifier.
+They expire under the existing 90-day retention limit. Restricted operational
+backups may retain earlier copies until rotated. We cannot identify or remove
+one person's contribution from a historical aggregate total.
 
 ## Support, sharing and your choices
 
@@ -139,7 +141,7 @@ Depending on your location, you may have rights to access, correct, delete,
 restrict or object to processing of personal information, request portability
 or complain to your local data-protection authority. Contact support to exercise
 these rights. We cannot retrieve a diary that exists only on your iPhone or
-identify your contribution to an aggregate count. Use the app's export, editing
+identify your contribution to a historical aggregate count. Use the app's export, editing
 and deletion controls for local records. Requests involving Apple's payments or
 another provider's independent records may need to be directed to that
 provider.
