@@ -3,19 +3,18 @@ import { resolve } from 'node:path'
 import { defineConfig, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// Keep the static GitHub Pages fallback and add a tiny Cloudflare Worker
-// entrypoint so the same build can be hosted without changing the app.
-function spaFallback(): Plugin {
+// Emit direct entrypoints for legal and dashboard routes, plus a tiny Cloudflare
+// Worker entrypoint so the same build can be hosted without changing the app.
+function routeEntrypoints(): Plugin {
   return {
-    name: 'spa-404-fallback',
+    name: 'route-entrypoints',
     apply: 'build',
     closeBundle() {
       const out = resolve(__dirname, 'dist')
       const index = resolve(out, 'index.html')
       if (existsSync(index)) {
-        copyFileSync(index, resolve(out, '404.html'))
-        // Legal URLs must return successful direct responses on GitHub Pages,
-        // including when opened from the iOS app or checked by a store crawler.
+        // Legal URLs are served as real files, so they return successful direct
+        // responses when opened from the iOS app or checked by a store crawler.
         for (const route of [
           'floyd/privacy',
           'altair/privacy',
@@ -59,5 +58,5 @@ function spaFallback(): Plugin {
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), spaFallback()],
+  plugins: [react(), routeEntrypoints()],
 })
