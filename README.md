@@ -70,7 +70,7 @@ change requires a renewed choice. Note-action confirmations remain separate.
 Provider account privacy settings, licensing and
 applicable terms are managed separately from runtime credentials.
 The policies do not promise zero retention or no training for provider data. Pushing the website’s
-main branch runs the Firebase Hosting deploy workflow; backend
+main branch runs the existing GitHub Pages publication workflow; backend
 deployment and physical-device voice checks remain separate.
 Local health profile fields and private history cannot be restored on a fresh
 installation or another device. Privacy requests use `contact@dame.dev`. Keep provider
@@ -94,13 +94,11 @@ Keep these pages aligned with the easyburnapp and easyburnserver behavior.
 
 ## Deployment
 
-Pushes to `main`, a daily schedule and manual runs build the site and deploy it
-to Firebase Hosting (site `untreu-me` in the `floyd-7d3a5` project) via
-`.github/workflows/deploy.yml`, authenticated by the `FIREBASE_SERVICE_ACCOUNT`
-repository secret. The custom domains `untreu.me` and `www.untreu.me` (redirect)
-are attached to that site, and `firebase.json` rewrites unknown paths to
-`index.html` so deep links resolve. Legal routes also emit their own
-`index.html` entrypoints so direct policy links are served as static files.
+Pushes to `main` are built and published to GitHub Pages via
+`.github/workflows/deploy.yml`. The custom domain lives in `public/CNAME`, and
+`404.html` is emitted as an SPA fallback so deep links resolve correctly.
+Legal routes also emit their own `index.html` entrypoints so direct policy links
+return successful HTTP responses instead of relying on the 404 fallback.
 `/altair/admin` and its `/altair/server` alias have direct entrypoints with a `noindex` robots tag. This is
 an authenticated Altair action dashboard with memory-only sessions. See
 [the dashboard contract and local-review guide](docs/AltairServerDashboard.md).
