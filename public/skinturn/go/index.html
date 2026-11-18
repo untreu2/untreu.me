@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>SkinTurn · AI Skin Analysis</title>
+  <meta name="robots" content="noindex" />
+  <meta property="og:title" content="SkinTurn · AI Skin Analysis" />
+  <meta property="og:image" content="https://untreu.me/skinturn/icon.png" />
+  <link rel="icon" href="/skinturn/icon.png" />
+  <style>
+    :root { --bg: rgb(242, 242, 240); --ink: rgb(52, 34, 44); --secondary: rgb(112, 94, 102); }
+    * { box-sizing: border-box; margin: 0; }
+    html, body { background: var(--bg); color: var(--ink); }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+      min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 24px 20px; text-align: center;
+    }
+    .icon { width: 84px; height: 84px; border-radius: 19px; box-shadow: 0 6px 18px rgba(78, 40, 62, 0.18); }
+    h1 { font-family: "New York", ui-serif, Georgia, serif; font-weight: 500; font-size: 26px; margin-top: 16px; }
+    .note { color: var(--secondary); font-size: 15px; margin-top: 8px; max-width: 320px; line-height: 1.4; }
+    .get {
+      display: flex; align-items: center; justify-content: center; gap: 12px; width: 100%; max-width: 360px;
+      margin-top: 24px; padding: 16px 24px; min-height: 78px; background: #000; color: #fff; text-decoration: none;
+      border-radius: 14px; box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+    }
+    .get .logo { font-size: 34px; line-height: 1; margin-top: -4px; }
+    .get .small { display: block; font-size: 12px; text-align: left; opacity: 0.9; }
+    .get .big { display: block; font-size: 27px; font-weight: 600; text-align: left; letter-spacing: -0.3px; }
+  </style>
+</head>
+<body>
+  <img class="icon" src="/skinturn/icon.png" alt="SkinTurn app icon" width="84" height="84" />
+  <h1>SkinTurn</h1>
+  <p class="note" id="note">Opening the App Store…</p>
+  <a id="get" class="get" href="https://apps.apple.com/app/apple-store/id6831892188?pt=127210914&amp;ct=web&amp;mt=8">
+    <span class="logo" aria-hidden="true">&#xF8FF;</span>
+    <span><span class="small">Download on the</span><span class="big">App Store</span></span>
+  </a>
+
+  <script>
+    // The ad link that skips the page: on iPhone it opens the App Store right away,
+    // the button stays as a fallback. Other systems go to the full page.
+    // ?c=<campaign> sets the App Store Connect campaign name. Counts are anonymous,
+    // by operating system only (see skinturnserver API.md): web_landing_* for the
+    // visit and web_get_ios for the automatic App Store hand-off (the fallback button isn't counted again).
+    (function () {
+      var c = 'web';
+      try {
+        c = new URLSearchParams(location.search).get('c') || 'web';
+        if (!/^[a-z0-9_]{1,40}$/.test(c)) c = 'web';
+      } catch (e) {}
+      var store = 'https://apps.apple.com/app/apple-store/id6831892188?pt=127210914&ct=' + c + '&mt=8';
+      document.getElementById('get').href = store;
+
+      var ua = navigator.userAgent || '';
+      var touchMac = /Macintosh/.test(ua) && navigator.maxTouchPoints > 1;
+      var os = /iPhone|iPad|iPod/.test(ua) || touchMac ? 'ios' : /Android/.test(ua) ? 'android' : 'other';
+
+      function send(name) {
+        try {
+          var url = 'https://skinturn.grass.build/api/v1/web-event';
+          if (navigator.sendBeacon && navigator.sendBeacon(url, name)) return;
+          fetch(url, { method: 'POST', body: name, mode: 'no-cors', keepalive: true, headers: { 'Content-Type': 'text/plain' } });
+        } catch (e) {}
+      }
+      if (os !== 'ios') {
+        // The full page counts this visit itself.
+        location.replace('/skinturn/?c=' + c);
+        return;
+      }
+      send('web_landing_ios');
+      send('web_get_ios');
+      setTimeout(function () { location.href = store; }, 150);
+      // Still here after a moment: the in-app browser didn't hand over, so ask for a tap.
+      setTimeout(function () {
+        document.getElementById('note').textContent = 'Tap below to open SkinTurn in the App Store.';
+      }, 1500);
+    })();
+  </script>
+</body>
+</html>
