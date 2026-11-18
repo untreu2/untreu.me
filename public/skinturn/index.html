@@ -32,14 +32,15 @@
     .sub { color: var(--secondary); font-size: 15px; margin-top: 4px; }
     .pitch { font-size: 18px; line-height: 1.4; max-width: 340px; margin-top: 20px; }
     .get {
-      display: inline-flex; align-items: center; gap: 10px;
-      margin-top: 24px; padding: 12px 26px 12px 20px; min-height: 60px;
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+      width: 100%; max-width: 340px;
+      margin-top: 24px; padding: 14px 24px; min-height: 68px;
       background: #000; color: #fff; text-decoration: none; border-radius: 14px;
       box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
     }
     .get .logo { font-size: 30px; line-height: 1; margin-top: -4px; }
     .get .small { display: block; font-size: 12px; text-align: left; opacity: 0.9; }
-    .get .big { display: block; font-size: 22px; font-weight: 600; text-align: left; letter-spacing: -0.3px; }
+    .get .big { display: block; font-size: 24px; font-weight: 600; text-align: left; letter-spacing: -0.3px; }
     .trial { color: var(--secondary); font-size: 13px; margin-top: 10px; }
     .shots { display: flex; gap: 10px; margin-top: 28px; max-width: 100%; overflow-x: auto; padding: 4px 4px 12px; scroll-snap-type: x mandatory; }
     .shots img { width: 150px; height: auto; border-radius: 16px; flex: none; scroll-snap-align: center; box-shadow: 0 6px 18px rgba(78, 40, 62, 0.14); }
@@ -57,7 +58,7 @@
     <span class="logo" aria-hidden="true">&#xF8FF;</span>
     <span><span class="small">Download on the</span><span class="big">App Store</span></span>
   </a>
-  <p class="trial">Free 7-day trial, then a subscription. For iPhone.</p>
+  <p class="trial">Free 7-day trial. For iPhone.</p>
 
   <div class="shots" aria-label="App screenshots">
     <img src="/skinturn/shot1.jpg" alt="Today's skin score from one selfie" width="150" height="326" loading="lazy" />
