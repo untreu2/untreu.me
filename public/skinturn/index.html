@@ -27,30 +27,44 @@
       padding: max(28px, env(safe-area-inset-top)) 20px max(28px, env(safe-area-inset-bottom));
       text-align: center;
     }
-    .icon { width: 96px; height: 96px; border-radius: 22px; box-shadow: 0 8px 24px rgba(78, 40, 62, 0.18); }
-    h1 { font-family: "New York", ui-serif, Georgia, serif; font-weight: 500; font-size: 30px; margin-top: 18px; letter-spacing: -0.2px; }
-    .sub { color: var(--secondary); font-size: 15px; margin-top: 4px; }
-    .pitch { font-size: 18px; line-height: 1.4; max-width: 340px; margin-top: 20px; }
+    .head { display: flex; align-items: center; gap: 14px; width: 100%; max-width: 360px; text-align: left; }
+    .icon { width: 64px; height: 64px; border-radius: 15px; flex: none; box-shadow: 0 6px 18px rgba(78, 40, 62, 0.18); }
+    h1 { font-family: "New York", ui-serif, Georgia, serif; font-weight: 500; font-size: 26px; letter-spacing: -0.2px; }
+    .sub { color: var(--secondary); font-size: 13px; margin-top: 2px; }
+    .pitch { font-size: 19px; line-height: 1.35; max-width: 360px; margin-top: 18px; }
     .get {
       display: flex; align-items: center; justify-content: center; gap: 12px;
-      width: 100%; max-width: 340px;
-      margin-top: 24px; padding: 14px 24px; min-height: 68px;
+      width: 100%; max-width: 360px;
+      margin-top: 20px; padding: 16px 24px; min-height: 78px;
       background: #000; color: #fff; text-decoration: none; border-radius: 14px;
       box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
     }
-    .get .logo { font-size: 30px; line-height: 1; margin-top: -4px; }
+    .get .logo { font-size: 34px; line-height: 1; margin-top: -4px; }
     .get .small { display: block; font-size: 12px; text-align: left; opacity: 0.9; }
-    .get .big { display: block; font-size: 24px; font-weight: 600; text-align: left; letter-spacing: -0.3px; }
+    .get .big { display: block; font-size: 27px; font-weight: 600; text-align: left; letter-spacing: -0.3px; }
     .shots { display: flex; gap: 10px; margin-top: 28px; max-width: 100%; overflow-x: auto; padding: 4px 4px 12px; scroll-snap-type: x mandatory; }
     .shots img { width: 150px; height: auto; border-radius: 16px; flex: none; scroll-snap-align: center; box-shadow: 0 6px 18px rgba(78, 40, 62, 0.14); }
     .help { color: var(--secondary); font-size: 13px; line-height: 1.45; max-width: 320px; margin-top: 18px; }
     .help a { color: var(--deep); }
+    /* The same button pinned to the bottom once the main one scrolls away. */
+    .bar {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 10;
+      display: flex; justify-content: center;
+      padding: 12px 20px max(12px, env(safe-area-inset-bottom));
+      background: rgba(242, 242, 240, 0.94); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+      border-top: 1px solid rgba(78, 40, 62, 0.08);
+      transform: translateY(110%); transition: transform 0.25s ease;
+    }
+    .bar.show { transform: none; }
+    .bar .get { margin-top: 0; min-height: 64px; }
+    body { padding-bottom: 110px; }
   </style>
 </head>
 <body>
-  <img class="icon" src="/skinturn/icon.png" alt="SkinTurn app icon" width="96" height="96" />
-  <h1>SkinTurn</h1>
-  <p class="sub">AI Skin Analysis · Skincare Scanner &amp; Tracker</p>
+  <div class="head">
+    <img class="icon" src="/skinturn/icon.png" alt="SkinTurn app icon" width="64" height="64" />
+    <div><h1>SkinTurn</h1><p class="sub">AI Skin Analysis · Skincare Scanner &amp; Tracker</p></div>
+  </div>
   <p class="pitch">See which of the products you already own are working, and which ones shouldn't share a night.</p>
 
   <a id="get" class="get" href="https://apps.apple.com/app/apple-store/id6831892188?pt=127210914&amp;ct=web&amp;mt=8">
@@ -64,6 +78,13 @@
     <img src="/skinturn/shot3.jpg" alt="Your skin plan built from your products" width="150" height="326" loading="lazy" />
   </div>
 
+  <div class="bar" id="bar" aria-hidden="true">
+    <a id="get2" class="get" href="https://apps.apple.com/app/apple-store/id6831892188?pt=127210914&amp;ct=web&amp;mt=8" tabindex="-1">
+      <span class="logo" aria-hidden="true">&#xF8FF;</span>
+      <span><span class="small">Download on the</span><span class="big">App Store</span></span>
+    </a>
+  </div>
+
   <p class="help">If the App Store doesn't open, tap ••• at the top and choose “Open in browser”, or search “SkinTurn” in the App Store.</p>
 
   <script>
@@ -71,11 +92,19 @@
     // Anonymous counts for SkinTurn's funnel: the page view and the button tap, by
     // operating system only (no cookies, no identifiers). See skinturnserver API.md.
     (function () {
-      var get = document.getElementById('get');
+      var get = document.getElementById('get'), get2 = document.getElementById('get2'), bar = document.getElementById('bar');
       try {
         var c = new URLSearchParams(location.search).get('c') || 'web';
         if (!/^[a-z0-9_]{1,40}$/.test(c)) c = 'web';
-        get.href = 'https://apps.apple.com/app/apple-store/id6831892188?pt=127210914&ct=' + c + '&mt=8';
+        get.href = get2.href = 'https://apps.apple.com/app/apple-store/id6831892188?pt=127210914&ct=' + c + '&mt=8';
+      } catch (e) {}
+      try {
+        new IntersectionObserver(function (entries) {
+          var hidden = !entries[0].isIntersecting;
+          bar.classList.toggle('show', hidden);
+          bar.setAttribute('aria-hidden', hidden ? 'false' : 'true');
+          get2.tabIndex = hidden ? 0 : -1;
+        }).observe(get);
       } catch (e) {}
 
       var ua = navigator.userAgent || '';
@@ -90,7 +119,7 @@
         } catch (e) {}
       }
       send('web_landing_' + os);
-      get.addEventListener('click', function () { send('web_get_' + os); });
+      [get, get2].forEach(function (a) { a.addEventListener('click', function () { send('web_get_' + os); }); });
     })();
   </script>
 </body>
