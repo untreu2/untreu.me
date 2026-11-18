@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>SkinTurn · AI Skin Analysis</title>
+  <meta name="description" content="Which of the skincare products you already own are actually working? One selfie a day shows you, and which ones shouldn't be used together." />
+  <meta property="og:title" content="SkinTurn · AI Skin Analysis" />
+  <meta property="og:description" content="Which of the skincare products you already own are actually working? One selfie a day shows you." />
+  <meta property="og:image" content="https://untreu.me/skinturn/icon.png" />
+  <meta name="apple-itunes-app" content="app-id=6831892188" />
+  <link rel="icon" href="/skinturn/icon.png" />
+  <style>
+    :root {
+      --bg: rgb(242, 242, 240);
+      --ink: rgb(52, 34, 44);
+      --secondary: rgb(112, 94, 102);
+      --accent: rgb(218, 120, 142);
+      --deep: rgb(78, 40, 62);
+    }
+    * { box-sizing: border-box; margin: 0; }
+    html, body { background: var(--bg); color: var(--ink); }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+      min-height: 100vh; min-height: 100dvh;
+      display: flex; flex-direction: column; align-items: center;
+      padding: max(28px, env(safe-area-inset-top)) 20px max(28px, env(safe-area-inset-bottom));
+      text-align: center;
+    }
+    .icon { width: 96px; height: 96px; border-radius: 22px; box-shadow: 0 8px 24px rgba(78, 40, 62, 0.18); }
+    h1 { font-family: "New York", ui-serif, Georgia, serif; font-weight: 500; font-size: 30px; margin-top: 18px; letter-spacing: -0.2px; }
+    .sub { color: var(--secondary); font-size: 15px; margin-top: 4px; }
+    .pitch { font-size: 18px; line-height: 1.4; max-width: 340px; margin-top: 20px; }
+    .get {
+      display: inline-flex; align-items: center; gap: 10px;
+      margin-top: 24px; padding: 12px 26px 12px 20px; min-height: 60px;
+      background: #000; color: #fff; text-decoration: none; border-radius: 14px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+    }
+    .get .logo { font-size: 30px; line-height: 1; margin-top: -4px; }
+    .get .small { display: block; font-size: 12px; text-align: left; opacity: 0.9; }
+    .get .big { display: block; font-size: 22px; font-weight: 600; text-align: left; letter-spacing: -0.3px; }
+    .trial { color: var(--secondary); font-size: 13px; margin-top: 10px; }
+    .shots { display: flex; gap: 10px; margin-top: 28px; max-width: 100%; overflow-x: auto; padding: 4px 4px 12px; scroll-snap-type: x mandatory; }
+    .shots img { width: 150px; height: auto; border-radius: 16px; flex: none; scroll-snap-align: center; box-shadow: 0 6px 18px rgba(78, 40, 62, 0.14); }
+    .help { color: var(--secondary); font-size: 13px; line-height: 1.45; max-width: 320px; margin-top: 18px; }
+    .help a { color: var(--deep); }
+  </style>
+</head>
+<body>
+  <img class="icon" src="/skinturn/icon.png" alt="SkinTurn app icon" width="96" height="96" />
+  <h1>SkinTurn</h1>
+  <p class="sub">AI Skin Analysis · Skincare Scanner &amp; Tracker</p>
+  <p class="pitch">See which of the products you already own are working, and which ones shouldn't share a night.</p>
+
+  <a id="get" class="get" href="https://apps.apple.com/app/apple-store/id6831892188?pt=127210914&amp;ct=web&amp;mt=8">
+    <span class="logo" aria-hidden="true">&#xF8FF;</span>
+    <span><span class="small">Download on the</span><span class="big">App Store</span></span>
+  </a>
+  <p class="trial">Free 7-day trial, then a subscription. For iPhone.</p>
+
+  <div class="shots" aria-label="App screenshots">
+    <img src="/skinturn/shot1.jpg" alt="Today's skin score from one selfie" width="150" height="326" loading="lazy" />
+    <img src="/skinturn/shot2.jpg" alt="Your products and how each one is doing" width="150" height="326" loading="lazy" />
+    <img src="/skinturn/shot3.jpg" alt="Your skin plan built from your products" width="150" height="326" loading="lazy" />
+  </div>
+
+  <p class="help">If the App Store doesn't open, tap ••• at the top and choose “Open in browser”, or search “SkinTurn” in the App Store.</p>
+
+  <script>
+    // ?c=<campaign> sets the App Store Connect campaign name, e.g. untreu.me/skinturn/?c=tiktok_promote
+    // Anonymous counts for SkinTurn's funnel: the page view and the button tap, by
+    // operating system only (no cookies, no identifiers). See skinturnserver API.md.
+    (function () {
+      var get = document.getElementById('get');
+      try {
+        var c = new URLSearchParams(location.search).get('c') || 'web';
+        if (!/^[a-z0-9_]{1,40}$/.test(c)) c = 'web';
+        get.href = 'https://apps.apple.com/app/apple-store/id6831892188?pt=127210914&ct=' + c + '&mt=8';
+      } catch (e) {}
+
+      var ua = navigator.userAgent || '';
+      var touchMac = /Macintosh/.test(ua) && navigator.maxTouchPoints > 1; // iPadOS reports a Mac
+      var os = /iPhone|iPad|iPod/.test(ua) || touchMac ? 'ios' : /Android/.test(ua) ? 'android' : 'other';
+
+      function send(name) {
+        try {
+          var url = 'https://skinturn.grass.build/api/v1/web-event';
+          if (navigator.sendBeacon && navigator.sendBeacon(url, name)) return;
+          fetch(url, { method: 'POST', body: name, mode: 'no-cors', keepalive: true, headers: { 'Content-Type': 'text/plain' } });
+        } catch (e) {}
+      }
+      send('web_landing_' + os);
+      get.addEventListener('click', function () { send('web_get_' + os); });
+    })();
+  </script>
+</body>
+</html>
